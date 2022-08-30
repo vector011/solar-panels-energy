@@ -32,7 +32,7 @@ export const field = css`
   transition: border-bottom-color 200ms;
 
   &::placeholder {
-    color: ${({ theme }) => `${theme.colors.light}55`};
+    color: ${({ theme }) => `${theme.colors.light}80`};
   }
 
   &:hover,

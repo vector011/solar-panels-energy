@@ -4,6 +4,7 @@ const palette = {
   red: '#FF4545',
   blue: '#576AE2',
   lightBlue: '#6ECBF6',
+  alphaBlack: 'rgba(0, 0, 0, 0.5)',
 } as const
 
 const THEME = {
@@ -13,6 +14,7 @@ const THEME = {
     primary: palette.lightBlue,
     secondary: palette.blue,
     error: palette.red,
+    modal: palette.alphaBlack,
   },
 
   sizes: {
@@ -29,6 +31,9 @@ const THEME = {
     '3xl': '56px',
     '4xl': '64px',
     '5xl': '72px',
+    '6xl': '80px',
+    '7xl': '88px',
+    big: '100px',
     block: '120px',
     section: '160px',
     top: '280px',
@@ -55,6 +60,7 @@ const THEME = {
     tablet: 768,
     desktop: 1024,
     largeDesktop: 1440,
+    modal: 1200,
     container: 1600,
   },
 

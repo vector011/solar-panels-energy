@@ -10,6 +10,8 @@ export type Props = {
 } & FieldAttributes<any> &
   InputHTMLAttributes<HTMLInputElement>
 
+// TODO: automatic height of textarea
+
 const Input = ({ name, hasError, ...props }: Props) => (
   <S.Wrapper {...{ hasError }}>
     <Field id={name} {...{ name, ...props }} />

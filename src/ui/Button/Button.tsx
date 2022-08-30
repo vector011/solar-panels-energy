@@ -7,6 +7,7 @@ import * as S from './styled'
 export type Props = {
   onClick?: () => void
   secondary?: boolean
+  wide?: boolean
   children?: React.ReactNode
 } & ButtonHTMLAttributes<HTMLButtonElement>
 

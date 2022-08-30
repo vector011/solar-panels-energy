@@ -1,6 +1,12 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import type { Props } from './Button'
+
+const wideVariant = css`
+  align-self: center;
+  width: 100%;
+  max-width: 800px;
+`
 
 export const Wrapper = styled.button<Props>`
   display: inline;
@@ -22,4 +28,6 @@ export const Wrapper = styled.button<Props>`
   color: ${({ theme, secondary }) =>
     theme.colors[secondary ? 'primary' : 'dark']};
   text-align: center;
+
+  ${({ wide }) => wide && wideVariant}
 `

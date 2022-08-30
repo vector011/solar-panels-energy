@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useNavigate } from 'react-router'
 
-import { Box, Container, Text, Video } from 'ui'
+import { Box, Button, Container, Text, Video } from 'ui'
 import { useScrollPosition } from 'hooks'
 
 import * as S from './styled'
 
 const Home = () => {
+  const navigate = useNavigate()
+
   const pos = useScrollPosition(0.5)
+
+  const toSolarPanels = useCallback(
+    () => navigate('/solarne-panely'),
+    [navigate]
+  )
 
   return (
     <>
@@ -77,6 +85,8 @@ const Home = () => {
             <Text as="h2" variant="subheading2" textAlign="center" maxw="50%">
               Fotovoltaika, príslušenstvo a služby.
             </Text>
+
+            <Button onClick={toSolarPanels}>Zistiť viac</Button>
           </Container>
         </Box>
       </Box>

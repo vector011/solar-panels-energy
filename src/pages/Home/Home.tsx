@@ -12,7 +12,7 @@ const Home = () => {
   const pos = useScrollPosition(0.5)
 
   const toSolarPanels = useCallback(
-    () => navigate('/solarne-panely'),
+    () => navigate('/solarna-energia'),
     [navigate]
   )
 

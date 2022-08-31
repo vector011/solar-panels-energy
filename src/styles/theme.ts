@@ -39,10 +39,6 @@ const THEME = {
     top: '280px',
   },
 
-  shadows: {
-    button: '0px 4px 4px rgba(128, 49, 49, 0.25)',
-  },
-
   borderRadii: {
     rounded: '50%',
   },
@@ -77,6 +73,12 @@ const THEME = {
       font-size: clamp(30px, 4.5vw + 1rem, 80px);
       line-height: clamp(37px, 4.5vw + 1rem, 80px);
     `,
+    homepage: `
+      font-family: "ClashGrotesk", sans-serif;
+      font-weight: 400;
+      font-size: clamp(30px, 3.6vw + 1rem, 88px);
+      line-height: clamp(37px, 3.6vw + 1rem, 88px);
+    `,
     subheading: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
@@ -87,14 +89,14 @@ const THEME = {
     subheading2: `
       font-family: "Inter", sans-serif;
       font-weight: 400;
-      font-size: clamp(16px, 2.5vw + 0.1rem, 25px);
-      line-height: clamp(19px, 2.5vw + 0.1rem, 30px);
+      font-size: clamp(16px, 2vw + 0.1rem, 25px);
+      line-height: clamp(19px, 2vw + 0.1rem, 30px);
     `,
     paragraph: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
       font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(20px, 2.5vw + 0.1rem, 24px);
+      line-height: clamp(20px, 4vw + 0.1rem, 24px);
     `,
     navlink: `
       font-family: "ClashGrotesk", sans-serif;
@@ -116,8 +118,6 @@ export type TTheme = typeof THEME
 export type TThemeColor = keyof TTheme['colors']
 
 export type TThemeSize = keyof TTheme['sizes']
-
-export type TThemeShadow = keyof TTheme['shadows']
 
 export type TThemeBorderRadius = keyof TTheme['borderRadii']
 

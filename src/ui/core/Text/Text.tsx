@@ -1,6 +1,7 @@
 import React, { ElementType, HTMLAttributes } from 'react'
+import { FlattenInterpolation, ThemeProps } from 'styled-components'
 
-import type { TThemeTextVariant } from 'styles/theme'
+import type { TTheme, TThemeBreakpoint, TThemeTextVariant } from 'styles/theme'
 import type { TSizeProps, TSpacingProps } from '../types'
 import type { TTextTranformProps, TTextVisualProps } from './props'
 
@@ -11,11 +12,15 @@ type StyleProps = TSpacingProps &
   TTextVisualProps &
   TTextTranformProps
 
+type ResponsiveProps = PartialRecord<TThemeBreakpoint, StyleProps>
+
 export type Props = {
   as?: ElementType
+  css?: FlattenInterpolation<ThemeProps<TTheme>>
   children?: React.ReactNode
   variant?: TThemeTextVariant
-} & StyleProps
+} & StyleProps &
+  ResponsiveProps
 
 export type TTextProps = HTMLAttributes<HTMLParagraphElement> & Props
 

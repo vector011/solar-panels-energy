@@ -73,7 +73,7 @@ export default createGlobalStyle`
 
       background: inherit;
       border-radius: inherit;
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     &:after {
@@ -90,8 +90,8 @@ export default createGlobalStyle`
 
       border-radius: ${({ theme }) => theme.borderRadii.rounded};
       border: 3px solid ${({ theme }) => theme.colors.dark};
-      border-color: ${({ theme }) => theme.colors.dark} transparent
-        ${({ theme }) => theme.colors.dark} transparent;
+      border-color: ${({ theme }) => theme.colors.light} transparent
+        ${({ theme }) => theme.colors.light} transparent;
 
       animation: dual-ring 1.2s linear infinite;
 

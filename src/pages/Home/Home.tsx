@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router'
 
 import { Box, Button, Container, Text, Video } from 'ui'
@@ -9,12 +9,21 @@ import * as S from './styled'
 const Home = () => {
   const navigate = useNavigate()
 
-  const pos = useScrollPosition(0.5)
+  const position = useScrollPosition(0.5)
 
   const toSolarPanels = useCallback(
     () => navigate('/solarna-energia'),
     [navigate]
   )
+
+  const translate = useMemo(() => {
+    const offset = window.innerHeight * 0.5
+
+    return {
+      first: 0.3 * position,
+      second: 0.3 * (position - offset),
+    }
+  }, [position])
 
   return (
     <>
@@ -22,29 +31,29 @@ const Home = () => {
         <Video src="homepage-1.mp4" fullHeight cover playInView muted loop />
 
         <Box
-          as="article"
+          as={S.Overlay}
           absolute
           inset={0}
-          padding="block"
           justifyContent="center"
-          css={S.overlay}
+          css={S.navOverlay}
         >
           <Container
             alignItems="center"
-            style={{ transform: `translateY(${0.3 * pos}px)` }}
+            style={{ transform: `translateY(${translate.first}px)` }}
           >
             <Text
               as="h1"
-              variant="heading1"
+              variant="homepage"
               textAlign="center"
-              fontWeight={400}
-              maxw="90%"
-              mb="l"
+              maxw="25ch"
+              mb="s"
+              tablet={{ mb: 'm' }}
+              desktop={{ mb: 'l' }}
             >
               Prinášame alternatívne ekologické zdroje elektrickej energie
             </Text>
 
-            <Text as="h2" variant="subheading2" textAlign="center" maxw="50%">
+            <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">
               Dodávame technológie pre výrobu zelenej elektrickej energie,
               príslušenstvo a služby.
             </Text>
@@ -55,34 +64,24 @@ const Home = () => {
       <Box as="section" position="relative" minh="100vh" w="100vw">
         <Video src="homepage-2.mp4" fullHeight cover playInView muted loop />
 
-        <Box
-          as="article"
-          absolute
-          inset={0}
-          padding="block"
-          justifyContent="center"
-          css={S.overlay}
-        >
+        <Box as={S.Overlay} absolute inset={0} justifyContent="center">
           <Container
             alignItems="center"
-            style={{
-              transform: `translateY(${
-                0.3 * (pos - window.innerHeight * 0.5)
-              }px)`,
-            }}
+            style={{ transform: `translateY(${translate.second}px)` }}
           >
             <Text
               as="h1"
-              variant="heading1"
+              variant="homepage"
               textAlign="center"
-              fontWeight={400}
-              maxw="90%"
-              mb="l"
+              maxw="25ch"
+              mb="s"
+              tablet={{ mb: 'm' }}
+              desktop={{ mb: 'l' }}
             >
               Solárne panely
             </Text>
 
-            <Text as="h2" variant="subheading2" textAlign="center" maxw="50%">
+            <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">
               Fotovoltaika, príslušenstvo a služby.
             </Text>
 

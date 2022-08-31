@@ -7,8 +7,14 @@ import * as S from './styled'
 
 const Benefits = () => (
   <>
-    <Box as="header" mb="block">
-      <Text as="h1" variant="heading1" mb="l">
+    <Box as="header" mb="5xl" tablet={{ mb: '7xl' }} desktop={{ mb: 'block' }}>
+      <Text
+        as="h1"
+        variant="heading1"
+        mb="s"
+        tablet={{ mb: 'm' }}
+        desktop={{ mb: 'l' }}
+      >
         CEC6-72MH
       </Text>
 
@@ -23,11 +29,11 @@ const Benefits = () => (
     </Box>
 
     <Box as="article">
-      <Text as="h2" variant="heading2" mb="4xl">
+      <Text as="h2" variant="heading2" mb="3xl" tablet={{ mb: '4xl' }}>
         Výhody tohto produktu
       </Text>
 
-      <Box maxWidth="75%">
+      <Box largeDesktop={{ maxw: '75%' }} maxw="100%">
         <List
           items={[
             'Nízka hmotnosť, jednoduchá inštalácia, vysoký nákladový výkon, vysoká účinnosť',

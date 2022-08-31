@@ -21,7 +21,7 @@ export const Wrapper = styled.button<Props>`
 
   background-color: ${({ theme, secondary }) =>
     secondary ? 'transparent' : theme.colors.primary};
-  box-shadow: ${({ theme }) => theme.shadows.button};
+  box-shadow: 0px 4px 4px rgba(128, 49, 49, 0.25);
   border: 2px solid ${({ theme }) => theme.colors.primary};
 
   ${({ theme }) => theme.textVariants.button};
@@ -30,4 +30,16 @@ export const Wrapper = styled.button<Props>`
   text-align: center;
 
   ${({ wide }) => wide && wideVariant}
+
+  transition: all 200ms;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.light};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
 `

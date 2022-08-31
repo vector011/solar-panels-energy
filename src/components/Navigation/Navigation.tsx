@@ -1,31 +1,59 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router'
 
-import { Box, Container, Image } from 'ui'
+import { Box, Container, Icon, Logo } from 'ui'
+import { useBodyNoScroll, useToggle } from 'hooks'
 
 import * as S from './styled'
 
-const Navigation = () => (
-  <Box absolute inset={0} zIndex="nav" bottom="auto" paddingVertical="xl">
-    <Container row justifyContent="space-between">
-      <NavLink to="/">
-        <Image
-          src="logo-long.svg"
-          alt="JP Green Energy logo"
-          width={195}
-          height={67}
-        />
-      </NavLink>
+// TODO: burger and modal animation
 
-      <Box as={S.Nav} row alignItems="stretch">
-        <NavLink to="/">Domov</NavLink>
-        <NavLink to="/solarna-energia">Solárna energia</NavLink>
-        <NavLink to="/kontakt">Kontakt</NavLink>
-        <NavLink to="/produkty">Produkty</NavLink>
-        <NavLink to="/sluzby">Služby</NavLink>
-      </Box>
-    </Container>
-  </Box>
+const NavItems = () => (
+  <>
+    <NavLink to="/">Domov</NavLink>
+    <NavLink to="/solarna-energia">Solárna energia</NavLink>
+    <NavLink to="/kontakt">Kontakt</NavLink>
+    <NavLink to="/produkty">Produkty</NavLink>
+    <NavLink to="/sluzby">Služby</NavLink>
+  </>
 )
+
+const Navigation = () => {
+  const location = useLocation()
+
+  const { visible, toggle, hide } = useToggle()
+
+  const [disableScroll, enableScroll] = useBodyNoScroll()
+
+  useEffect(visible ? disableScroll : enableScroll, [visible])
+
+  useEffect(hide, [location])
+
+  return (
+    <Box absolute inset={0} zIndex="nav" bottom="auto" paddingVertical="xl">
+      <Container
+        justifyContent="space-between"
+        alignItems="center"
+        gap="3xl"
+        row
+      >
+        <Logo responsive />
+
+        <S.Nav>
+          <NavItems />
+        </S.Nav>
+
+        <S.MobileNav {...{ visible }}>
+          <NavItems />
+        </S.MobileNav>
+
+        <S.Burger onClick={toggle}>
+          <Icon name="burger-icon" width={35} height={27} />
+        </S.Burger>
+      </Container>
+    </Box>
+  )
+}
 
 export default React.memo(Navigation)

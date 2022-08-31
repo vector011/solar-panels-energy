@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <>
-      <Box as="article">
+      <Box as="article" zIndex="1">
         <Text as="h1" variant="heading1" mb="l">
           Meníme slnečné svetlo na energiu pre lepšiu budúcnosť
         </Text>
@@ -32,7 +32,7 @@ const Header = () => {
         </Box>
       </Box>
 
-      <Box position="relative" ml="-8%" mr="-6%" pt="5xl">
+      <Box position="relative" ml="-8%" mr="-6%" pt="5xl" zIndex="0">
         <Image
           src="images/solar-panel-1.png"
           alt="Veľký a malý solárny panel"

@@ -11,7 +11,8 @@ const Products = () => (
       as="section"
       position="relative"
       minHeight="100vh"
-      pt="top"
+      pt="section"
+      tablet={{ pt: 'top' }}
       pb="section"
     >
       <Container>

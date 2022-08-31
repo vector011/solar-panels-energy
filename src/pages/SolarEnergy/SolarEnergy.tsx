@@ -7,7 +7,7 @@ import * as S from './styled'
 
 const SolarEnergy = () => (
   <>
-    <Box as="section" minHeight="100vh" justifyContent="center">
+    <Box as="header" minHeight="100vh" justifyContent="center">
       <Container row alignItems="center">
         <Header />
       </Container>

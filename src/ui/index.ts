@@ -3,6 +3,7 @@ export { WithLoading, Modal } from './hoc'
 
 export { default as Container } from './Container'
 export { default as Light } from './Light'
+export { default as Logo } from './Logo'
 
 export { default as Image } from './Image'
 export { default as Video } from './Video'

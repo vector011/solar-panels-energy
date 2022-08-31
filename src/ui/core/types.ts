@@ -1,7 +1,7 @@
 import type { TThemeSize, TThemeZIndex } from 'styles/theme'
 
 type TSpacing = TThemeSize | number | Omit<string, TThemeSize>
-type TIndices = TThemeZIndex | Omit<number, TThemeZIndex>
+type TIndices = TThemeZIndex | Omit<string, TThemeZIndex>
 type TPlacement =
   | 'flex-start'
   | 'flex-end'

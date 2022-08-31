@@ -13,18 +13,34 @@ const Header = () => {
   return (
     <>
       <Box as="article" zIndex="1">
-        <Text as="h1" variant="heading1" mb="l">
+        <Text
+          as="h1"
+          variant="heading1"
+          mb="s"
+          tablet={{ mb: 'm' }}
+          desktop={{ mb: 'l' }}
+        >
           Meníme slnečné svetlo na energiu pre lepšiu budúcnosť
         </Text>
 
-        <Text mb="4xl" maxw="70%">
+        <Text
+          mb="l"
+          tablet={{ mb: 'xxl' }}
+          desktop={{ mb: '4xl', maxw: '70%' }}
+        >
           Poskytujeme zabezpečenie materiálu, poradenstvo a možnosť
           spolufinancovania projektov zameraných na výrobu elektriny z
           obnoviteľných zdrojov. Vieme poskytnúť riešenia, ktoré budú šetriť
           nielen životné prostredie, ale aj vašu peňaženku.
         </Text>
 
-        <Box row flexWrap gap="4xl">
+        <Box
+          row
+          css={S.responsiveButtons}
+          flexWrap
+          gap="m"
+          desktop={{ gap: '4xl' }}
+        >
           <Button onClick={navigateTo('/produkty')}>Produkty</Button>
           <Button onClick={navigateTo('/sluzby')} secondary>
             Služby
@@ -32,7 +48,7 @@ const Header = () => {
         </Box>
       </Box>
 
-      <Box position="relative" ml="-8%" mr="-6%" pt="5xl" zIndex="0">
+      <Box css={S.responsiveImage} position="relative" pt="5xl" zIndex="0">
         <Image
           src="images/solar-panel-1.png"
           alt="Veľký a malý solárny panel"

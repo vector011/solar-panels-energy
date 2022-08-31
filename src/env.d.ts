@@ -1,3 +1,5 @@
+// TODO: add mail env
+
 declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV: 'development' | 'production'

@@ -10,6 +10,7 @@ type Props = {}
 const Portfolio = ({}: Props) => (
   <>
     <Image
+      css={S.responsiveImage}
       src="images/solar-panel-2.png"
       alt="Solárne panely"
       loading="lazy"
@@ -17,8 +18,14 @@ const Portfolio = ({}: Props) => (
       height={470}
     />
 
-    <Box>
-      <Text as="h2" variant="heading2" mb="4xl">
+    <Box width="100%" desktop={{ width: 'auto' }}>
+      <Text
+        as="h2"
+        variant="heading2"
+        mb="l"
+        tablet={{ mb: '2xl' }}
+        desktop={{ mb: '4xl' }}
+      >
         Solar portfolio
       </Text>
 

@@ -1,3 +1,6 @@
-import styled from 'styled-components'
+import { css } from 'styled-components'
 
-export const Wrapper = styled.div``
+export const responsiveVideo = css`
+  min-height: 422px;
+  object-fit: cover;
+`

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   span {
-    ${({ theme }) => theme.textVariants.paragraph}
+    ${({ theme }) => theme.textVariants.paragraph2}
     padding: ${({ theme }) => theme.sizes.xs};
     min-width: 70px;
     text-align: center;

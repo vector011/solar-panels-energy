@@ -10,9 +10,8 @@ const Services = () => (
     <Box
       as="section"
       position="relative"
-      minHeight="100vh"
       pt="section"
-      tablet={{ pt: 'top' }}
+      tablet={{ pt: 'top', minh: '100vh' }}
       pb="section"
     >
       <Container>

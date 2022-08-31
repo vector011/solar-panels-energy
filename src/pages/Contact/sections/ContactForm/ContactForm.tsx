@@ -17,10 +17,16 @@ const ContactForm = () => (
       </Text>
     </Box>
 
-    <Box as="article" row equal alignItems="center" gap="3xl">
+    <Box as="article" equal row flexWrap alignItems="center" gap="3xl">
       <Form />
 
-      <Image src="images/map.svg" alt="Mapa polohy" width={760} height={374} />
+      <Image
+        src="images/map.svg"
+        alt="Mapa polohy"
+        width={760}
+        height={374}
+        css={S.responsiveImage}
+      />
     </Box>
   </>
 )

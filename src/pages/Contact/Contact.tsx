@@ -5,13 +5,16 @@ import { Box, Container } from 'ui'
 
 import * as S from './styled'
 
+// TODO: mail templates
+
 const Contact = () => (
   <>
     <Box
       as="section"
       position="relative"
       minHeight="100vh"
-      pt="top"
+      pt="section"
+      tablet={{ pt: 'top' }}
       pb="section"
     >
       <Container>

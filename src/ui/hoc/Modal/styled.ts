@@ -34,6 +34,10 @@ export const Wrapper = styled.section`
   backdrop-filter: blur(14px); // TODO: check support
 
   animation: ${blurIn} 800ms ease forwards;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    padding: 16px;
+  }
 `
 
 export const Modal = styled.article`
@@ -52,6 +56,11 @@ export const Modal = styled.article`
 
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.modal}px;
+  min-height: 100vh;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    min-height: auto;
+  }
 
   opacity: 0;
   transform: translateY(-20px);
@@ -61,6 +70,7 @@ export const Modal = styled.article`
 
 export const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.modal - 460}px;
+  width: 100%;
   margin-inline: auto;
 `
 
@@ -68,4 +78,11 @@ export const Close = styled.button`
   position: absolute;
   top: ${({ theme }) => theme.sizes.l};
   right: ${({ theme }) => theme.sizes.l};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
 `

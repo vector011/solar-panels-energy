@@ -22,6 +22,20 @@ const settings = {
   initialSlide: 0,
   variableWidth: true,
   pauseOnHover: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
 }
 
 const Carousel = ({ items = [] }: Props) => {
@@ -29,7 +43,12 @@ const Carousel = ({ items = [] }: Props) => {
     const name = item.replace(/^.*[\\/]/, '').split('.')[0]
     const alt = name.replaceAll('-', ' ')
     return (
-      <Image key={`image-${name}-${idx}`} src={`images/${item}`} alt={alt} />
+      <Image
+        css={S.image}
+        key={`image-${name}-${idx}`}
+        src={`images/${item}`}
+        alt={alt}
+      />
     )
   }, [])
 

@@ -98,6 +98,12 @@ const THEME = {
       font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(20px, 4vw + 0.1rem, 24px);
     `,
+    paragraph2: `
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 24px;
+    `,
     navlink: `
       font-family: "ClashGrotesk", sans-serif;
       font-weight: 300;

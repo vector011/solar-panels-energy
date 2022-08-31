@@ -11,6 +11,8 @@ export type Props = {
   children?: React.ReactNode
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
+// TODO: hover
+
 const Button = ({ children, ...props }: Props) => {
   return <S.Wrapper {...props}>{children}</S.Wrapper>
 }

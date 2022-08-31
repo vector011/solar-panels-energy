@@ -7,4 +7,6 @@ export const Wrapper = styled.video<Props>`
 
   ${({ cover }) => cover && 'object-fit: cover;'}
   ${({ fullHeight }) => fullHeight && 'min-height: 100vh;'}
+
+  ${({ css }) => css}
 `

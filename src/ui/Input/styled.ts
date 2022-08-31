@@ -20,7 +20,7 @@ const autofillFix = css`
 `
 
 export const field = css`
-  ${({ theme }) => theme.textVariants.paragraph};
+  ${({ theme }) => theme.textVariants.button};
   color: ${({ theme }) => theme.colors.light};
 
   background-color: transparent;

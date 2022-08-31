@@ -5,15 +5,24 @@ import { Box, Container, Light, Video } from 'ui'
 
 import * as S from './styled'
 
+// TODO: check responsivity
+
 const SolarEnergy = () => (
   <>
-    <Box as="header" minHeight="100vh" justifyContent="center">
-      <Container row alignItems="center">
+    <Box as="header" tablet={{ minh: '100vh' }} justifyContent="center">
+      <Container
+        alignItems="center"
+        gap="3xl"
+        pt="section"
+        mb="section"
+        tablet={{ pt: 'top', mb: '0' }}
+        desktop={{ flexDirection: 'row', pt: '0', gap: '0' }}
+      >
         <Header />
       </Container>
     </Box>
 
-    <Box as="section" mb="5xl">
+    <Box as="section" mb="4xl" tablet={{ mb: '5xl' }}>
       <Container>
         <AboutUs />
       </Container>
@@ -21,14 +30,25 @@ const SolarEnergy = () => (
 
     <Box as="section" position="relative" mb="section">
       <Container>
-        <Video src="solar-energy.mp4" playInView muted controls loop />
+        <Video
+          css={S.responsiveVideo}
+          src="solar-energy.mp4"
+          playInView
+          muted
+          controls
+          loop
+        />
       </Container>
 
       <Light bg="primary" size={581} top={112} right={-291} />
     </Box>
 
     <Box as="section" position="relative" mb="section">
-      <Container row justifyContent="space-around">
+      <Container
+        gap="big"
+        justifyContent="space-around"
+        tablet={{ row: true, gap: 'l' }}
+      >
         <Icons />
       </Container>
 
@@ -36,7 +56,13 @@ const SolarEnergy = () => (
     </Box>
 
     <Box as="section" mb="section">
-      <Container row equal alignItems="center" gap="3xl">
+      <Container
+        flexDirection="column-reverse"
+        alignItems="center"
+        gap="4xl"
+        desktop={{ gap: '3xl', flexDirection: 'row' }}
+        equal
+      >
         <Portfolio />
       </Container>
     </Box>

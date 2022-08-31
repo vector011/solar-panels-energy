@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, VideoHTMLAttributes } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { FlattenInterpolation, ThemeProps } from 'styled-components'
+
+import type { TTheme } from 'styles/theme'
 
 import * as S from './styled'
 
@@ -8,6 +11,7 @@ export type Props = {
   cover?: boolean
   fullHeight?: boolean
   playInView?: boolean
+  css?: FlattenInterpolation<ThemeProps<TTheme>>
 } & VideoHTMLAttributes<HTMLVideoElement>
 
 const Video = ({ src, time = 0, playInView, ...props }: Props) => {

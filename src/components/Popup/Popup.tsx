@@ -19,17 +19,25 @@ const Popup = ({ smallValue, bigValue, changeSmall, changeBig }: Props) => (
       Požiadavka na zaslanie cenovej ponuky
     </Text>
 
-    <Box row gap="section" mb="5xl">
-      <Box>
-        <Text uppercase mb="l">
+    <Box tablet={{ row: true, gap: 'section' }} gap="xxl" mb="5xl">
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        tablet={{ flexDirection: 'column', alignItems: 'flex-start' }}
+      >
+        <Text variant="button" uppercase mr="xl" tablet={{ mb: 'l', mr: '0' }}>
           Menší panel:
         </Text>
 
         <Counter value={smallValue} onChange={changeSmall} />
       </Box>
 
-      <Box>
-        <Text uppercase mb="l">
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        tablet={{ flexDirection: 'column', alignItems: 'flex-start' }}
+      >
+        <Text variant="button" uppercase mr="xl" tablet={{ mb: 'l', mr: '0' }}>
           Väčší panel:
         </Text>
 

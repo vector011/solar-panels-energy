@@ -6,33 +6,47 @@ import * as S from './styled'
 
 const Icons = () => (
   <>
-    <Box as="article" gap="l" alignItems="center">
+    <Box as="article" gap="m" tablet={{ gap: 'l' }} alignItems="center">
       <Icon name="box-icon" width={65} height={65} />
 
-      <Text textAlign="center" lineHeight={30} uppercase>
-        Stabilné a rýchle
-        <br />
-        dodávky
+      <Text
+        textAlign="center"
+        variant="button"
+        lineHeight={30}
+        uppercase
+        maxw="60%"
+        desktop={{ maxw: '75%' }}
+      >
+        Stabilné a rýchle dodávky
       </Text>
     </Box>
 
-    <Box as="article" gap="l" alignItems="center">
+    <Box as="article" gap="m" tablet={{ gap: 'l' }} alignItems="center">
       <Icon name="town-icon" width={98} height={74} />
 
-      <Text textAlign="center" lineHeight={30} uppercase>
-        Vysoká kvalita produktov -
-        <br />
-        záruka 10 rokov
+      <Text
+        textAlign="center"
+        variant="button"
+        lineHeight={30}
+        uppercase
+        maxw="75%"
+      >
+        Vysoká kvalita produktov - záruka 10 rokov
       </Text>
     </Box>
 
-    <Box as="article" gap="l" alignItems="center">
+    <Box as="article" gap="m" tablet={{ gap: 'l' }} alignItems="center">
       <Icon name="euro-icon" width={63} height={63} />
 
-      <Text textAlign="center" lineHeight={30} uppercase>
-        Najlepšie ceny v
-        <br />
-        Európe
+      <Text
+        textAlign="center"
+        variant="button"
+        lineHeight={30}
+        uppercase
+        maxw="45%"
+        desktop={{ maxw: '75%' }}
+      >
+        Najlepšie ceny v Európe
       </Text>
     </Box>
   </>

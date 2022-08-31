@@ -8,13 +8,19 @@ type Props = {}
 
 const AboutUs = ({}: Props) => (
   <>
-    <Text as="h2" variant="heading2" maxw="50%" mb="l">
+    <Text
+      as="h2"
+      variant="heading2"
+      mb="s"
+      tablet={{ mb: 'm' }}
+      desktop={{ maxw: '50%', mb: 'l' }}
+    >
       O nás - váš energetický partner
     </Text>
 
-    <Box as="article" row equal>
+    <Box as="article" tablet={{ row: true }} gap="m" equal>
       <Box>
-        <Text as="h3" variant="subheading" maxw="70%">
+        <Text as="h3" variant="subheading" desktop={{ maxw: '70%' }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been
         </Text>

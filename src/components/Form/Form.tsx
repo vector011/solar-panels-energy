@@ -23,6 +23,8 @@ const initialValues: Fields = {
   message: '',
 }
 
+// TODO: mail client
+
 const Form = () => {
   const [state, setState] = useState<State>(State.NONE)
 
@@ -35,7 +37,7 @@ const Form = () => {
 
         return (
           <Box as={FormikForm}>
-            <Box row gap="sm" mb="l">
+            <Box mb="xxl" gap="xxl" tablet={{ row: true, gap: 'sm', mb: 'l' }}>
               <Input
                 type="text"
                 name="name"
@@ -55,7 +57,7 @@ const Form = () => {
               />
             </Box>
 
-            <Box row gap="sm" mb="4xl">
+            <Box gap="xxl" tablet={{ row: true, gap: 'sm' }} mb="4xl">
               <Input
                 type="email"
                 name="email"
@@ -84,7 +86,7 @@ const Form = () => {
               required
             />
 
-            <Box mt="5xl" row gap="block">
+            <Box mt="5xl" row gap="block" css={S.responsiveButton}>
               <Button
                 type="submit"
                 secondary={state === State.SUCCESS}

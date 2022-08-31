@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Slider from 'react-slick'
 
 export const Wrapper = styled(Slider)`
@@ -7,14 +7,6 @@ export const Wrapper = styled(Slider)`
 
   overflow-x: hidden;
 
-  img {
-    width: 400px !important;
-    height: 540px;
-
-    object-fit: cover;
-    object-position: center;
-  }
-
   .slick-track {
     display: flex !important;
   }
@@ -22,10 +14,21 @@ export const Wrapper = styled(Slider)`
   .slick-slide {
     width: auto !important;
     height: 100%;
-    margin-right: ${({ theme }) => theme.sizes.xxl};
+
+    margin-right: ${({ theme }) =>
+      `clamp(${theme.sizes.s}, 2vw + 1rem, ${theme.sizes.xxl})`};
 
     & > div {
       display: flex;
     }
   }
+`
+
+export const image = css`
+  width: clamp(250px, 20vw + 1rem, 400px) !important;
+  height: auto;
+  max-height: 540px;
+
+  object-fit: cover;
+  object-position: center;
 `

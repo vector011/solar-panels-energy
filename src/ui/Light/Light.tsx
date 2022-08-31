@@ -12,6 +12,8 @@ export type Props = {
   bg?: TThemeColor
 } & PartialRecord<Appearance, number | string>
 
+// TODO: zIndex and size
+
 const Light = ({ bg = 'primary', size = 428, ...props }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null)
 

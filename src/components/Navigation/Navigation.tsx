@@ -7,8 +7,6 @@ import { useBodyNoScroll, useToggle } from 'hooks'
 
 import * as S from './styled'
 
-// TODO: burger and modal animation
-
 const NavItems = () => (
   <>
     <NavLink to="/">Domov</NavLink>
@@ -48,7 +46,7 @@ const Navigation = () => {
           <NavItems />
         </S.MobileNav>
 
-        <S.Burger onClick={toggle}>
+        <S.Burger onClick={toggle} {...{ visible }}>
           <Icon name="burger-icon" width={35} height={27} />
         </S.Burger>
       </Container>

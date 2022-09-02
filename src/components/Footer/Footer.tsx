@@ -41,15 +41,27 @@ const Footer = () => (
           </ExternalLink>
 
           <Box as={S.SocialIcons} row>
-            <ExternalLink href={IG_URL}>
+            <ExternalLink
+              href={IG_URL}
+              target="_blank"
+              aria-label="Instagram link"
+            >
               <Icon name="ig-icon" width={28} height={28} />
             </ExternalLink>
 
-            <ExternalLink href={FB_URL}>
+            <ExternalLink
+              href={FB_URL}
+              target="_blank"
+              aria-label="Facebook link"
+            >
               <Icon name="fb-icon" width={28} height={28} />
             </ExternalLink>
 
-            <ExternalLink href={IN_URL}>
+            <ExternalLink
+              href={IN_URL}
+              target="_blank"
+              aria-label="Linkedin link"
+            >
               <Icon name="in-icon" width={28} height={28} />
             </ExternalLink>
           </Box>

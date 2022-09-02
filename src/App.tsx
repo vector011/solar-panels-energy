@@ -3,6 +3,8 @@ import { Navigate, useLocation, useRoutes } from 'react-router-dom'
 
 import routes from 'config/routes'
 
+// TODO: image formats, video size
+
 const App = () => {
   const location = useLocation()
 

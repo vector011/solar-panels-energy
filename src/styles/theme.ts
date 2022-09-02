@@ -45,7 +45,7 @@ const THEME = {
 
   zIndices: {
     bg: -1,
-    base: 0,
+    base: 1,
     loading: 9,
     nav: 999,
     modal: 9999,

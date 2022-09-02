@@ -1,8 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface IButton {
   disabled?: boolean
 }
+
+const hover = css`
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.light};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
+`
 
 export const Wrapper = styled.div`
   display: flex;
@@ -32,4 +44,7 @@ export const Button = styled.button<IButton>`
     ${({ theme, disabled }) => theme.colors[disabled ? 'light' : 'primary']};
   color: ${({ theme, disabled }) =>
     theme.colors[disabled ? 'light' : 'primary']};
+
+  transition: all 200ms;
+  ${({ disabled }) => !disabled && hover};
 `

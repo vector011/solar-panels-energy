@@ -1,4 +1,4 @@
-import React, { ElementType, HTMLAttributes } from 'react'
+import React, { ComponentProps, ElementType, HTMLAttributes } from 'react'
 import { FlattenInterpolation, ThemeProps } from 'styled-components'
 
 import type { TTheme, TThemeBreakpoint, TThemeTextVariant } from 'styles/theme'
@@ -24,7 +24,11 @@ export type Props = {
 
 export type TTextProps = HTMLAttributes<HTMLParagraphElement> & Props
 
-const Text = ({ children, variant = 'paragraph', ...props }: TTextProps) => (
+const Text = <T extends ElementType = 'p'>({
+  variant = 'paragraph',
+  children,
+  ...props
+}: TTextProps & ComponentProps<T>) => (
   <S.Wrapper {...{ variant, ...props }}>{children}</S.Wrapper>
 )
 

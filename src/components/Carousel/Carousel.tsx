@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 
 import { Image } from 'ui'
+import { getFileName } from 'utils/functions'
 
 import * as S from './styled'
 
@@ -40,14 +41,17 @@ const settings = {
 
 const Carousel = ({ items = [] }: Props) => {
   const renderItems = useCallback((item: Item, idx: number) => {
-    const name = item.replace(/^.*[\\/]/, '').split('.')[0]
+    const name = getFileName(item)
     const alt = name.replaceAll('-', ' ')
+
     return (
       <Image
         css={S.image}
         key={`image-${name}-${idx}`}
         src={`images/${item}`}
         alt={alt}
+        width={400}
+        height={540}
       />
     )
   }, [])

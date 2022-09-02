@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { ComponentType, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 import Icon from '../../Icon'
@@ -15,7 +15,7 @@ const rootElement = document.getElementById('root')
 // TODO: modal animation
 
 const Modal =
-  <T extends object>(Component: React.ComponentType<T>) =>
+  <T extends object>(Component: ComponentType<T>) =>
   ({ onClose, ...props }: ModalProps & T) => {
     const [disableScroll, enableScroll] = useBodyNoScroll()
 

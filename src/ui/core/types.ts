@@ -1,6 +1,6 @@
 import type { TThemeSize, TThemeZIndex } from 'styles/theme'
 
-type TSpacing = TThemeSize | number | Omit<string, TThemeSize>
+type Spacing = TThemeSize | number | Omit<string, TThemeSize>
 type TIndices = TThemeZIndex | Omit<string, TThemeZIndex>
 type TPlacement =
   | 'flex-start'
@@ -10,6 +10,8 @@ type TPlacement =
   | 'space-between'
   | 'space-around'
   | 'stretch'
+
+export type TClamp = { clamp: [Spacing, Spacing, Spacing] }
 
 type TPaddingProps =
   | 'padding'
@@ -79,8 +81,8 @@ type TAllSpacings =
   | TMarginShorthandProps
 
 export type TSpacingProps = {
-  gap?: TSpacing
-} & PartialRecord<TAllSpacings, TSpacing>
+  gap?: Spacing
+} & PartialRecord<TAllSpacings, Spacing | TClamp>
 
 export type TDisplayProps = {
   display?: 'flex' | 'inline-flex' | 'block' | 'inline' | 'grid' | 'none'
@@ -94,6 +96,6 @@ export type TPositionProps = {
   position?: 'relative' | 'absolute' | 'fixed' | 'sticky'
   absolute?: boolean
   zIndex?: TIndices
-} & PartialRecord<PositionProps, TSpacing>
+} & PartialRecord<PositionProps, Spacing>
 
-export type TSizeProps = PartialRecord<SizeProps | SizeShorthandProps, TSpacing>
+export type TSizeProps = PartialRecord<SizeProps | SizeShorthandProps, Spacing>

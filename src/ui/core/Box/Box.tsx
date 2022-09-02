@@ -1,4 +1,4 @@
-import React, { ElementType, HTMLAttributes } from 'react'
+import React, { ComponentProps, ElementType, HTMLAttributes } from 'react'
 import { FlattenInterpolation, ThemeProps } from 'styled-components'
 
 import type { TTheme, TThemeBreakpoint } from 'styles/theme'
@@ -24,7 +24,10 @@ export type Props = {
 
 export type TBoxProps = HTMLAttributes<HTMLDivElement> & Props
 
-const Box = ({ children, ...props }: TBoxProps) => (
+const Box = <T extends ElementType = 'div'>({
+  children,
+  ...props
+}: TBoxProps & ComponentProps<T>) => (
   <S.Wrapper {...props}>{children}</S.Wrapper>
 )
 

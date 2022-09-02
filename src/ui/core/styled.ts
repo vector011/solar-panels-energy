@@ -1,68 +1,68 @@
 import { css } from 'styled-components'
 
+import { createProp } from './functions'
 import type { TThemeBreakpoint } from 'styles/theme'
-import { createProp } from 'utils/functions'
 
 const makeStyles = (p) => css`
   /* paddings props */
-  ${createProp('sizes', 'padding', p.padding)}
-  ${createProp('sizes', 'padding-block', p.pv || p.paddingVertical)}
-  ${createProp('sizes', 'padding-inline', p.ph || p.paddingHorizontal)}
-  ${createProp('sizes', 'padding-top', p.pt || p.paddingTop)}
-  ${createProp('sizes', 'padding-right', p.pr || p.paddingRight)}
-  ${createProp('sizes', 'padding-bottom', p.pb || p.paddingBottom)}
-  ${createProp('sizes', 'padding-left', p.pl || p.paddingLeft)}
+  ${createProp('padding', p.padding, 'sizes')}
+  ${createProp('padding-block', p.pv || p.paddingVertical, 'sizes')}
+  ${createProp('padding-inline', p.ph || p.paddingHorizontal, 'sizes')}
+  ${createProp('padding-top', p.pt || p.paddingTop, 'sizes')}
+  ${createProp('padding-right', p.pr || p.paddingRight, 'sizes')}
+  ${createProp('padding-bottom', p.pb || p.paddingBottom, 'sizes')}
+  ${createProp('padding-left', p.pl || p.paddingLeft, 'sizes')}
 
   /* margin props */
-  ${createProp('sizes', 'margin', p.m)}
-  ${createProp('sizes', 'margin-block', p.mv || p.marginVertical)}
-  ${createProp('sizes', 'margin-inline', p.mh || p.marginHorizontal)}
-  ${createProp('sizes', 'margin-top', p.mt || p.marginTop)}
-  ${createProp('sizes', 'margin-right', p.mr || p.marginRight)}
-  ${createProp('sizes', 'margin-bottom', p.mb || p.marginBottom)}
-  ${createProp('sizes', 'margin-left', p.ml || p.marginLeft)}
+  ${createProp('margin', p.m, 'sizes')}
+  ${createProp('margin-block', p.mv || p.marginVertical, 'sizes')}
+  ${createProp('margin-inline', p.mh || p.marginHorizontal, 'sizes')}
+  ${createProp('margin-top', p.mt || p.marginTop, 'sizes')}
+  ${createProp('margin-right', p.mr || p.marginRight, 'sizes')}
+  ${createProp('margin-bottom', p.mb || p.marginBottom, 'sizes')}
+  ${createProp('margin-left', p.ml || p.marginLeft, 'sizes')}
 
   /* spacing props */
-  ${createProp('sizes', 'gap', p.gap)}
+  ${createProp('gap', p.gap, 'sizes')}
 
   /* size props */
-  ${createProp('sizes', 'width', p.size)}
-  ${createProp('sizes', 'height', p.size)}
-  ${createProp('sizes', 'width', p.w || p.width)}
-  ${createProp('sizes', 'height', p.h || p.height)}
-  ${createProp('sizes', 'max-width', p.maxw || p.maxWidth)}
-  ${createProp('sizes', 'max-height', p.maxh || p.maxHeight)}
-  ${createProp('sizes', 'min-width', p.minw || p.minWidth)}
-  ${createProp('sizes', 'min-height', p.minh || p.minHeight)}
+  ${createProp('width', p.size, 'sizes')}
+  ${createProp('height', p.size, 'sizes')}
+  ${createProp('width', p.w || p.width, 'sizes')}
+  ${createProp('height', p.h || p.height, 'sizes')}
+  ${createProp('max-width', p.maxw || p.maxWidth, 'sizes')}
+  ${createProp('max-height', p.maxh || p.maxHeight, 'sizes')}
+  ${createProp('min-width', p.minw || p.minWidth, 'sizes')}
+  ${createProp('min-height', p.minh || p.minHeight, 'sizes')}
 
   /* position props */
-  ${p.position && `position: ${p.position};`}
+  ${createProp('position', p.position)}
   ${p.absolute && 'position: absolute;'}
-  ${createProp('zIndices', 'z-index', p.zIndex)}
-  ${createProp('sizes', 'inset', p.inset)}
-  ${createProp('sizes', 'left', p.left)}
-  ${createProp('sizes', 'right', p.right)}
-  ${createProp('sizes', 'bottom', p.bottom)}
-  ${createProp('sizes', 'left', p.left)}
+  ${createProp('z-index', p.zIndex, 'zIndices', true)}
+  ${createProp('inset', p.inset, 'sizes')}
+  ${createProp('left', p.left, 'sizes')}
+  ${createProp('right', p.right, 'sizes')}
+  ${createProp('bottom', p.bottom, 'sizes')}
+  ${createProp('left', p.left, 'sizes')}
 
   /* display props */
-  ${p.flexDirection && `flex-direction: ${p.flexDirection};`}
+  ${createProp('flex-direction', p.flexDirection)}
   ${p.row && 'flex-direction: row;'}
   ${p.flexWrap && 'flex-wrap: wrap;'}
-  ${p.alignItems && `align-items: ${p.alignItems};`}
-  ${p.alignContent && `align-content: ${p.alignContent};`}
-  ${p.justifyItems && `justify-items: ${p.justifyItems};`}
-  ${p.justifyContent && `justify-content: ${p.justifyContent};`}
+  ${createProp('align-items', p.alignItems)}
+  ${createProp('align-content', p.alignContent)}
+  ${createProp('justify-items', p.justifyItems)}
+  ${createProp('justify-content', p.justifyContent)}
 
   /* text visual props */
-  ${p.fontSize && `font-size: ${p.fontSize};`}
-  ${p.fontWeight && `font-weight: ${p.fontWeight};`}
-  ${createProp('sizes', 'line-height', p.lineHeight)}
-  ${createProp('colors', 'color', p.color)}
+  ${createProp('font-size', p.fontSize)}
+  ${createProp('font-weight', p.fontWeight)}
+  ${createProp('line-height', p.lineHeight)}
+  ${createProp('color', p.color, 'colors')}
 
   /* text transform props */
-  ${p.textTransform && `text-transform: ${p.textTransform};`}
-  ${p.textAlign && `text-align: ${p.textAlign};`}
+  ${createProp('text-transform', p.textTransform)}
+  ${createProp('text-align', p.textAlign)}
   ${p.uppercase && 'text-transform: uppercase;'}
 `
 

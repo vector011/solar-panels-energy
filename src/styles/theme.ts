@@ -36,7 +36,7 @@ const THEME = {
     big: '100px',
     block: '120px',
     section: '160px',
-    top: '280px',
+    top: '260px',
   },
 
   borderRadii: {

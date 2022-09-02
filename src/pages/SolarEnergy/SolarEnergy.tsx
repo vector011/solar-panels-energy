@@ -5,18 +5,21 @@ import { Box, Container, Light, Video } from 'ui'
 
 import * as S from './styled'
 
-// TODO: check responsivity
-
 const SolarEnergy = () => (
   <>
-    <Box as="header" tablet={{ minh: '100vh' }} justifyContent="center">
+    <Box
+      as="header"
+      pt="section"
+      pb="section"
+      tablet={{ pt: 'top', minh: '100vh' }}
+      largeDesktop={{ pt: 220 }}
+      justifyContent="center"
+    >
       <Container
         alignItems="center"
         gap="3xl"
-        pt="section"
-        mb="section"
-        tablet={{ pt: 'top', mb: '0' }}
-        desktop={{ flexDirection: 'row', pt: '0', gap: '0' }}
+        tablet={{ mb: '0' }}
+        desktop={{ flexDirection: 'row', gap: '0' }}
       >
         <Header />
       </Container>

@@ -14,16 +14,25 @@ export type Props = {
   css?: FlattenInterpolation<ThemeProps<TTheme>>
 } & VideoHTMLAttributes<HTMLVideoElement>
 
-// TODO: fix video view
-
 const Video = ({ src, time = 0, playInView, ...props }: Props) => {
   const { ref, inView, entry } = useInView()
 
   const handleInView = useCallback(
     async (target: HTMLVideoElement) => {
-      if (!inView) return target.pause()
-      target.currentTime = 0
-      await target.play()
+      const isPlaying =
+        target.currentTime > 0 &&
+        !target.paused &&
+        !target.ended &&
+        target.readyState > target.HAVE_CURRENT_DATA
+
+      if (!inView && isPlaying) {
+        return target.pause()
+      }
+
+      if (inView && !isPlaying) {
+        target.currentTime = 0
+        await target.play()
+      }
     },
     [inView]
   )

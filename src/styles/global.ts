@@ -13,7 +13,6 @@ export default createGlobalStyle`
   }
 
   body {
-    // TODO: mobile background
     background:
       url("assets/images/background.png")
       ${({ theme }) => theme.colors.dark};

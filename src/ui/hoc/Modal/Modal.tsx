@@ -12,8 +12,6 @@ type ModalProps = {
 
 const rootElement = document.getElementById('root')
 
-// TODO: modal animation
-
 const Modal =
   <T extends object>(Component: ComponentType<T>) =>
   ({ onClose, ...props }: ModalProps & T) => {

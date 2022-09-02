@@ -31,7 +31,7 @@ export const Wrapper = styled.section`
   place-content: center;
 
   background-color: ${({ theme }) => theme.colors.modal};
-  backdrop-filter: blur(14px); // TODO: check support
+  backdrop-filter: blur(14px);
 
   animation: ${blurIn} 800ms ease forwards;
 

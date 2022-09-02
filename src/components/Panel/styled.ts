@@ -1,6 +1,8 @@
 import { css } from 'styled-components'
 
 export const responsive = css`
+  gap: ${({ theme }) => theme.sizes['l']};
+
   @media (max-width: 1110px) {
     gap: ${({ theme }) => theme.sizes['4xl']};
 

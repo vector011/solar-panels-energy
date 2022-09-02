@@ -11,20 +11,19 @@ type Props = {
   kg: string
 } & ComponentProps<typeof Counter>
 
-// TODO: fix image ratio
-
 const Panel = ({ big, w, mm, kg, ...props }: Props) => (
   <Box as="article" alignItems="center" css={S.responsive}>
-    <Image
-      css={S.responsiveImage}
-      src={`images/solar-panel-${big ? 'big' : 'small'}.png`}
-      alt={`${big ? 'Väčší' : 'Menší'} solárny panel`}
-      width={big ? 613 : 473}
-      height={big ? 382 : 295}
-    />
+    <Box ph={big ? '0' : '60px'}>
+      <Image
+        css={S.responsiveImage}
+        src={`images/solar-panel-${big ? 'big' : 'small'}.png`}
+        alt={`${big ? 'Väčší' : 'Menší'} solárny panel`}
+        width={big ? 613 : 473}
+        height={big ? 382 : 295}
+      />
+    </Box>
 
     <Box
-      pt="l"
       gap="xxl"
       width="100%"
       desktop={{ gap: '4xl' }}

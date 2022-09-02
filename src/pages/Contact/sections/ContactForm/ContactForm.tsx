@@ -17,7 +17,7 @@ const ContactForm = () => (
       </Text>
     </Box>
 
-    <Box as="article" equal row flexWrap alignItems="center" gap="3xl">
+    <Box as="article" equal row flexWrap gap="3xl">
       <Form />
 
       <Image

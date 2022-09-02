@@ -1,4 +1,9 @@
-import React, { InputHTMLAttributes } from 'react'
+import React, {
+  ChangeEvent,
+  InputHTMLAttributes,
+  useCallback,
+  useMemo,
+} from 'react'
 import { ErrorMessage, Field, FieldAttributes } from 'formik'
 
 import Text from '../core/Text'
@@ -10,18 +15,29 @@ export type Props = {
 } & FieldAttributes<any> &
   InputHTMLAttributes<HTMLInputElement>
 
-// TODO: automatic height of textarea
+const Input = ({ as, name, hasError, ...props }: Props) => {
+  const isTextarea = useMemo(() => as === 'textarea', [as])
 
-const Input = ({ name, hasError, ...props }: Props) => (
-  <S.Wrapper {...{ hasError }}>
-    <Field id={name} {...{ name, ...props }} />
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    e.target.style.height = 'auto'
+    e.target.style.height = `${e.target.scrollHeight + 1}px`
+  }, [])
 
-    {hasError && (
-      <Text as="small" color="error" mt="xs">
-        <ErrorMessage {...{ name }} />
-      </Text>
-    )}
-  </S.Wrapper>
-)
+  return (
+    <S.Wrapper {...{ hasError }}>
+      <Field
+        id={name}
+        onKeyUp={isTextarea ? handleChange : undefined}
+        {...{ as, name, ...props }}
+      />
+
+      {hasError && (
+        <Text as="small" color="error" mt="xs">
+          <ErrorMessage {...{ name }} />
+        </Text>
+      )}
+    </S.Wrapper>
+  )
+}
 
 export default React.memo(Input)

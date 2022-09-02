@@ -49,13 +49,14 @@ export const Wrapper = styled.div<IWrapper>`
 
   width: 100%;
 
-  textarea {
-    max-height: 500px;
-    resize: none;
-  }
-
   input,
   textarea {
     ${field}
+  }
+
+  textarea {
+    max-height: 500px;
+    line-height: 30px;
+    resize: none;
   }
 `

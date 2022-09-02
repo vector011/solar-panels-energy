@@ -12,8 +12,8 @@ export const Wrapper = styled.div<Props>`
   ${({ bottom }) => bottom && `bottom: ${bottom}px;`}
   ${({ left }) => left && `left: ${left}px;`}
 
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  width: ${({ size }) => `clamp(${size / 2}px, 50vw + 1rem, ${size}px)`};
+  height: ${({ size }) => `clamp(${size / 2}px, 50vw + 1rem, ${size}px)`};
   border-radius: ${({ theme }) => theme.borderRadii.rounded};
 
   background-color: ${({ theme, bg }) => theme.colors[bg!]};

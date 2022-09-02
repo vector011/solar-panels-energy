@@ -6,13 +6,12 @@ import type { TThemeColor } from 'styles/theme'
 
 import * as S from './styled'
 
-type Appearance = 'size' | 'top' | 'right' | 'bottom' | 'left'
+type Appearance = 'top' | 'right' | 'bottom' | 'left'
 
 export type Props = {
   bg?: TThemeColor
-} & PartialRecord<Appearance, number | string>
-
-// TODO: zIndex and size
+  size: number
+} & PartialRecord<Appearance, number>
 
 const Light = ({ bg = 'primary', size = 428, ...props }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null)

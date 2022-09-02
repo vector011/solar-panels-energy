@@ -25,7 +25,7 @@ const SolarEnergy = () => (
       </Container>
     </Box>
 
-    <Box as="section" mb="4xl" tablet={{ mb: '5xl' }}>
+    <Box as="section" mb="4xl" tablet={{ mb: '5xl' }} zIndex="base">
       <Container>
         <AboutUs />
       </Container>

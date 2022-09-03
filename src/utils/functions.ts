@@ -9,3 +9,5 @@ export const clamp = (min: number, value: number, max: number): number =>
 
 export const getFileName = (path: string) =>
   path.replace(/^.*[\\/]/, '').split('.')[0]
+
+export const getFile = (path: string) => path.replace(/^.*[\\/]/, '').split('.')

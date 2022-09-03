@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 
 module.exports = {
   resolve: {
@@ -73,6 +74,20 @@ module.exports = {
       path: path.join(__dirname, '.env'),
       // for deployment environment variables
       systemvars: true,
+    }),
+
+    new ImageMinimizerPlugin({
+      test: /\.(jpe?g|png|gif)$/i,
+      generator: [
+        {
+          type: 'asset',
+          preset: 'webp',
+          implementation: ImageMinimizerPlugin.imageminGenerate,
+          options: {
+            plugins: ['imagemin-webp'],
+          },
+        },
+      ],
     }),
   ],
 }

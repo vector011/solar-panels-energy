@@ -12,7 +12,7 @@ const SolarEnergy = () => (
       pt="section"
       pb="section"
       tablet={{ pt: 'top', minh: '100vh' }}
-      largeDesktop={{ pt: 220 }}
+      largeDesktop={{ pt: 200 }}
       justifyContent="center"
     >
       <Container
@@ -36,6 +36,8 @@ const SolarEnergy = () => (
         <Video
           css={S.responsiveVideo}
           src="solar-energy.mp4"
+          disableWebm
+          playsInline
           playInView
           muted
           controls

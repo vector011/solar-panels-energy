@@ -28,7 +28,15 @@ const Home = () => {
   return (
     <>
       <Box as="section" position="relative" minh="100vh" w="100vw">
-        <Video src="homepage-1.mp4" fullHeight cover playInView muted loop />
+        <Video
+          src="homepage-1.mp4"
+          playsInline
+          fullHeight
+          cover
+          playInView
+          muted
+          loop
+        />
 
         <Box
           as={S.Overlay}
@@ -62,7 +70,15 @@ const Home = () => {
       </Box>
 
       <Box as="section" position="relative" minh="100vh" w="100vw">
-        <Video src="homepage-2.mp4" fullHeight cover playInView muted loop />
+        <Video
+          src="homepage-2.mp4"
+          playsInline
+          fullHeight
+          cover
+          playInView
+          muted
+          loop
+        />
 
         <Box as={S.Overlay} absolute inset={0} justifyContent="center">
           <Container

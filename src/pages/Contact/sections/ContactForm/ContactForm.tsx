@@ -17,7 +17,7 @@ const ContactForm = () => (
       </Text>
     </Box>
 
-    <Box as="article" equal row flexWrap gap="3xl">
+    <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
       <Form subject="Contact us" />
 
       <Image

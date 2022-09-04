@@ -10,12 +10,12 @@ export type Props = {
   css?: FlattenInterpolation<ThemeProps<TTheme>>
 } & ImgHTMLAttributes<HTMLImageElement>
 
-const Image = ({ src, ...props }: Props) => {
+const Image = ({ src, css, ...props }: Props) => {
   const file = useMemo(() => getFile(src!), [src])
   const webp = useMemo(() => src?.replace(file[1], 'webp'), [file, src])
 
   return (
-    <S.Wrapper>
+    <S.Wrapper {...{ css }}>
       {file[1] !== 'svg' && (
         <source type="image/webp" srcSet={`/assets/${webp}`} />
       )}

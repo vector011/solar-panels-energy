@@ -18,7 +18,7 @@ const ContactForm = () => (
     </Box>
 
     <Box as="article" equal row flexWrap gap="3xl">
-      <Form />
+      <Form subject="Contact us" />
 
       <Image
         src="images/map.svg"

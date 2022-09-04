@@ -10,10 +10,11 @@ type Props = {
   bigValue: number
   changeSmall: Dispatch<SetStateAction<number>>
   changeBig: Dispatch<SetStateAction<number>>
+  cb: () => void
   onClose?: () => void
 }
 
-const Popup = ({ smallValue, bigValue, changeSmall, changeBig }: Props) => (
+const Popup = ({ smallValue, bigValue, changeSmall, changeBig, cb }: Props) => (
   <>
     <Text as="h1" variant="heading2" mb="5xl">
       Požiadavka na zaslanie cenovej ponuky
@@ -45,7 +46,11 @@ const Popup = ({ smallValue, bigValue, changeSmall, changeBig }: Props) => (
       </Box>
     </Box>
 
-    <Form />
+    <Form
+      subject="Request for proposal"
+      addition={`Small panel: ${smallValue}x, Large panel: ${bigValue}x`}
+      cb={cb}
+    />
   </>
 )
 

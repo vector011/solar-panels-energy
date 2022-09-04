@@ -8,6 +8,18 @@ const wideVariant = css`
   max-width: 800px;
 `
 
+const hover = css`
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.light};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
+`
+
 export const Wrapper = styled.button<Props>`
   display: inline;
   align-self: flex-start;
@@ -33,13 +45,7 @@ export const Wrapper = styled.button<Props>`
 
   transition: all 200ms;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    border-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.light};
-  }
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
+  ${({ disabled }) => !disabled && hover}
 `

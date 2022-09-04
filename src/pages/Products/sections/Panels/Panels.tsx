@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { Panel, Popup } from 'components'
 import { Box, Button } from 'ui'
@@ -23,7 +23,19 @@ const Panels = () => {
   const [small, setSmall] = useState<number>(0)
   const [big, setBig] = useState<number>(0)
 
+  const { visible: remove, show: canRemove, hide: cannotRemove } = useToggle()
   const { visible, show, hide } = useToggle()
+
+  const reset = useCallback(() => {
+    setSmall(0)
+    setBig(0)
+    cannotRemove()
+  }, [setSmall, setBig, cannotRemove])
+
+  const handleClose = useCallback(() => {
+    hide()
+    if (remove) reset()
+  }, [remove, hide, reset])
 
   return (
     <>
@@ -33,7 +45,8 @@ const Panels = () => {
           bigValue={big}
           changeSmall={setSmall}
           changeBig={setBig}
-          onClose={hide}
+          onClose={handleClose}
+          cb={canRemove}
         />
       )}
 

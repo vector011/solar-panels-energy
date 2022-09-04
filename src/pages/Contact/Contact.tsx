@@ -5,8 +5,6 @@ import { Box, Container } from 'ui'
 
 import * as S from './styled'
 
-// TODO: mail templates
-
 const Contact = () => (
   <>
     <Box

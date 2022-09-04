@@ -1,19 +1,23 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Formik, Form as FormikForm } from 'formik'
 import { InferType } from 'yup'
 
 import validationSchema from 'schemas/contact'
-import { Box, Button, Input } from 'ui'
+import { Box, Button, Input, Text } from 'ui'
+import { useMail } from 'hooks'
+import { TEmailState } from 'types/global'
 
 import * as S from './styled'
 
-enum State {
-  NONE,
-  SUCCESS,
-  ERROR,
+type Props = {
+  subject: string
+  addition?: string
+  cb?: () => void
 }
 
 type Fields = InferType<typeof validationSchema>
+
+type MailParams = Omit<Props, 'cb'> & Fields
 
 const initialValues: Fields = {
   name: '',
@@ -23,17 +27,32 @@ const initialValues: Fields = {
   message: '',
 }
 
-// TODO: mail client
+const STATE_MESSAGES = {
+  [TEmailState.NONE]: 'Odoslať',
+  [TEmailState.SUCCESS]: 'Vaša správa bola úspešne odoslaná.',
+  [TEmailState.ERROR]: 'Odoslať znovu',
+}
 
-const Form = () => {
-  const [state, setState] = useState<State>(State.NONE)
+const Form = ({ subject, cb, addition = '' }: Props) => {
+  const { send } = useMail<MailParams>()
 
-  const onSubmit = useCallback((values: Fields) => console.log(values), [])
+  const [state, setState] = useState<TEmailState>(TEmailState.NONE)
+
+  const onSubmit = useCallback(
+    (values: Fields) =>
+      send({ ...{ subject, addition, ...values } })
+        .then(() => {
+          setState(TEmailState.SUCCESS)
+          cb?.()
+        })
+        .catch(() => setState(TEmailState.ERROR)),
+    [subject, addition, cb, setState]
+  )
 
   return (
     <Formik {...{ initialValues, validationSchema, onSubmit }} validateOnChange>
       {({ errors, touched, isSubmitting }) => {
-        const isDisabled = isSubmitting && state === State.NONE
+        const isDisabled = isSubmitting && state === TEmailState.NONE
 
         return (
           <Box as={FormikForm}>
@@ -89,16 +108,19 @@ const Form = () => {
             <Box mt="5xl" row gap="block" css={S.responsiveButton}>
               <Button
                 type="submit"
-                secondary={state === State.SUCCESS}
-                disabled={isSubmitting}
+                secondary={state === TEmailState.SUCCESS}
+                disabled={isSubmitting || state === TEmailState.SUCCESS}
+                wide={state === TEmailState.SUCCESS}
                 isLoading={isDisabled}
               >
-                {state === State.SUCCESS
-                  ? 'Vaša správa bola úspešne odoslaná.'
-                  : 'Odoslať'}
+                {STATE_MESSAGES[state]}
               </Button>
 
-              {/* error from mail */}
+              {state === TEmailState.ERROR && (
+                <Text as="small" color="error">
+                  Vašu správu sa nepodarilo odoslať.
+                </Text>
+              )}
             </Box>
           </Box>
         )

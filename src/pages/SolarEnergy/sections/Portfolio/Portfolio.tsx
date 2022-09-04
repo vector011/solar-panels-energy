@@ -5,9 +5,7 @@ import { List } from 'components'
 
 import * as S from './styled'
 
-type Props = {}
-
-const Portfolio = ({}: Props) => (
+const Portfolio = () => (
   <>
     <Image
       css={S.responsiveImage}

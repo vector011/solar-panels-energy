@@ -3,8 +3,6 @@ import React from 'react'
 import { ContactForm } from './sections'
 import { Box, Container } from 'ui'
 
-import * as S from './styled'
-
 const Contact = () => (
   <>
     <Box

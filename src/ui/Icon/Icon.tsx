@@ -1,8 +1,6 @@
 import React from 'react'
 import SVG, { Props as SVGProps } from 'react-inlinesvg'
 
-import * as S from './styled'
-
 type Props = {
   name: string
 } & Omit<SVGProps, 'src'>

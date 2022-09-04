@@ -46,7 +46,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
           cb?.()
         })
         .catch(() => setState(TEmailState.ERROR)),
-    [subject, addition, cb, setState]
+    [subject, addition, cb, setState, send]
   )
 
   return (

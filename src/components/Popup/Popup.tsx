@@ -3,15 +3,12 @@ import React, { Dispatch, SetStateAction } from 'react'
 import Form from '../Form'
 import { Box, Counter, Modal, Text } from 'ui'
 
-import * as S from './styled'
-
 type Props = {
   smallValue: number
   bigValue: number
   changeSmall: Dispatch<SetStateAction<number>>
   changeBig: Dispatch<SetStateAction<number>>
   cb: () => void
-  onClose?: () => void
 }
 
 const Popup = ({ smallValue, bigValue, changeSmall, changeBig, cb }: Props) => (

@@ -2,11 +2,7 @@ import React from 'react'
 
 import { Box, Text } from 'ui'
 
-import * as S from './styled'
-
-type Props = {}
-
-const AboutUs = ({}: Props) => (
+const AboutUs = () => (
   <>
     <Text
       as="h2"

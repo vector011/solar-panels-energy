@@ -20,7 +20,7 @@ const Light = ({ bg = 'primary', size = 428, ...props }: Props) => {
 
   const coefficient = useMemo(
     () => Math.abs(distance / (window.innerHeight + window.innerWidth)),
-    [distance, window.innerHeight, window.innerWidth]
+    [distance]
   )
 
   return (

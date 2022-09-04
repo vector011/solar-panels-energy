@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Box, Icon, Text } from 'ui'
 
-import * as S from './styled'
-
 const Icons = () => (
   <>
     <Box as="article" gap="m" tablet={{ gap: 'l' }} alignItems="center">

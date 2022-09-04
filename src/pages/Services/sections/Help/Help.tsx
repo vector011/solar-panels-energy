@@ -3,8 +3,6 @@ import React from 'react'
 import { Box, Light, Text } from 'ui'
 import { List } from 'components'
 
-import * as S from './styled'
-
 const Help = () => (
   <>
     <Box as="header">

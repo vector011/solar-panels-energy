@@ -3,8 +3,6 @@ import React from 'react'
 import { Benefits, Panels } from './sections'
 import { Box, Container, Light } from 'ui'
 
-import * as S from './styled'
-
 const Products = () => (
   <>
     <Box

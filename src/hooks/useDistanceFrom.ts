@@ -7,7 +7,7 @@ export default (ref: any): number => {
     const listener = (e: MouseEvent) => {
       if (!ref) return
 
-      const { pageX, pageY, clientY, clientX } = e
+      const { clientY, clientX } = e
       const { left, top, width, height } = ref.current.getBoundingClientRect()
 
       const x = Math.pow(clientX - (left + width / 2), 2)

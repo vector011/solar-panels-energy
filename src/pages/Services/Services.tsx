@@ -3,8 +3,6 @@ import React from 'react'
 import { Help } from './sections'
 import { Box, Container } from 'ui'
 
-import * as S from './styled'
-
 const Services = () => (
   <>
     <Box

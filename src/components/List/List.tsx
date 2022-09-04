@@ -13,7 +13,7 @@ const List = ({ items = [] }: Props) => {
     (item: ListItem, idx: number) => (
       <S.Item key={`item-${idx}`}>{item}</S.Item>
     ),
-    [items]
+    []
   )
 
   return <S.Wrapper>{items?.map(renderItems)}</S.Wrapper>

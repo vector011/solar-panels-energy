@@ -1,3 +1,3 @@
 import { useEffect } from 'react'
 
-export default (cb: () => void) => useEffect(() => cb && cb(), [])
+export default (cb: () => void) => useEffect(() => cb && cb(), [cb])

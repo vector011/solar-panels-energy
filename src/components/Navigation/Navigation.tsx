@@ -24,9 +24,12 @@ const Navigation = () => {
 
   const [disableScroll, enableScroll] = useBodyNoScroll()
 
-  useEffect(visible ? disableScroll : enableScroll, [visible])
+  useEffect(() => {
+    if (visible) disableScroll()
+    else enableScroll()
+  }, [visible, disableScroll, enableScroll])
 
-  useEffect(hide, [location])
+  useEffect(hide, [location, hide])
 
   return (
     <Box absolute inset={0} zIndex="nav" bottom="auto" paddingVertical="xl">

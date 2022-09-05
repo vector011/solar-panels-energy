@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { ComponentType, useRef } from 'react'
 import { createPortal } from 'react-dom'
 

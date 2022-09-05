@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { ComponentType, FC } from 'react'
 
 type WithLoadingProps = {

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./public/",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "strict": false,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "noEmit": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "baseUrl": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

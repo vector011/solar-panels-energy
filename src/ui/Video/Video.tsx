@@ -21,8 +21,6 @@ export type Props = {
   css?: FlattenInterpolation<ThemeProps<TTheme>>
 } & VideoHTMLAttributes<HTMLVideoElement>
 
-// TODO: video size
-
 const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
   const { ref, inView, entry } = useInView()
 

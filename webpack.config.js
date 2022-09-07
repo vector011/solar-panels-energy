@@ -78,6 +78,7 @@ module.exports = {
 
     new ImageMinimizerPlugin({
       test: /\.(jpe?g|png|gif)$/i,
+      deleteOriginalAssets: false,
       generator: [
         {
           type: 'asset',

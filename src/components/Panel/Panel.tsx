@@ -17,7 +17,7 @@ const Panel = ({ big, w, mm, kg, ...props }: Props) => (
       <Image
         css={S.responsiveImage}
         src={`images/solar-panel-${big ? 'big' : 'small'}.png`}
-        alt={`${big ? 'Väčší' : 'Menší'} solárny panel`}
+        alt={`${big ? 'Väčší' : 'Menší'} fotovoltaický panel`}
         width={big ? 613 : 473}
         height={big ? 382 : 295}
       />

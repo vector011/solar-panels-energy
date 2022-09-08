@@ -94,7 +94,7 @@ const Home = () => {
               tablet={{ mb: 'm' }}
               desktop={{ mb: 'l' }}
             >
-              Solárne panely
+              Fotovoltaické panely
             </Text>
 
             <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">

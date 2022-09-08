@@ -10,7 +10,7 @@ const Portfolio = () => (
     <Image
       css={S.responsiveImage}
       src="images/solar-panel-2.png"
-      alt="Solárne panely"
+      alt="Fotovoltaické panely"
       loading="lazy"
       width={779}
       height={470}

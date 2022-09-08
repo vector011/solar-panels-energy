@@ -51,7 +51,7 @@ const Header = () => {
       <Box css={S.responsiveImage} position="relative" pt="5xl" zIndex="0">
         <Image
           src="images/solar-panel-1.png"
-          alt="Veľký a malý solárny panel"
+          alt="Veľký a malý fotovoltaický panel"
           width={984}
           height={566}
         />

@@ -38,7 +38,7 @@ export const Button = styled.button<IButton>`
 
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
-  ${({ theme }) => theme.textVariants.paragraph}
+  ${({ theme }) => theme.textVariants.paragraph2}
 
   border: 1px solid
     ${({ theme, disabled }) => theme.colors[disabled ? 'light' : 'primary']};

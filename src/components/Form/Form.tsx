@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Formik, Form as FormikForm } from 'formik'
 import { InferType } from 'yup'
 
@@ -27,14 +28,19 @@ const initialValues: Fields = {
   message: '',
 }
 
-const STATE_MESSAGES = {
-  [TEmailState.NONE]: 'Odoslať',
-  [TEmailState.SUCCESS]: 'Vaša správa bola úspešne odoslaná.',
-  [TEmailState.ERROR]: 'Odoslať znovu',
-}
-
 const Form = ({ subject, cb, addition = '' }: Props) => {
+  const { t } = useTranslation()
+
   const { send } = useMail<MailParams>()
+
+  const STATE_MESSAGES = useMemo(
+    () => ({
+      [TEmailState.NONE]: t('components:form.buttons.send'),
+      [TEmailState.SUCCESS]: t('components:form.buttons.success'),
+      [TEmailState.ERROR]: t('components:form.buttons.error'),
+    }),
+    [t]
+  )
 
   const [state, setState] = useState<TEmailState>(TEmailState.NONE)
 
@@ -60,7 +66,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
               <Input
                 type="text"
                 name="name"
-                placeholder="Meno*"
+                placeholder={`${t('components:form.fields.name')}*`}
                 disabled={isDisabled}
                 hasError={touched.name && errors.name}
                 required
@@ -69,7 +75,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
               <Input
                 type="text"
                 name="surname"
-                placeholder="Priezvisko*"
+                placeholder={`${t('components:form.fields.surname')}*`}
                 disabled={isDisabled}
                 hasError={touched.surname && errors.surname}
                 required
@@ -80,7 +86,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
               <Input
                 type="email"
                 name="email"
-                placeholder="E-mail*"
+                placeholder={`${t('components:form.fields.email')}*`}
                 disabled={isDisabled}
                 hasError={touched.email && errors.email}
                 required
@@ -89,7 +95,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
               <Input
                 type="text"
                 name="phone"
-                placeholder="Telefón"
+                placeholder={t('components:form.fields.phone')}
                 disabled={isDisabled}
                 hasError={touched.phone && errors.phone}
               />
@@ -98,7 +104,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
             <Input
               as="textarea"
               name="message"
-              placeholder="Vaša správa*"
+              placeholder={`${t('components:form.fields.message')}*`}
               disabled={isDisabled}
               hasError={touched.message && errors.message}
               rows="1"
@@ -118,7 +124,7 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
 
               {state === TEmailState.ERROR && (
                 <Text as="small" color="error">
-                  Vašu správu sa nepodarilo odoslať.
+                  {t('components:form.error')}
                 </Text>
               )}
             </Box>

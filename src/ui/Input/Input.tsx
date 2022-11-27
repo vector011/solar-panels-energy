@@ -32,7 +32,7 @@ const Input = ({ as, name, hasError, ...props }: Props) => {
       />
 
       {hasError && (
-        <Text as="small" color="error" mt="xs">
+        <Text as="small" color="error" mt="xs" css={S.firstLetter}>
           <ErrorMessage {...{ name }} />
         </Text>
       )}

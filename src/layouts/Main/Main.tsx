@@ -3,10 +3,11 @@ import { Outlet, useLocation } from 'react-router'
 
 import { Light } from 'ui'
 import { Carousel, Footer, Navigation } from 'components'
+import { getRoute } from 'config/router'
 
 import * as S from './styled'
 
-const HOMEPAGE_PATHNAME = '/'
+const HOMEPAGE_PATHNAME = getRoute('home')
 
 const Main = () => {
   const { pathname } = useLocation()

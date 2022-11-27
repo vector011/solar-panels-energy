@@ -1,34 +1,37 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Box, Image, Text } from 'ui'
 import { Form } from 'components'
 
 import * as S from './styled'
 
-const ContactForm = () => (
-  <>
-    <Box as="header" mb="5xl">
-      <Text as="h1" variant="heading1" mb="l">
-        S čím vám môžeme poradiť?
-      </Text>
+const ContactForm = () => {
+  const { t } = useTranslation()
 
-      <Text variant="subheading">
-        V prípade Ďalších otázok nás neváhajte kontaktovať
-      </Text>
-    </Box>
+  return (
+    <>
+      <Box as="header" mb="5xl">
+        <Text as="h1" variant="heading1" mb="l">
+          {t('contact:contactForm.title')}
+        </Text>
 
-    <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
-      <Form subject="Contact us" />
+        <Text variant="subheading">{t('contact:contactForm.subtitle')}</Text>
+      </Box>
 
-      <Image
-        src="images/map.svg"
-        alt="Mapa polohy"
-        width={760}
-        height={374}
-        css={S.responsiveImage}
-      />
-    </Box>
-  </>
-)
+      <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
+        <Form subject={t('contact:contactForm.subject')} />
+
+        <Image
+          src="images/map.svg"
+          alt={t('contact:contactForm.image.alt')!}
+          width={760}
+          height={374}
+          css={S.responsiveImage}
+        />
+      </Box>
+    </>
+  )
+}
 
 export default React.memo(ContactForm)

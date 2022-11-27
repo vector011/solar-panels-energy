@@ -1,5 +1,7 @@
 export const PREFIX = '@JP_GREEN_ENERGY'
 
+export const I18N_LANG = `${PREFIX}/I18N_LANG`
+
 export const ASSETS_PATH = '/assets/'
 
 export const CONTACT_EMAIL = 'info@jpenergy.eu'

@@ -1,4 +1,6 @@
+import { getRoute } from 'config/router'
 import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { To, useNavigate } from 'react-router'
 
 import { Box, Button, Image, Light, Text } from 'ui'
@@ -6,6 +8,8 @@ import { Box, Button, Image, Light, Text } from 'ui'
 import * as S from './styled'
 
 const Header = () => {
+  const { t } = useTranslation()
+
   const navigate = useNavigate()
 
   const navigateTo = useCallback((to: To) => () => navigate(to), [navigate])
@@ -20,7 +24,7 @@ const Header = () => {
           tablet={{ mb: 'm' }}
           desktop={{ mb: 'l' }}
         >
-          Meníme slnečné svetlo na energiu pre lepšiu budúcnosť
+          {t('solarEnergy:header.title')}
         </Text>
 
         <Text
@@ -28,10 +32,7 @@ const Header = () => {
           tablet={{ mb: 'xxl' }}
           desktop={{ mb: '4xl', maxw: '70%' }}
         >
-          Poskytujeme zabezpečenie materiálu, poradenstvo a možnosť
-          spolufinancovania projektov zameraných na výrobu elektriny z
-          obnoviteľných zdrojov. Vieme poskytnúť riešenia, ktoré budú šetriť
-          nielen životné prostredie, ale aj vašu peňaženku.
+          {t('solarEnergy:header.body')}
         </Text>
 
         <Box
@@ -41,9 +42,12 @@ const Header = () => {
           gap="m"
           desktop={{ gap: '4xl' }}
         >
-          <Button onClick={navigateTo('/produkty')}>Produkty</Button>
-          <Button onClick={navigateTo('/sluzby')} secondary>
-            Služby
+          <Button onClick={navigateTo(getRoute('products'))}>
+            {t('global:navigation.products')}
+          </Button>
+
+          <Button onClick={navigateTo(getRoute('services'))} secondary>
+            {t('global:navigation.services')}
           </Button>
         </Box>
       </Box>
@@ -51,7 +55,7 @@ const Header = () => {
       <Box css={S.responsiveImage} position="relative" pt="5xl" zIndex="0">
         <Image
           src="images/solar-panel-1.png"
-          alt="Veľký a malý fotovoltaický panel"
+          alt={t('solarEnergy:header.image.alt')!}
           width={984}
           height={566}
         />

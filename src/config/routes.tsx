@@ -1,6 +1,8 @@
 import React from 'react'
 import { RouteObject } from 'react-router'
 
+import { ROUTE } from './router'
+
 // Layouts
 import { Main } from 'layouts'
 
@@ -13,10 +15,10 @@ export default [
     element: <Main />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'solarna-energia', element: <SolarEnergy /> },
-      { path: 'kontakt', element: <Contact /> },
-      { path: 'produkty', element: <Products /> },
-      { path: 'sluzby', element: <Services /> },
+      { path: ROUTE.SOLAR_ENERGY, element: <SolarEnergy /> },
+      { path: ROUTE.CONTACT, element: <Contact /> },
+      { path: ROUTE.PRODUCTS, element: <Products /> },
+      { path: ROUTE.SERVICES, element: <Services /> },
     ],
   },
 ] as RouteObject[]

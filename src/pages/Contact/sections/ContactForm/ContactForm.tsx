@@ -16,17 +16,19 @@ const ContactForm = () => {
           {t('contact:contactForm.title')}
         </Text>
 
-        <Text variant="subheading">{t('contact:contactForm.subtitle')}</Text>
+        <Text variant="subheading" maxw="100%" desktop={{ maxw: '50%' }}>
+          {t('contact:contactForm.subtitle')}
+        </Text>
       </Box>
 
       <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
         <Form subject={t('contact:contactForm.subject')} />
 
         <Image
-          src="images/map.svg"
+          src="images/contact.jpg"
           alt={t('contact:contactForm.image.alt')!}
-          width={760}
-          height={374}
+          width={782}
+          height={474}
           css={S.responsiveImage}
         />
       </Box>

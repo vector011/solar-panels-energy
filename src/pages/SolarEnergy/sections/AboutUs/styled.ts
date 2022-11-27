@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
 
 export const pre = css`
-  white-space: pre;
+  white-space: pre-line;
 `

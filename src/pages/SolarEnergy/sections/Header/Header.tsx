@@ -40,7 +40,7 @@ const Header = () => {
           css={S.responsiveButtons}
           flexWrap
           gap="m"
-          desktop={{ gap: '4xl' }}
+          desktop={{ gap: 'xl' }}
         >
           <Button onClick={navigateTo(getRoute('products'))}>
             {t('global:navigation.products')}

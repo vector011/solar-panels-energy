@@ -41,6 +41,7 @@ const THEME = {
 
   borderRadii: {
     rounded: '50%',
+    button: '50px',
   },
 
   zIndices: {

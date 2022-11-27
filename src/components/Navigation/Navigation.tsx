@@ -31,6 +31,10 @@ const NavItems = () => {
       <NavLink to={getRoute('services')}>
         {t('global:navigation.services')}
       </NavLink>
+
+      <NavLink to={getRoute('about-us')}>
+        {t('global:navigation.aboutUs')}
+      </NavLink>
     </>
   )
 }

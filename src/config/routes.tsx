@@ -7,7 +7,7 @@ import { ROUTE } from './router'
 import { Main } from 'layouts'
 
 // Pages
-import { Contact, Home, Products, Services, SolarEnergy } from 'pages'
+import { AboutUs, Contact, Home, Products, Services, SolarEnergy } from 'pages'
 
 export default [
   {
@@ -19,6 +19,7 @@ export default [
       { path: ROUTE.CONTACT, element: <Contact /> },
       { path: ROUTE.PRODUCTS, element: <Products /> },
       { path: ROUTE.SERVICES, element: <Services /> },
+      { path: ROUTE.ABOUT_US, element: <AboutUs /> },
     ],
   },
 ] as RouteObject[]

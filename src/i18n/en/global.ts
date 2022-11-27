@@ -10,6 +10,7 @@ export default {
     contact: 'Contact us',
     products: 'Products',
     services: 'Services',
+    aboutUs: 'About us',
   },
 
   footer: {

@@ -4,6 +4,7 @@ export enum ROUTE {
   CONTACT = 'contact',
   PRODUCTS = 'products',
   SERVICES = 'services',
+  ABOUT_US = 'about-us',
 }
 
 type TRoute = `${ROUTE}`

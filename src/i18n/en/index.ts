@@ -5,6 +5,7 @@ import solarEnergy from './solarEnergy'
 import contact from './contact'
 import products from './products'
 import services from './services'
+import aboutUs from './aboutUs'
 import components from './components'
 import validation from './validation'
 
@@ -15,6 +16,7 @@ export default {
   contact,
   products,
   services,
+  aboutUs,
   components,
   validation,
 }

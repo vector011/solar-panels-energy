@@ -10,6 +10,7 @@ export default {
     contact: 'Kontakt',
     products: 'Produkty',
     services: 'Služby',
+    aboutUs: 'O nás',
   },
 
   footer: {

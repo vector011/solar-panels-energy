@@ -84,9 +84,9 @@ export const Nav = styled.nav`
     align-items: center;
     padding: ${({ theme }) => theme.sizes.xs};
 
-    ${({ theme }) => theme.textVariants.button}
-    text-transform: uppercase;
+    ${({ theme }) => theme.textVariants.footer}
     color: ${({ theme }) => theme.colors.light};
+    user-select: none;
 
     opacity: 0.4;
     transition: opacity 200ms;

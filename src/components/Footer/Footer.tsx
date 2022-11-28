@@ -34,13 +34,13 @@ const Footer = () => {
         >
           <Box gap="m">
             <ExternalLink href={CONTACT_EMAIL} type="mail">
-              <Text variant="button" color="light" uppercase>
+              <Text variant="footer" color="light">
                 {CONTACT_EMAIL}
               </Text>
             </ExternalLink>
 
             <ExternalLink href={CONTACT_PHONE} type="phone">
-              <Text variant="button" color="light" uppercase>
+              <Text variant="footer" color="light">
                 {CONTACT_PHONE}
               </Text>
             </ExternalLink>
@@ -73,15 +73,9 @@ const Footer = () => {
           </Box>
 
           <Box gap="m">
-            <Text variant="button" uppercase>
-              JP Green Energy, s.r.o.
-            </Text>
-            <Text variant="button" uppercase>
-              Stará Vajnorská 11/A 831 04
-            </Text>
-            <Text variant="button" uppercase>
-              Bratislava Slovakia
-            </Text>
+            <Text variant="footer">JP Green Energy, s.r.o.</Text>
+            <Text variant="footer">Stará Vajnorská 11/A 831 04</Text>
+            <Text variant="footer">Bratislava Slovakia</Text>
           </Box>
 
           <Box as={S.Nav} alignItems="stretch">

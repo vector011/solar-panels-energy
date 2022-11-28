@@ -36,8 +36,10 @@ const Panel = ({ big, w, mm, kg, ...props }: Props) => {
       <Box
         gap="xxl"
         width="100%"
+        alignItems="center"
+        tablet={{ row: true, alignItems: 'flex-end' }}
         desktop={{ gap: '4xl' }}
-        largeDesktop={{ gap: '6xl', row: true, alignItems: 'flex-end' }}
+        largeDesktop={{ gap: '6xl' }}
       >
         <Box gap="l">
           <Text variant="paragraph2" uppercase>

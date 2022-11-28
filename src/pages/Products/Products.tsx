@@ -8,10 +8,9 @@ const Products = () => (
     <Box
       as="section"
       position="relative"
-      minHeight="100vh"
       pt="section"
       tablet={{ pt: 'top' }}
-      pb="section"
+      pb="block"
     >
       <Container>
         <Benefits />
@@ -19,13 +18,13 @@ const Products = () => (
     </Box>
 
     <Box as="section" position="relative" mb="section">
-      <Light bg="primary" size={581} top={50} left={-141} />
+      <Light bg="primary" size={581} top={300} left={-141} />
 
       <Container>
         <Panels />
       </Container>
 
-      <Light bg="primary" size={581} bottom={-280} right={-174} />
+      <Light bg="primary" size={581} bottom={300} right={-174} />
     </Box>
   </>
 )

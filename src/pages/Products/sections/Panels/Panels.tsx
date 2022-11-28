@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Panel, Popup } from 'components'
-import { Box, Button } from 'ui'
+import { List, Panel, Popup } from 'components'
+import { Box, Button, Text } from 'ui'
 import { useToggle } from 'hooks'
-
-import * as S from './styled'
 
 const Panels = () => {
   const { t } = useTranslation()
@@ -45,7 +43,8 @@ const Panels = () => {
         mb="4xl"
         tablet={{ mb: '6xl' }}
         desktop={{ mb: 'section' }}
-        css={S.responsivePanels}
+        alignItems="center"
+        gap="section"
       >
         <Panel
           {...t('products:panels.small', { returnObjects: true })}
@@ -64,6 +63,26 @@ const Panels = () => {
       <Button wide onClick={show}>
         {t('products:panels.button')}
       </Button>
+
+      <Box
+        as="article"
+        position="relative"
+        mt="4xl"
+        tablet={{ mt: '6xl' }}
+        desktop={{ mt: 'section' }}
+      >
+        <Text as="h2" variant="heading2" mb="3xl" tablet={{ mb: '4xl' }}>
+          {t('products:benefits.subtitle')}
+        </Text>
+
+        <Box largeDesktop={{ maxw: '75%' }} maxw="100%">
+          <List
+            items={
+              t('products:benefits.list', { returnObjects: true }) as string[]
+            }
+          />
+        </Box>
+      </Box>
     </>
   )
 }

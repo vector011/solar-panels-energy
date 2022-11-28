@@ -42,6 +42,8 @@ const THEME = {
   borderRadii: {
     rounded: '50%',
     button: '50px',
+    card: '16px',
+    video: '24px',
   },
 
   zIndices: {
@@ -116,6 +118,12 @@ const THEME = {
       font-weight: 400;
       font-size: clamp(16px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
+    `,
+    footer: `
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: clamp(16px, 2vw + 0.1rem, 18px);
+      line-height: clamp(20px, 2vw + 0.1rem, 22px);
     `,
   },
 } as const

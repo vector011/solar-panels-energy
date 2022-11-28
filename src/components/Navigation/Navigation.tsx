@@ -5,9 +5,11 @@ import { useLocation } from 'react-router'
 
 import { Box, Container, Icon, Logo } from 'ui'
 import { useBodyNoScroll, useToggle } from 'hooks'
+import { getRoute } from 'config/router'
+
+import Language from '../Language'
 
 import * as S from './styled'
-import { getRoute } from 'config/router'
 
 const NavItems = () => {
   const { t } = useTranslation()
@@ -35,6 +37,8 @@ const NavItems = () => {
       <NavLink to={getRoute('about-us')}>
         {t('global:navigation.aboutUs')}
       </NavLink>
+
+      <Language />
     </>
   )
 }

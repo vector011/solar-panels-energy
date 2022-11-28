@@ -119,7 +119,7 @@ export const Burger = styled.button<INav>`
     }
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop + 1}px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
     display: none;
   }
 `
@@ -129,13 +129,17 @@ const commonNav = css`
   align-items: stretch;
 
   & > a {
+    opacity: 0.4;
+  }
+
+  & > a,
+  & > div {
     display: inline-flex;
     align-items: center;
 
     ${({ theme }) => theme.textVariants.navlink};
     color: ${({ theme }) => theme.colors.light};
 
-    opacity: 0.4;
     transition: opacity 200ms;
 
     &.active {
@@ -160,8 +164,30 @@ export const MobileNav = styled.nav<INav>`
   background: url('assets/images/grain.png') ${({ theme }) => theme.colors.dark};
   background-size: 20%;
 
-  & > a {
+  & > div > article span {
+    font-size: 45px;
+    line-height: 55px;
+    padding-inline: ${({ theme }) => theme.sizes.l};
+  }
+
+  & > div > button {
+    & > span {
+      font-size: 45px;
+      line-height: 55px;
+      margin-right: ${({ theme }) => theme.sizes.xs};
+    }
+
+    & > svg {
+      width: 19px;
+      height: 17px;
+      fill: white;
+    }
+  }
+
+  & > a,
+  & > div {
     position: relative;
+    align-items: flex-start;
 
     padding-block: ${({ theme }) => theme.sizes.m};
     padding-inline: ${({ theme }) => theme.sizes.xxl};
@@ -189,8 +215,13 @@ export const MobileNav = styled.nav<INav>`
       transition-delay: 500ms;
     }
 
+    &:nth-of-type(6)::before {
+      transition-delay: 550ms;
+    }
+
     ::before {
       content: '';
+      z-index: ${({ theme }) => theme.zIndices.nav};
 
       transform-origin: bottom;
       position: absolute;
@@ -205,7 +236,7 @@ export const MobileNav = styled.nav<INav>`
     }
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop + 1}px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
     display: none;
   }
 `
@@ -216,17 +247,21 @@ export const Nav = styled.nav`
   margin-right: -${({ theme }) => theme.sizes.s};
 
   & > a {
+    opacity: 0.4;
+  }
+
+  & > a,
+  & > div {
     padding: ${({ theme }) => theme.sizes.s};
 
     transition: opacity 200ms;
-    opacity: 0.4;
 
     &.active {
       opacity: 1;
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.largeDesktop}px) {
     display: none;
   }
 `

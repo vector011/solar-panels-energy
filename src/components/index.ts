@@ -8,3 +8,4 @@ export { default as Form } from './Form'
 export { default as Popup } from './Popup'
 
 export { default as Panel } from './Panel'
+export { default as Language } from './Language'

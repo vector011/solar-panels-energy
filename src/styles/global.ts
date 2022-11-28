@@ -15,7 +15,8 @@ export default createGlobalStyle`
   body {
     background:
       url("assets/images/background.png")
-      ${({ theme }) => theme.colors.dark};
+      #000E01;
+      //${({ theme }) => theme.colors.dark};
     background-size: 20.9%;
     background-position-x: 63.2%;
 

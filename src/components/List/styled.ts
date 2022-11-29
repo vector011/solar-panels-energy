@@ -25,6 +25,7 @@ export const Item = styled.li`
 
     width: 8px;
     height: 8px;
+    border-radius: ${({ theme }) => theme.borderRadii.rounded};
 
     margin-top: 0.6ch;
 

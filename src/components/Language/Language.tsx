@@ -37,7 +37,7 @@ const Language = () => {
           {activeLang}
         </Text>
 
-        <Icon name="arrow-down-icon" />
+        <Icon name="arrow-down-icon" width={9} height={5} />
       </Box>
 
       <Box as="article" position="absolute">

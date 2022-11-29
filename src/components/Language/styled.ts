@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 
   svg {
     transition: all 200ms;
+    margin-top: -4px;
     transform: scaleY(1);
   }
 

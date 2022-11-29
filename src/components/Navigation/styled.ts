@@ -169,7 +169,8 @@ export const MobileNav = styled.nav<INav>`
   position: fixed;
   inset: 0;
 
-  padding-block: ${({ theme }) => theme.sizes.m};
+  padding-top: ${({ theme }) => theme.sizes.xxl};
+  padding-bottom: ${({ theme }) => theme.sizes.block};
 
   & > *:first-child {
     margin-top: auto;
@@ -183,21 +184,21 @@ export const MobileNav = styled.nav<INav>`
   background-size: 20%;
 
   & > div > article span {
-    font-size: 45px;
-    line-height: 55px;
+    font-size: clamp(38px, 2vw + 1rem, 42px);
+    line-height: clamp(48px, 2vw + 1rem, 52px);
     padding-inline: ${({ theme }) => theme.sizes.l};
   }
 
   & > div > button {
     & > span {
-      font-size: clamp(40px, 3.5vh + 1rem, 45px);
-      line-height: clamp(48px, 3.5vh + 1rem, 55px);
+      font-size: clamp(38px, 2vw + 1rem, 42px);
+      line-height: clamp(48px, 2vw + 1rem, 52px);
       margin-right: ${({ theme }) => theme.sizes.xs};
     }
 
     & > svg {
       width: 19px;
-      height: 17px;
+      height: 15px;
       fill: white;
     }
   }
@@ -210,8 +211,8 @@ export const MobileNav = styled.nav<INav>`
     padding-block: ${({ theme }) => theme.sizes.m};
     padding-inline: ${({ theme }) => theme.sizes.xxl};
 
-    font-size: clamp(40px, 3.5vh + 1rem, 45px);
-    line-height: clamp(50px, 3.5vh + 1rem, 55px);
+    font-size: clamp(38px, 2vw + 1rem, 42px);
+    line-height: clamp(48px, 2vw + 1rem, 52px);
 
     &:nth-of-type(1)::before {
       transition-delay: 300ms;
@@ -266,6 +267,10 @@ export const Nav = styled.nav`
 
   & > a {
     opacity: 0.4;
+  }
+
+  & > div {
+    margin-left: ${({ theme }) => theme.sizes.xs};
   }
 
   & > a,

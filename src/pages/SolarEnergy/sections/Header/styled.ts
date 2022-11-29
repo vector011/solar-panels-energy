@@ -13,12 +13,12 @@ export const responsiveImage = css`
   }
 
   @media (max-width: 1500px) {
-    margin-left: -10%;
+    margin-left: -14%;
     padding-top: 0;
   }
 
-  @media (max-width: 1160px) {
-    margin-left: -18%;
+  @media (max-width: 1170px) {
+    margin-left: -21%;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop - 1}px) {

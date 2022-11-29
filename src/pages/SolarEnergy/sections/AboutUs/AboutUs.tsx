@@ -15,12 +15,12 @@ const AboutUs = () => {
         variant="heading2"
         mb="s"
         tablet={{ mb: 'm' }}
-        desktop={{ maxw: '50%', mb: 'l' }}
+        desktop={{ maxw: '20ch', mb: 'l' }}
       >
         {t('solarEnergy:aboutUs.title')}
       </Text>
 
-      <Box as="article" tablet={{ row: true }} gap="m" equal>
+      <Box as="article" desktop={{ row: true }} gap="m" equal>
         <Box>
           <Text as="h3" variant="subheading" desktop={{ maxw: '70%' }}></Text>
         </Box>

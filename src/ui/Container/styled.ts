@@ -3,10 +3,8 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
   width: 100%;
 
-  // TODO: 1. container size
-  max-width: ${({ theme }) =>
-    `calc(${theme.breakpoints.container}px + 2 * ${theme.sizes.s})`};
+  max-width: ${({ theme }) => `calc(${theme.breakpoints.container}px + 4%)`};
 
-  padding-inline: ${({ theme }) => theme.sizes.s};
+  padding-inline: 4%;
   margin-inline: auto;
 `

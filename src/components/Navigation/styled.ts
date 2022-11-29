@@ -130,6 +130,10 @@ const commonNav = css`
 
   & > a {
     opacity: 0.4;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   & > a,
@@ -156,10 +160,24 @@ export const MobileNav = styled.nav<INav>`
   transition: opacity 400ms, transform 400ms;
 
   flex-direction: column;
-  justify-content: center;
+  overflow-y: auto;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    align-items: center;
+  }
 
   position: fixed;
   inset: 0;
+
+  padding-block: ${({ theme }) => theme.sizes.m};
+
+  & > *:first-child {
+    margin-top: auto;
+  }
+
+  & > *:last-child {
+    margin-bottom: auto;
+  }
 
   background: url('assets/images/grain.png') ${({ theme }) => theme.colors.dark};
   background-size: 20%;
@@ -172,8 +190,8 @@ export const MobileNav = styled.nav<INav>`
 
   & > div > button {
     & > span {
-      font-size: 45px;
-      line-height: 55px;
+      font-size: clamp(40px, 3.5vh + 1rem, 45px);
+      line-height: clamp(48px, 3.5vh + 1rem, 55px);
       margin-right: ${({ theme }) => theme.sizes.xs};
     }
 
@@ -192,8 +210,8 @@ export const MobileNav = styled.nav<INav>`
     padding-block: ${({ theme }) => theme.sizes.m};
     padding-inline: ${({ theme }) => theme.sizes.xxl};
 
-    font-size: 45px;
-    line-height: 55px;
+    font-size: clamp(40px, 3.5vh + 1rem, 45px);
+    line-height: clamp(50px, 3.5vh + 1rem, 55px);
 
     &:nth-of-type(1)::before {
       transition-delay: 300ms;

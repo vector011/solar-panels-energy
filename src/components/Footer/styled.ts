@@ -91,6 +91,10 @@ export const Nav = styled.nav`
     opacity: 0.4;
     transition: opacity 200ms;
 
+    &:hover {
+      opacity: 0.7;
+    }
+
     &.active {
       opacity: 1;
     }

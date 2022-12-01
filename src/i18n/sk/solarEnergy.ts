@@ -27,7 +27,7 @@ export default {
     title: 'Solar portfolio',
     list: [
       'Operatívna komunikácia pri výbere zariadení',
-      'Produkty k dispozicii v showroome',
+      'Produkty k dispozícii v showroome',
       'Rýchly nákup bez potreby registrácie',
       'Rýchle dodanie tovaru',
       'Dlhodobá záruka na všetky produkty',

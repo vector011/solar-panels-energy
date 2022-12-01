@@ -3,6 +3,7 @@ const palette = {
   black: '#0A0A0A',
   red: '#FF4545',
   blue: '#576AE2',
+  green: '#000E01',
   lightBlue: '#6ECBF6',
   alphaBlack: 'rgba(0, 0, 0, 0.5)',
 } as const
@@ -15,6 +16,7 @@ const THEME = {
     secondary: palette.blue,
     error: palette.red,
     modal: palette.alphaBlack,
+    bg: palette.green,
   },
 
   sizes: {
@@ -65,19 +67,19 @@ const THEME = {
 
   textVariants: {
     heading1: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: clamp(35px, 4.5vw + 1rem, 88px);
       line-height: clamp(43px, 4.5vw + 1rem, 88px);
     `,
     heading2: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: clamp(30px, 4.5vw + 1rem, 80px);
       line-height: clamp(37px, 4.5vw + 1rem, 80px);
     `,
     homepage: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 400;
       font-size: clamp(30px, 3.6vw + 1rem, 88px);
       line-height: clamp(37px, 3.6vw + 1rem, 88px);
@@ -108,7 +110,7 @@ const THEME = {
       line-height: 24px;
     `,
     navlink: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: 24px;
       line-height: 29px;

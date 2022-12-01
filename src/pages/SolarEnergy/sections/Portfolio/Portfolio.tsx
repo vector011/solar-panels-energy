@@ -32,6 +32,7 @@ const Portfolio = () => {
         </Text>
 
         <List
+          uppercase
           items={
             t('solarEnergy:portfolio.list', { returnObjects: true }) as string[]
           }

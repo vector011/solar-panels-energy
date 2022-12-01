@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react'
-import { Navigate, useLocation, useRoutes } from 'react-router-dom'
+import React from 'react'
+import { Navigate, useRoutes } from 'react-router-dom'
 
 import routes from 'config/routes'
 import { getRoute } from 'config/router'
 
-const App = () => {
-  const location = useLocation()
+import { useRouteChange } from 'hooks'
+import { TITLE } from 'constants/global'
+import { titles } from 'config/router'
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location])
+const App = () => {
+  useRouteChange({
+    scrollTop: true,
+    changeTitle: {
+      prefix: TITLE,
+      titles,
+    },
+  })
 
   return useRoutes([
     ...routes,

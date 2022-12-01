@@ -67,6 +67,8 @@ export const ScrollTop = styled.button`
 `
 
 export const SocialIcons = styled.div`
+  visibility: hidden;
+
   margin-left: -${({ theme }) => theme.sizes.xxs};
 
   & > a {

@@ -6,14 +6,17 @@ type ListItem = string
 
 type Props = {
   items?: ListItem[]
+  uppercase?: boolean
 }
 
-const List = ({ items = [] }: Props) => {
+const List = ({ items = [], uppercase }: Props) => {
   const renderItems = useCallback(
     (item: ListItem, idx: number) => (
-      <S.Item key={`item-${idx}`}>{item}</S.Item>
+      <S.Item key={`item-${idx}`} {...{ uppercase }}>
+        {item}
+      </S.Item>
     ),
-    []
+    [uppercase]
   )
 
   return <S.Wrapper>{items?.map(renderItems)}</S.Wrapper>

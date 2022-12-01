@@ -19,7 +19,7 @@ const Header = () => {
       <Box as="article" zIndex="1">
         <Text
           as="h1"
-          variant="heading1"
+          variant="heading2"
           mb="s"
           tablet={{ mb: 'm' }}
           desktop={{ mb: 'l' }}

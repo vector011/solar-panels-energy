@@ -25,10 +25,10 @@ const ContactForm = () => {
         <Form subject={t('contact:contactForm.subject')} />
 
         <Image
-          src="images/contact.jpg"
+          src="images/map.svg"
           alt={t('contact:contactForm.image.alt')!}
-          width={782}
-          height={474}
+          width={901}
+          height={603}
           css={S.responsiveImage}
         />
       </Box>

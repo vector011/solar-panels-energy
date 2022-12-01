@@ -17,6 +17,6 @@ export const Wrapper = styled.div<Props>`
   border-radius: ${({ theme }) => theme.borderRadii.rounded};
 
   background-color: ${({ theme, bg }) => theme.colors[bg!]};
-  opacity: 0.3; // 0.3
-  filter: blur(130px); // 304
+  opacity: 0.3;
+  filter: blur(130px);
 `

@@ -1,6 +1,4 @@
-import styled, { css } from 'styled-components'
-
-export const Wrapper = styled.header``
+import { css } from 'styled-components'
 
 export const responsiveImage = css`
   @media (min-width: 1800px) {

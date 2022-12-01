@@ -4,7 +4,7 @@ export default {
     subtitle: 'Ak máte akékoľvek otázky, vyplňte uvedený formulár',
     subject: 'Kontaktujte nás',
     image: {
-      alt: 'Solárne panely vedľa budovy',
+      alt: 'Mapa Európy s lokalizáciou',
     },
   },
 }

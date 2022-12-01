@@ -77,6 +77,7 @@ const Panels = () => {
 
         <Box largeDesktop={{ maxw: '75%' }} maxw="100%">
           <List
+            uppercase
             items={
               t('products:benefits.list', { returnObjects: true }) as string[]
             }

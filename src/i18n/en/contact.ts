@@ -4,7 +4,7 @@ export default {
     subtitle: 'Drop us a line if you have any questions',
     subject: 'Contact us',
     image: {
-      alt: 'Solar panels next to building',
+      alt: 'Map of Europe with localization',
     },
   },
 }

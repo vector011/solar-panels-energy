@@ -1,18 +1,13 @@
 export default {
-  // TODO: missing translation
   description: {
-    title: 'O nás - váš energetický partner',
-    body: `Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+    title: 'About us - your energy partner',
+    body: `Our mission is to sell powerful high quality photovoltaic panels, engineer the installation and construction of solar power plants and parks all over Europe. Our main vision is to increase the share of electricity consumption from renewable energy resources by providing a complete range within any of our customers' projects.
       \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+      We are strongly committed to selling quality products at an affordable price. Moreover, express delivery throughout Europe is guaranteed. Both wholesale customers and household consumers are satisfied with our approach.
       \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-      \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-      \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.`,
+      Soon you will be able to visit us in person in our new showroom.`,
     image: {
-      alt: 'About us image',
+      alt: 'Golden City building Bratislava',
     },
   },
 }

@@ -1,18 +1,13 @@
 export default {
-  // TODO: missing translation
   description: {
     title: 'O nás - váš energetický partner',
-    body: `Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+    body: `Venujeme sa predaju kvalitných a výkonných fotovoltaických panelov, ako aj inštalácii a výstavbe solárnych elektrární a solárnych parkov po celej Európe. Našou hlavnou víziou je zvyšovať podiel spotreby elektrickej energie z obnoviteľných zdrojov pomocou zabezpečovania kompletného sortimentu v rámci ľubovoľného projektu našich zákazníkov.
       \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+      Držíme sa princípu predaja vysokokvalitných produktov za najlepšie možné ceny. Okrem toho vieme zabezpečiť rýchle dodanie tovaru v rámci celej Európy. S naším prístupom sú spokojní veľkoodberatelia aj domácnosti.
       \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-      \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-      \n
-      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.`,
+      Onedlho nás budete môcť navštíviť osobne v našom novom showroome.`,
     image: {
-      alt: 'About us image',
+      alt: 'Budova Golden City Bratislava',
     },
   },
 }

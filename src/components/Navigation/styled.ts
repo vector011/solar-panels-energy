@@ -136,8 +136,7 @@ const commonNav = css`
     }
   }
 
-  & > a,
-  & > div {
+  & > a {
     display: inline-flex;
     align-items: center;
 
@@ -169,8 +168,7 @@ export const MobileNav = styled.nav<INav>`
   position: fixed;
   inset: 0;
 
-  padding-top: ${({ theme }) => theme.sizes.xxl};
-  padding-bottom: ${({ theme }) => theme.sizes.block};
+  padding-block: ${({ theme }) => theme.sizes.xxl};
 
   & > *:first-child {
     margin-top: auto;
@@ -183,28 +181,39 @@ export const MobileNav = styled.nav<INav>`
   background: url('assets/images/grain.png') ${({ theme }) => theme.colors.dark};
   background-size: 20%;
 
-  & > div > article span {
-    font-size: clamp(38px, 2vw + 1rem, 42px);
-    line-height: clamp(48px, 2vw + 1rem, 52px);
-    padding-inline: ${({ theme }) => theme.sizes.l};
+  & > button {
+    & > svg {
+      width: 43px;
+      height: 30px;
+    }
   }
 
-  & > div > button {
-    & > span {
-      font-size: clamp(38px, 2vw + 1rem, 42px);
-      line-height: clamp(48px, 2vw + 1rem, 52px);
-      margin-right: ${({ theme }) => theme.sizes.xs};
-    }
+  &:nth-child(1)::before {
+    transition-delay: 300ms;
+  }
 
-    & > svg {
-      width: 19px;
-      height: 15px;
-      fill: white;
-    }
+  &:nth-child(2)::before {
+    transition-delay: 350ms;
+  }
+
+  &:nth-child(3)::before {
+    transition-delay: 400ms;
+  }
+
+  &:nth-child(4)::before {
+    transition-delay: 450ms;
+  }
+
+  &:nth-child(5)::before {
+    transition-delay: 500ms;
+  }
+
+  &:nth-child(6)::before {
+    transition-delay: 550ms;
   }
 
   & > a,
-  & > div {
+  & > button {
     position: relative;
     align-items: flex-start;
 
@@ -213,30 +222,6 @@ export const MobileNav = styled.nav<INav>`
 
     font-size: clamp(38px, 2vw + 1rem, 42px);
     line-height: clamp(48px, 2vw + 1rem, 52px);
-
-    &:nth-of-type(1)::before {
-      transition-delay: 300ms;
-    }
-
-    &:nth-of-type(2)::before {
-      transition-delay: 350ms;
-    }
-
-    &:nth-of-type(3)::before {
-      transition-delay: 400ms;
-    }
-
-    &:nth-of-type(4)::before {
-      transition-delay: 450ms;
-    }
-
-    &:nth-of-type(5)::before {
-      transition-delay: 500ms;
-    }
-
-    &:nth-of-type(6)::before {
-      transition-delay: 550ms;
-    }
 
     ::before {
       content: '';
@@ -269,12 +254,11 @@ export const Nav = styled.nav`
     opacity: 0.4;
   }
 
-  & > div {
-    margin-left: ${({ theme }) => theme.sizes.xs};
+  & > button {
+    margin-left: ${({ theme }) => theme.sizes.s};
   }
 
-  & > a,
-  & > div {
+  & > a {
     padding: ${({ theme }) => theme.sizes.s};
 
     transition: opacity 200ms;

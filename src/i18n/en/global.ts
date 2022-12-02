@@ -2,6 +2,7 @@ export default {
   button: {
     findOutMore: 'Learn More',
     close: 'Close',
+    lang: 'Change language to {{lang}}',
   },
 
   navigation: {

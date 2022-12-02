@@ -2,6 +2,7 @@ export default {
   button: {
     findOutMore: 'Zistiť viac',
     close: 'Zavrieť',
+    lang: 'Zmeniť jazyk na {{lang}}',
   },
 
   navigation: {

@@ -87,21 +87,21 @@ const THEME = {
     subheading: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
-      font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(20px, 2.5vw + 0.1rem, 24px);
+      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
+      line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
       text-transform: uppercase;
     `,
     subheading2: `
       font-family: "Inter", sans-serif;
       font-weight: 400;
       font-size: clamp(16px, 2vw + 0.1rem, 25px);
-      line-height: clamp(19px, 2vw + 0.1rem, 30px);
+      line-height: clamp(22px, 2.5vw + 0.1rem, 31px);
     `,
     paragraph: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
-      font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(20px, 4vw + 0.1rem, 24px);
+      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
+      line-height: clamp(21px, 2.5vw + 0.1rem, 26px);
     `,
     paragraph2: `
       font-family: "Inter", sans-serif;

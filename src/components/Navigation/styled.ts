@@ -217,11 +217,15 @@ export const MobileNav = styled.nav<INav>`
     position: relative;
     align-items: flex-start;
 
-    padding-block: ${({ theme }) => theme.sizes.m};
+    padding-block: clamp(
+      ${({ theme }) => theme.sizes.s},
+      2.5vh + 0.1rem,
+      ${({ theme }) => theme.sizes.m}
+    );
     padding-inline: ${({ theme }) => theme.sizes.xxl};
 
-    font-size: clamp(38px, 2vw + 1rem, 42px);
-    line-height: clamp(48px, 2vw + 1rem, 52px);
+    font-size: clamp(30px, 2vh + 1vw + 1rem, 42px);
+    line-height: clamp(40px, 2vh + 1vw + 1rem, 52px);
 
     ::before {
       content: '';

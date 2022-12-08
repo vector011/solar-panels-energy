@@ -3,10 +3,11 @@ import { Outlet, useLocation } from 'react-router'
 
 import { Light } from 'ui'
 import { Carousel, Footer, Navigation } from 'components'
+import { getRoute } from 'config/router'
 
 import * as S from './styled'
 
-const HOMEPAGE_PATHNAME = '/'
+const HOMEPAGE_PATHNAME = getRoute('home')
 
 const Main = () => {
   const { pathname } = useLocation()
@@ -28,11 +29,11 @@ const Main = () => {
       {isCarouselVisible && (
         <Carousel
           items={[
-            'carousel/placeholder-1.jpeg',
-            'carousel/placeholder-2.jpeg',
-            'carousel/placeholder-3.jpeg',
-            'carousel/placeholder-4.jpeg',
-            'carousel/placeholder-5.jpeg',
+            'carousel/carousel-1.jpeg',
+            'carousel/carousel-2.jpeg',
+            'carousel/carousel-3.jpeg',
+            'carousel/carousel-4.jpeg',
+            'carousel/carousel-5.jpeg',
           ]}
         />
       )}

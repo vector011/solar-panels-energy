@@ -1,21 +1,45 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router'
 
-import { Box, Container, Icon, Logo } from 'ui'
+import { Box, Container, Icon, Lang, Logo } from 'ui'
 import { useBodyNoScroll, useToggle } from 'hooks'
+import { getRoute } from 'config/router'
 
 import * as S from './styled'
 
-const NavItems = () => (
-  <>
-    <NavLink to="/">Domov</NavLink>
-    <NavLink to="/solarna-energia">Solárna energia</NavLink>
-    <NavLink to="/kontakt">Kontakt</NavLink>
-    <NavLink to="/produkty">Produkty</NavLink>
-    <NavLink to="/sluzby">Služby</NavLink>
-  </>
-)
+const NavItems = () => {
+  const { t } = useTranslation()
+
+  return (
+    <>
+      <NavLink to={getRoute('home')}>{t('global:navigation.home')}</NavLink>
+
+      <NavLink to={getRoute('solar-energy')}>
+        {t('global:navigation.solarEnergy')}
+      </NavLink>
+
+      <NavLink to={getRoute('contact')}>
+        {t('global:navigation.contact')}
+      </NavLink>
+
+      <NavLink to={getRoute('products')}>
+        {t('global:navigation.products')}
+      </NavLink>
+
+      <NavLink to={getRoute('services')}>
+        {t('global:navigation.services')}
+      </NavLink>
+
+      <NavLink to={getRoute('about-us')}>
+        {t('global:navigation.aboutUs')}
+      </NavLink>
+
+      <Lang />
+    </>
+  )
+}
 
 const Navigation = () => {
   const location = useLocation()

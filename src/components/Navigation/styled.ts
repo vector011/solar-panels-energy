@@ -119,7 +119,7 @@ export const Burger = styled.button<INav>`
     }
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop + 1}px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
     display: none;
   }
 `
@@ -129,13 +129,20 @@ const commonNav = css`
   align-items: stretch;
 
   & > a {
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  & > a {
     display: inline-flex;
     align-items: center;
 
     ${({ theme }) => theme.textVariants.navlink};
     color: ${({ theme }) => theme.colors.light};
 
-    opacity: 0.4;
     transition: opacity 200ms;
 
     &.active {
@@ -152,45 +159,77 @@ export const MobileNav = styled.nav<INav>`
   transition: opacity 400ms, transform 400ms;
 
   flex-direction: column;
-  justify-content: center;
+  overflow-y: auto;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    align-items: center;
+  }
 
   position: fixed;
   inset: 0;
 
+  padding-block: ${({ theme }) => theme.sizes.xxl};
+
+  & > *:first-child {
+    margin-top: auto;
+  }
+
+  & > *:last-child {
+    margin-bottom: auto;
+  }
+
   background: url('assets/images/grain.png') ${({ theme }) => theme.colors.dark};
   background-size: 20%;
 
-  & > a {
-    position: relative;
+  & > button {
+    & > svg {
+      width: 43px;
+      height: 30px;
+    }
+  }
 
-    padding-block: ${({ theme }) => theme.sizes.m};
+  &:nth-child(1)::before {
+    transition-delay: 300ms;
+  }
+
+  &:nth-child(2)::before {
+    transition-delay: 350ms;
+  }
+
+  &:nth-child(3)::before {
+    transition-delay: 400ms;
+  }
+
+  &:nth-child(4)::before {
+    transition-delay: 450ms;
+  }
+
+  &:nth-child(5)::before {
+    transition-delay: 500ms;
+  }
+
+  &:nth-child(6)::before {
+    transition-delay: 550ms;
+  }
+
+  & > a,
+  & > button {
+    position: relative;
+    align-items: flex-start;
+
+    padding-block: clamp(
+      ${({ theme }) => theme.sizes.s},
+      2.5vh + 0.1rem,
+      ${({ theme }) => theme.sizes.m}
+    );
     padding-inline: ${({ theme }) => theme.sizes.xxl};
 
-    font-size: 45px;
-    line-height: 55px;
-
-    &:nth-of-type(1)::before {
-      transition-delay: 300ms;
-    }
-
-    &:nth-of-type(2)::before {
-      transition-delay: 350ms;
-    }
-
-    &:nth-of-type(3)::before {
-      transition-delay: 400ms;
-    }
-
-    &:nth-of-type(4)::before {
-      transition-delay: 450ms;
-    }
-
-    &:nth-of-type(5)::before {
-      transition-delay: 500ms;
-    }
+    font-size: clamp(30px, 2vh + 1vw + 1rem, 42px);
+    line-height: clamp(40px, 2vh + 1vw + 1rem, 52px);
 
     ::before {
       content: '';
+      z-index: ${({ theme }) => theme.zIndices.nav};
 
       transform-origin: bottom;
       position: absolute;
@@ -205,7 +244,7 @@ export const MobileNav = styled.nav<INav>`
     }
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop + 1}px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
     display: none;
   }
 `
@@ -216,17 +255,24 @@ export const Nav = styled.nav`
   margin-right: -${({ theme }) => theme.sizes.s};
 
   & > a {
+    opacity: 0.4;
+  }
+
+  & > button {
+    margin-left: ${({ theme }) => theme.sizes.s};
+  }
+
+  & > a {
     padding: ${({ theme }) => theme.sizes.s};
 
     transition: opacity 200ms;
-    opacity: 0.4;
 
     &.active {
       opacity: 1;
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.largeDesktop}px) {
     display: none;
   }
 `

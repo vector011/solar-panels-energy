@@ -8,3 +8,4 @@ export { default as useBodyNoScroll } from './useBodyNoScroll'
 export { default as useClickOutside } from './useClickOutside'
 
 export { default as useMail } from './useMail'
+export { default as useRouteChange } from './useRouteChange'

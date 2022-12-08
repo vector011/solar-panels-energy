@@ -1,18 +1,22 @@
 import React, { useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 import { Box, Button, Container, Text, Video } from 'ui'
 import { useScrollPosition } from 'hooks'
+import { getRoute } from 'config/router'
 
 import * as S from './styled'
 
 const Home = () => {
+  const { t } = useTranslation()
+
   const navigate = useNavigate()
 
   const position = useScrollPosition(0.5)
 
   const toSolarPanels = useCallback(
-    () => navigate('/solarna-energia'),
+    () => navigate(getRoute('solar-energy')),
     [navigate]
   )
 
@@ -58,12 +62,11 @@ const Home = () => {
               tablet={{ mb: 'm' }}
               desktop={{ mb: 'l' }}
             >
-              Prinášame alternatívne ekologické zdroje elektrickej energie
+              {t('home:video1.title')}
             </Text>
 
             <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">
-              Dodávame technológie pre výrobu zelenej elektrickej energie,
-              príslušenstvo a služby.
+              {t('home:video1.subtitle')}
             </Text>
           </Container>
         </Box>
@@ -94,14 +97,16 @@ const Home = () => {
               tablet={{ mb: 'm' }}
               desktop={{ mb: 'l' }}
             >
-              Solárne panely
+              {t('home:video2.title')}
             </Text>
 
             <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">
-              Fotovoltaika, príslušenstvo a služby.
+              {t('home:video2.subtitle')}
             </Text>
 
-            <Button onClick={toSolarPanels}>Zistiť viac</Button>
+            <Button onClick={toSolarPanels}>
+              {t('global:button.findOutMore')}
+            </Button>
           </Container>
         </Box>
       </Box>

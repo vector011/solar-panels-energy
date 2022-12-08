@@ -67,6 +67,8 @@ export const ScrollTop = styled.button`
 `
 
 export const SocialIcons = styled.div`
+  display: none;
+
   margin-left: -${({ theme }) => theme.sizes.xxs};
 
   & > a {
@@ -84,12 +86,16 @@ export const Nav = styled.nav`
     align-items: center;
     padding: ${({ theme }) => theme.sizes.xs};
 
-    ${({ theme }) => theme.textVariants.button}
-    text-transform: uppercase;
+    ${({ theme }) => theme.textVariants.footer}
     color: ${({ theme }) => theme.colors.light};
+    user-select: none;
 
     opacity: 0.4;
     transition: opacity 200ms;
+
+    &:hover {
+      opacity: 0.7;
+    }
 
     &.active {
       opacity: 1;

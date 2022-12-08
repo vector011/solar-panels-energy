@@ -1,3 +1,5 @@
-import styled from 'styled-components'
+import { css } from 'styled-components'
 
-export const Wrapper = styled.div``
+export const pre = css`
+  white-space: pre-line;
+`

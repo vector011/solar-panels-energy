@@ -1,15 +1,19 @@
 import styled from 'styled-components'
 
+interface IItem {
+  uppercase?: boolean
+}
+
 export const Wrapper = styled.ul`
   list-style: none;
 `
 
-export const Item = styled.li`
+export const Item = styled.li<IItem>`
   display: flex;
   align-items: center;
 
   ${({ theme }) => theme.textVariants.paragraph}
-  text-transform: uppercase;
+  ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
 
   padding-block: ${({ theme }) => theme.sizes.m};
   padding-right: 9%;
@@ -25,6 +29,7 @@ export const Item = styled.li`
 
     width: 8px;
     height: 8px;
+    border-radius: ${({ theme }) => theme.borderRadii.rounded};
 
     margin-top: 0.6ch;
 

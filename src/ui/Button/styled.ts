@@ -34,7 +34,9 @@ export const Wrapper = styled.button<Props>`
   background-color: ${({ theme, secondary }) =>
     secondary ? 'transparent' : theme.colors.primary};
   box-shadow: 0px 4px 4px rgba(128, 49, 49, 0.25);
+
   border: 2px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.borderRadii.button};
 
   ${({ theme }) => theme.textVariants.button};
   color: ${({ theme, secondary }) =>

@@ -4,6 +4,12 @@ interface IWrapper {
   hasError: boolean
 }
 
+export const firstLetter = css`
+  &::first-letter {
+    text-transform: uppercase;
+  }
+`
+
 const autofillFix = css`
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
@@ -33,6 +39,7 @@ export const field = css`
 
   &::placeholder {
     color: ${({ theme }) => `${theme.colors.light}80`};
+    text-transform: capitalize;
   }
 
   &:hover,

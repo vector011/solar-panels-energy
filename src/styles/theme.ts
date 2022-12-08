@@ -3,6 +3,7 @@ const palette = {
   black: '#0A0A0A',
   red: '#FF4545',
   blue: '#576AE2',
+  green: '#000E01',
   lightBlue: '#6ECBF6',
   alphaBlack: 'rgba(0, 0, 0, 0.5)',
 } as const
@@ -15,6 +16,7 @@ const THEME = {
     secondary: palette.blue,
     error: palette.red,
     modal: palette.alphaBlack,
+    bg: palette.green,
   },
 
   sizes: {
@@ -41,6 +43,9 @@ const THEME = {
 
   borderRadii: {
     rounded: '50%',
+    button: '50px',
+    card: '16px',
+    video: '24px',
   },
 
   zIndices: {
@@ -62,19 +67,19 @@ const THEME = {
 
   textVariants: {
     heading1: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: clamp(35px, 4.5vw + 1rem, 88px);
       line-height: clamp(43px, 4.5vw + 1rem, 88px);
     `,
     heading2: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: clamp(30px, 4.5vw + 1rem, 80px);
       line-height: clamp(37px, 4.5vw + 1rem, 80px);
     `,
     homepage: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 400;
       font-size: clamp(30px, 3.6vw + 1rem, 88px);
       line-height: clamp(37px, 3.6vw + 1rem, 88px);
@@ -82,21 +87,21 @@ const THEME = {
     subheading: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
-      font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(20px, 2.5vw + 0.1rem, 24px);
+      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
+      line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
       text-transform: uppercase;
     `,
     subheading2: `
       font-family: "Inter", sans-serif;
       font-weight: 400;
       font-size: clamp(16px, 2vw + 0.1rem, 25px);
-      line-height: clamp(19px, 2vw + 0.1rem, 30px);
+      line-height: clamp(22px, 2.5vw + 0.1rem, 31px);
     `,
     paragraph: `
       font-family: "Inter", sans-serif;
       font-weight: 300;
-      font-size: clamp(12px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(20px, 4vw + 0.1rem, 24px);
+      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
+      line-height: clamp(21px, 2.5vw + 0.1rem, 26px);
     `,
     paragraph2: `
       font-family: "Inter", sans-serif;
@@ -105,7 +110,7 @@ const THEME = {
       line-height: 24px;
     `,
     navlink: `
-      font-family: "ClashGrotesk", sans-serif;
+      font-family: "Visuelt", sans-serif;
       font-weight: 300;
       font-size: 24px;
       line-height: 29px;
@@ -115,6 +120,12 @@ const THEME = {
       font-weight: 400;
       font-size: clamp(16px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
+    `,
+    footer: `
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: clamp(16px, 2vw + 0.1rem, 18px);
+      line-height: clamp(20px, 2vw + 0.1rem, 22px);
     `,
   },
 } as const

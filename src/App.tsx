@@ -1,20 +1,27 @@
-import React, { useEffect } from 'react'
-import { Navigate, useLocation, useRoutes } from 'react-router-dom'
+import React from 'react'
+import { Navigate, useRoutes } from 'react-router-dom'
 
 import routes from 'config/routes'
+import { getRoute } from 'config/router'
+
+import { useRouteChange } from 'hooks'
+import { TITLE } from 'constants/global'
+import { titles } from 'config/router'
 
 const App = () => {
-  const location = useLocation()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location])
+  useRouteChange({
+    scrollTop: true,
+    changeTitle: {
+      prefix: TITLE,
+      titles,
+    },
+  })
 
   return useRoutes([
     ...routes,
     {
       path: '*', // "No Match" route
-      element: <Navigate to="/" />,
+      element: <Navigate to={getRoute('home')} />,
     },
   ])
 }

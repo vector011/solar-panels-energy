@@ -9,25 +9,21 @@ const AboutUs = () => {
   const { t } = useTranslation()
 
   return (
-    <>
+    <Box as="article" largeDesktop={{ row: true }} gap="m" equal>
       <Text
         as="h2"
+        mb="l"
         variant="heading2"
-        mb="s"
-        tablet={{ mb: 'm' }}
-        desktop={{ maxw: '20ch', mb: 'l' }}
+        maxWidth="20ch"
+        largeDesktop={{ mb: '0', minWidth: '53%' }}
       >
         {t('solarEnergy:aboutUs.title')}
       </Text>
 
-      <Box as="article" desktop={{ row: true }} gap="m" equal>
-        <Box>
-          <Text as="h3" variant="subheading" desktop={{ maxw: '70%' }}></Text>
-        </Box>
-
-        <Text css={S.pre}>{t('solarEnergy:aboutUs.body')}</Text>
-      </Box>
-    </>
+      <Text css={S.pre} textAlign="justify">
+        {t('solarEnergy:aboutUs.body')}
+      </Text>
+    </Box>
   )
 }
 

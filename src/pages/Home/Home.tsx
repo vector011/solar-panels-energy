@@ -72,6 +72,8 @@ const Home = () => {
         </Box>
       </Box>
 
+      <Box height={8} backgroundColor="light" />
+
       <Box as="section" position="relative" minh="100vh" w="100vw">
         <Video
           src="homepage-2.mp4"

@@ -22,7 +22,9 @@ export type Props = {
 } & VideoHTMLAttributes<HTMLVideoElement>
 
 const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
-  const { ref, inView, entry } = useInView()
+  const { ref, inView, entry } = useInView({
+    threshold: 0.5,
+  })
 
   const file = useMemo(() => getFile(src!), [src])
   const webm = useMemo(() => src?.replace(file[1], 'webm'), [file, src])

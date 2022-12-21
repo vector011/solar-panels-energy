@@ -1,7 +1,9 @@
-import type { TThemeSize, TThemeZIndex } from 'styles/theme'
+import type { TThemeColor, TThemeSize, TThemeZIndex } from 'styles/theme'
 
 type Spacing = TThemeSize | number | Omit<string, TThemeSize>
 type TIndices = TThemeZIndex | Omit<string, TThemeZIndex>
+type TBackground = TThemeColor | Omit<string, TThemeColor>
+
 type TPlacement =
   | 'flex-start'
   | 'flex-end'
@@ -91,6 +93,10 @@ export type TDisplayProps = {
   row?: boolean
   equal?: boolean
 } & PartialRecord<DisplayProps, TPlacement>
+
+export type TBackgroundProps = {
+  backgroundColor?: TBackground
+}
 
 export type TPositionProps = {
   position?: 'relative' | 'absolute' | 'fixed' | 'sticky'

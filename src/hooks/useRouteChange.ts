@@ -19,12 +19,12 @@ export default ({ changeTitle, scrollTop }: Props): Location => {
     ({ pathname }: Location) => {
       if (!changeTitle) return
 
-      const { titles, prefix, delimiter = ' - ' } = changeTitle
+      const { titles, prefix, delimiter = ' | ' } = changeTitle
       const title = titles?.[pathname.substring(1)]
 
       document.title =
         title && prefix
-          ? `${prefix}${delimiter}${title}`
+          ? `${title}${delimiter}${prefix}`
           : title || prefix || ''
     },
     [changeTitle]

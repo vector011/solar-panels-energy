@@ -16,7 +16,7 @@ const Description = () => {
         </Text>
       </Box>
 
-      <Box as="article" equal gap="3xl" largeDesktop={{ flexDirection: 'row' }}>
+      <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
         <Image
           src="images/about-us.jpg"
           alt={t('aboutUs:description.image.alt')!}

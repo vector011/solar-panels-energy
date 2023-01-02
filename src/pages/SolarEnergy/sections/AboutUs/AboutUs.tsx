@@ -9,13 +9,13 @@ const AboutUs = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as="article" largeDesktop={{ row: true }} gap="m" equal>
+    <Box as="article" desktop={{ row: true }} gap="l" equal>
       <Text
         as="h2"
         mb="l"
         variant="heading2"
         maxWidth="20ch"
-        largeDesktop={{ mb: '0', minWidth: '53%' }}
+        largeDesktop={{ mb: '0' }}
       >
         {t('solarEnergy:aboutUs.title')}
       </Text>

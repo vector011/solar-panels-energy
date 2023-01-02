@@ -57,7 +57,7 @@ const Home = () => {
               as="h1"
               variant="homepage"
               textAlign="center"
-              maxw="25ch"
+              maxw="18ch"
               mb="s"
               tablet={{ mb: 'm' }}
               desktop={{ mb: 'l' }}
@@ -65,7 +65,7 @@ const Home = () => {
               {t('home:video1.title')}
             </Text>
 
-            <Text as="h2" variant="subheading2" textAlign="center" maxw="55ch">
+            <Text as="h2" variant="subheading2" textAlign="center" maxw="40ch">
               {t('home:video1.subtitle')}
             </Text>
           </Container>

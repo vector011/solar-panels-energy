@@ -22,7 +22,12 @@ const Help = () => {
       </Box>
 
       <Box largeDesktop={{ maxw: '75%' }} maxw="100%">
-        <Text tablet={{ mb: '4xl' }} mb="3xl">
+        <Text
+          maxw="100%"
+          mb="3xl"
+          tablet={{ mb: '4xl' }}
+          desktop={{ maxw: '75%' }}
+        >
           {t('services:help.body')}
         </Text>
 

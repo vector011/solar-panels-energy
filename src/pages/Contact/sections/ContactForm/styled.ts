@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const responsiveImage = css`
   width: 100%;
@@ -15,4 +15,11 @@ export const responsiveImage = css`
     margin-top: -130px;
     margin-left: -10px;
   }
+`
+
+export const Map = styled.iframe`
+  border-radius: ${({ theme }) => theme.borderRadii.card};
+  width: 100%;
+
+  min-height: 400px;
 `

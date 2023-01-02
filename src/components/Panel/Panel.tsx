@@ -16,8 +16,18 @@ const Panel = ({ big, w, mm, kg, ...props }: Props) => {
   const { t } = useTranslation()
 
   return (
-    <Box as="article" alignItems="center" css={S.responsive}>
-      <Box ph={big ? '0' : '60px'}>
+    <Box
+      as="article"
+      desktop={{ flexDirection: 'row' }}
+      alignItems="center"
+      css={S.responsive}
+    >
+      <Box
+        ph={big ? '0' : '60px'}
+        desktop={{ ph: big ? '0' : '100px' }}
+        width="100%"
+        maxWidth={723}
+      >
         <Image
           css={S.responsiveImage}
           src={`images/solar-panel-${big ? 'big' : 'small'}.png`}
@@ -37,9 +47,13 @@ const Panel = ({ big, w, mm, kg, ...props }: Props) => {
         gap="xxl"
         width="100%"
         alignItems="center"
-        tablet={{ row: true, alignItems: 'flex-end' }}
-        desktop={{ gap: '4xl' }}
-        largeDesktop={{ gap: '6xl' }}
+        tablet={{
+          row: true,
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+        }}
+        desktop={{ gap: '6xl', justifyContent: 'flex-start' }}
+        largeDesktop={{ gap: 'block' }}
       >
         <Box gap="l">
           <Text variant="paragraph2" uppercase>

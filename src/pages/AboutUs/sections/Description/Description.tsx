@@ -10,15 +10,13 @@ const Description = () => {
 
   return (
     <>
-      <Box as="header" mb="l">
+      <Box as="header" mb="xl">
         <Text as="h1" variant="heading1">
           {t('aboutUs:description.title')}
         </Text>
       </Box>
 
-      <Box as="article" equal gap="3xl" largeDesktop={{ flexDirection: 'row' }}>
-        <Text css={S.pre}>{t('aboutUs:description.body')}</Text>
-
+      <Box as="article" equal gap="3xl" desktop={{ flexDirection: 'row' }}>
         <Image
           src="images/about-us.jpg"
           alt={t('aboutUs:description.image.alt')!}
@@ -26,6 +24,10 @@ const Description = () => {
           height={474}
           css={S.responsiveImage}
         />
+
+        <Text css={S.pre} textAlign="justify">
+          {t('aboutUs:description.body')}
+        </Text>
       </Box>
     </>
   )

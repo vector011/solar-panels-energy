@@ -54,6 +54,9 @@ const makeStyles = (p) => css`
   ${createProp('justify-items', p.justifyItems)}
   ${createProp('justify-content', p.justifyContent)}
 
+  /* background props */
+  ${createProp('background-color', p.backgroundColor, 'colors')}
+
   /* text visual props */
   ${createProp('font-size', p.fontSize)}
   ${createProp('font-weight', p.fontWeight)}

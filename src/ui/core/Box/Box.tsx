@@ -4,6 +4,7 @@ import { FlattenInterpolation, ThemeProps } from 'styled-components'
 import type { TTheme, TThemeBreakpoint } from 'styles/theme'
 
 import type {
+  TBackgroundProps,
   TDisplayProps,
   TPositionProps,
   TSizeProps,
@@ -12,7 +13,11 @@ import type {
 
 import * as S from './styled'
 
-type StyleProps = TSpacingProps & TPositionProps & TDisplayProps & TSizeProps
+type StyleProps = TSpacingProps &
+  TPositionProps &
+  TDisplayProps &
+  TSizeProps &
+  TBackgroundProps
 type ResponsiveProps = PartialRecord<TThemeBreakpoint, StyleProps>
 
 export type Props = {

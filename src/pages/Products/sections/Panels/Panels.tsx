@@ -43,7 +43,6 @@ const Panels = () => {
         mb="4xl"
         tablet={{ mb: '6xl' }}
         desktop={{ mb: 'section' }}
-        alignItems="center"
         gap="section"
       >
         <Panel

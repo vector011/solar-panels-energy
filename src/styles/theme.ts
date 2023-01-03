@@ -69,42 +69,42 @@ const THEME = {
     heading1: `
       font-family: "Visuelt", sans-serif;
       font-weight: 300;
-      font-size: clamp(35px, 4.5vw + 1rem, 88px);
-      line-height: clamp(43px, 4.5vw + 1rem, 88px);
+      font-size: clamp(35px, 4.5vw + 1rem, 70px);
+      line-height: clamp(43px, 4.5vw + 1rem, 70px);
     `,
     heading2: `
       font-family: "Visuelt", sans-serif;
       font-weight: 300;
-      font-size: clamp(30px, 4.5vw + 1rem, 80px);
-      line-height: clamp(37px, 4.5vw + 1rem, 80px);
+      font-size: clamp(30px, 4.5vw + 1rem, 64px);
+      line-height: clamp(37px, 4.5vw + 1rem, 64px);
     `,
     homepage: `
       font-family: "Visuelt", sans-serif;
       font-weight: 400;
-      font-size: clamp(30px, 3.6vw + 1rem, 88px);
-      line-height: clamp(37px, 3.6vw + 1rem, 88px);
+      font-size: clamp(30px, 3.6vw + 1rem, 70px);
+      line-height: clamp(37px, 3.6vw + 1rem, 70px);
     `,
     subheading: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 300;
       font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
       text-transform: uppercase;
     `,
     subheading2: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 400;
       font-size: clamp(16px, 2vw + 0.1rem, 25px);
       line-height: clamp(22px, 2.5vw + 0.1rem, 31px);
     `,
     paragraph: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 300;
       font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(21px, 2.5vw + 0.1rem, 26px);
     `,
     paragraph2: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 300;
       font-size: 20px;
       line-height: 24px;
@@ -116,13 +116,13 @@ const THEME = {
       line-height: 29px;
     `,
     button: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 400;
       font-size: clamp(16px, 2.5vw + 0.1rem, 20px);
       line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
     `,
     footer: `
-      font-family: "Inter", sans-serif;
+      font-family: "Visuelt", sans-serif; // Inter
       font-weight: 400;
       font-size: clamp(16px, 2vw + 0.1rem, 18px);
       line-height: clamp(20px, 2vw + 0.1rem, 22px);

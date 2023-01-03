@@ -19,4 +19,8 @@ export const Wrapper = styled.div<Props>`
   background-color: ${({ theme, bg }) => theme.colors[bg!]};
   opacity: 0.3;
   filter: blur(130px);
+
+  // Safari bug fix
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 `

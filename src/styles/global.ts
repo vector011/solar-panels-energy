@@ -19,7 +19,7 @@ export default createGlobalStyle`
     background-size: 20.9%;
     background-position-x: 63.2%;
 
-    font-family: "Inter", sans-serif;
+    font-family: "Visuelt", sans-serif; // Inter
     color: ${({ theme }) => theme.colors.light};
 
     font-size: 20px;
@@ -28,7 +28,7 @@ export default createGlobalStyle`
   }
 
   input, button, textarea, select {
-    font-family: "Inter", sans-serif;
+    font-family: "Visuelt", sans-serif; // Inter
   }
 
   h1, h2, h3, h4, h5, h6 {

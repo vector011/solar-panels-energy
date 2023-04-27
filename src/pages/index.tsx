@@ -3,11 +3,9 @@ import { useRouter } from 'next/router'
 import { memo, useCallback, useRef } from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
 
-import { Box, Button, Container, Text, Video } from '~/ui'
+import { Box, Button, Container, MetaHead, Text, Video } from '~/ui'
 import { useChangeTranslateByScroll } from '~/hooks'
-import { TITLE } from '~/constants/global'
 
 const Home: NextPageWithProps = ({ _nextI18Next }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
@@ -25,9 +23,7 @@ const Home: NextPageWithProps = ({ _nextI18Next }) => {
 
   return (
     <>
-      <Head>
-        <title>{TITLE}</title>
-      </Head>
+      <MetaHead t={t} lang={router.locale} />
 
       <Box
         as="section"

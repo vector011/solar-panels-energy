@@ -4,11 +4,18 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
-import Head from 'next/head'
 
-import { Box, Button, Container, Icon, Light, Text, Video } from '~/ui'
+import {
+  Box,
+  Button,
+  Container,
+  Icon,
+  Light,
+  MetaHead,
+  Text,
+  Video,
+} from '~/ui'
 import { List } from '~/components'
-import { TITLE } from '~/constants/global'
 
 import solarPanelImage from 'assets/images/solar-panel-1.png'
 
@@ -24,9 +31,7 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
 
   return (
     <>
-      <Head>
-        <title>{`${t('global:navigation.solarEnergy')} | ${TITLE}`}</title>
-      </Head>
+      <MetaHead t={t} lang={router.locale} ns="solarEnergy" />
 
       <Box
         as="header"
@@ -141,7 +146,6 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
               alt={t('solarEnergy:header.image.alt') || ''}
               width={984}
               height={566}
-              placeholder="blur"
               priority
             />
 

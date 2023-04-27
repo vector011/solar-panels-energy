@@ -1,21 +1,19 @@
 import { type GetStaticProps } from 'next'
 import { memo } from 'react'
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 
-import { Box, Container, Light, Text } from '~/ui'
+import { Box, Container, Light, MetaHead, Text } from '~/ui'
 import { List } from '~/components'
-import { TITLE } from '~/constants/global'
 
 const Services: NextPageWithProps = ({ _nextI18Next }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
+  const { locale } = useRouter()
 
   return (
     <>
-      <Head>
-        <title>{`${t('global:navigation.services')} | ${TITLE}`}</title>
-      </Head>
+      <MetaHead t={t} lang={locale} ns="services" />
 
       <Box
         as="section"

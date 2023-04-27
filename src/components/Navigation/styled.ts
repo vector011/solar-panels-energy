@@ -186,7 +186,7 @@ export const MobileNav = styled(motion.nav, {
       position: 'absolute',
       inset: 0,
 
-      background: 'url("assets/images/grain.png") $dark',
+      background: 'url("/assets/images/grain.png") $dark',
       backgroundSize: '20%',
 
       animation: `${reveal} 700ms forwards`,
@@ -217,7 +217,7 @@ export const MobileNav = styled(motion.nav, {
     marginBottom: 'auto',
   },
 
-  background: 'url("assets/images/grain.png") $dark',
+  background: 'url("/assets/images/grain.png") $dark',
   backgroundSize: '20%',
 
   '& > button > svg': {

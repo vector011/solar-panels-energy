@@ -6,14 +6,22 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { AnimatePresence } from 'framer-motion'
 import { omit } from 'lodash'
-import Head from 'next/head'
 
-import client from '~/apollo'
-import { Box, Button, Container, Filter, Grid, Light, Search, Text } from '~/ui'
+import {
+  Box,
+  Button,
+  Container,
+  Filter,
+  Grid,
+  Light,
+  MetaHead,
+  Search,
+  Text,
+} from '~/ui'
 import { Panel, Popup } from '~/components'
 import { usePageOffset, useToggle } from '~/hooks'
-import { TITLE } from '~/constants/global'
 
+import client from '~/apollo'
 import {
   type CategoriesData,
   type CategoriesPayload,
@@ -68,9 +76,7 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
 
   return (
     <>
-      <Head>
-        <title>{`${t('global:navigation.products')} | ${TITLE}`}</title>
-      </Head>
+      <MetaHead t={t} lang={locale} ns="products" />
 
       <AnimatePresence>{visible && <Popup onClose={hide} />}</AnimatePresence>
 

@@ -1,21 +1,20 @@
 import { type GetStaticProps } from 'next'
 import { memo } from 'react'
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 
-import { Box, Container, Text } from '~/ui'
+import { Box, Container, MetaHead, Text } from '~/ui'
 import { Form } from '~/components'
-import { MAP_SRC, TITLE } from '~/constants/global'
+import { MAP_SRC } from '~/constants/global'
 
 const Contact: NextPageWithProps = ({ _nextI18Next }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
+  const { locale } = useRouter()
 
   return (
     <>
-      <Head>
-        <title>{`${t('global:navigation.contact')} | ${TITLE}`}</title>
-      </Head>
+      <MetaHead t={t} lang={locale} ns="contact" />
 
       <Box
         as="section"

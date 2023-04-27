@@ -1,32 +1,48 @@
-import React, { useMemo } from 'react'
-import { Outlet, useLocation } from 'react-router'
+import React from 'react'
+import { useRouter } from 'next/router'
 
-import { Light } from 'ui'
-import { Carousel, Footer, Navigation } from 'components'
-import { getRoute } from 'config/router'
+import { Box, Light } from '~/ui'
+import { Carousel, Footer, Navigation } from '~/components'
 
-import * as S from './styled'
+type TMainProps = {
+  children?: React.ReactNode
+  className?: string
+}
 
-const HOMEPAGE_PATHNAME = getRoute('home')
-
-const Main = () => {
-  const { pathname } = useLocation()
-
-  const isCarouselVisible = useMemo(
-    () => pathname !== HOMEPAGE_PATHNAME,
-    [pathname]
-  )
+const Main = ({ children, ...props }: TMainProps) => {
+  const { pathname } = useRouter()
 
   return (
-    <S.Wrapper>
-      <Light bg="primary" size={428} top={-47} left={-93} />
+    <Box
+      id="layout"
+      css={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        isolation: 'isolate',
+      }}
+      {...props}
+    >
+      <Light
+        size={428}
+        css={{ backgroundColor: '$primary', top: -47, left: -93 }}
+      />
+
       <Navigation />
 
-      <S.Content>
-        <Outlet />
-      </S.Content>
+      <Box
+        as="main"
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+        }}
+      >
+        {children}
+      </Box>
 
-      {isCarouselVisible && (
+      {pathname !== '/' && (
         <Carousel
           items={[
             'carousel/carousel-1.jpeg',
@@ -39,8 +55,12 @@ const Main = () => {
       )}
 
       <Footer />
-      <Light bg="secondary" size={581} bottom={-226} left={166} />
-    </S.Wrapper>
+
+      <Light
+        size={581}
+        css={{ backgroundColor: '$secondary', bottom: -226, left: 166 }}
+      />
+    </Box>
   )
 }
 

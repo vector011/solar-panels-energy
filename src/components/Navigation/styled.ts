@@ -1,278 +1,289 @@
-import styled, { css, keyframes } from 'styled-components'
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { keyframes, styled } from '~/styles'
+import { motion } from 'framer-motion'
 
-interface INav {
-  visible?: boolean
-}
+const top = keyframes({
+  '0%': {
+    transform: 'scaleX(1) rotate(0deg)',
+  },
+  '30%': {
+    transform: 'scaleX(1.4)',
+  },
+  '100%': {
+    transform: 'rotate(45deg) translate(-15%, -8%) scaleX(1.4)',
+  },
+})
 
-const top = keyframes`
-  0% {
-    transform: scaleX(1) rotate(0deg);
-  }
-  30% {
-    transform: scaleX(1.4);
-  }
-  100% {
-    transform: rotate(45deg) translate(-15%, -8%) scaleX(1.4);
-  }
-`
+const topClose = keyframes({
+  '0%': {
+    transform: 'rotate(45deg) translate(-15%, -8%) scaleX(1.4)',
+  },
+  '70%': {
+    transform: 'rotate(0deg) translate(0, 0) scaleX(1.4)',
+  },
+  '100%': {
+    transform: 'scaleX(1)',
+  },
+})
 
-const topClose = keyframes`
-  0% {
-    transform: rotate(45deg) translate(-15%, -8%) scaleX(1.4);
-  }
-  70% {
-    transform: rotate(0deg) translate(0, 0) scaleX(1.4);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-`
+const bottom = keyframes({
+  '0%': {
+    transform: 'scaleX(1)',
+  },
+  '20%': {
+    transform: 'scaleX(1.4) translateX(-30%)',
+  },
+  '100%': {
+    transform: 'rotate(-45deg) translate(-55%, 8%) scaleX(1.4)',
+  },
+})
 
-const bottom = keyframes`
-  0% {
-    transform: scaleX(1);
-  }
-  20% {
-    transform: scaleX(1.4) translateX(-30%);
-  }
-  100% {
-    transform: rotate(-45deg) translate(-55%, 8%) scaleX(1.4);
-  }
-`
+const bottomClose = keyframes({
+  '0%': {
+    transform: 'rotate(-45deg) translate(-55%, 8%) scaleX(1.4)',
+  },
+  '70%': {
+    transform: 'rotate(0deg) translateX(-40%) scaleX(1.4)',
+  },
+  '100%': {
+    transform: 'scaleX(1)',
+  },
+})
 
-const bottomClose = keyframes`
-  0% {
-    transform: rotate(-45deg) translate(-55%, 8%) scaleX(1.4);
-  }
-  70% {
-    transform: rotate(0deg) translateX(-40%) scaleX(1.4);
-  }
-  100% {
-   transform: scaleX(1) ;
-  }
-`
+const small = keyframes({
+  '0%': {
+    transform: 'scaleX(1)',
+  },
+  '30%': {
+    transform: 'scaleX(0)',
+  },
+  '100%': {
+    transform: 'scaleX(0)',
+  },
+})
 
-const small = keyframes`
-  0% {
-    transform: scaleX(1);
-  }
-  30% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(0);
-  }
-`
+const smallClose = keyframes({
+  '0%': {
+    transform: 'scaleX(0)',
+  },
+  '70%': {
+    transform: 'scaleX(0)',
+  },
+  '100%': {
+    transform: 'scaleX(1)',
+  },
+})
 
-const smallClose = keyframes`
-  0% {
-    transform: scaleX(0);
-  }
-  70% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-`
+const reveal = keyframes({
+  '0%': {
+    transform: 'scaleY(1)',
+  },
+  '100%': {
+    transform: 'scaleY(0)',
+  },
+})
 
-export const Burger = styled.button<INav>`
-  display: flex;
-  z-index: ${({ theme }) => theme.zIndices.nav + 10};
+export const Burger = styled('button', {
+  display: 'flex',
+  zIndex: 'calc($nav + 10)',
 
-  padding: ${({ theme }) => theme.sizes.s};
-  margin-right: -${({ theme }) => theme.sizes.s};
+  padding: '$5',
+  marginRight: '-$5',
 
-  svg {
-    width: clamp(27px, 3vw + 1rem, 35px);
-    height: auto;
+  '@largeDesktop': {
+    display: 'none',
+  },
 
-    #top-long {
-      transform-origin: left;
-      animation: ${({ visible }) => (visible ? top : topClose)} 700ms forwards;
-    }
+  svg: {
+    width: 'clamp(27px, 3vw + 1rem, 35px)',
+    height: 'auto',
 
-    #top-small {
-      transform-origin: right;
-      animation: ${({ visible }) => (visible ? small : smallClose)} 700ms
-        forwards;
-    }
+    '#top-long': {
+      transformOrigin: 'left',
+      animation: `${topClose} 700ms forwards`,
+    },
 
-    #middle {
-      transition: all 200ms;
-      transform-origin: center;
+    '#top-small': {
+      transformOrigin: 'right',
+      animation: `${smallClose} 700ms forwards`,
+    },
 
-      transform: scaleX(${({ visible }) => (visible ? 0 : 1)});
-      transition-delay: 200ms;
-    }
+    '#middle': {
+      transition: 'all 200ms',
+      transformOrigin: 'center',
 
-    #bottom-long {
-      transform-origin: left;
-      animation: ${({ visible }) => (visible ? bottom : bottomClose)} 700ms
-        forwards;
-    }
+      transform: 'scaleX(1)',
+      transitionDelay: '200ms',
+    },
 
-    #bottom-small {
-      transform-origin: left;
-      animation: ${({ visible }) => (visible ? small : smallClose)} 700ms
-        forwards;
-    }
-  }
+    '#bottom-long': {
+      transformOrigin: 'left',
+      animation: `${bottomClose} 700ms forwards`,
+    },
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
-    display: none;
-  }
-`
+    '#bottom-small': {
+      transformOrigin: 'left',
+      animation: `${smallClose} 700ms forwards`,
+    },
+  },
 
-const commonNav = css`
-  display: flex;
-  align-items: stretch;
+  '&.visible svg': {
+    '#top-long': {
+      animation: `${top} 700ms forwards`,
+    },
 
-  & > a {
-    opacity: 0.4;
+    '#top-small': {
+      animation: `${small} 700ms forwards`,
+    },
 
-    &:hover {
-      opacity: 0.7;
-    }
-  }
+    '#middle': {
+      transform: 'scaleX(0)',
+    },
 
-  & > a {
-    display: inline-flex;
-    align-items: center;
+    '#bottom-long': {
+      animation: `${bottom} 700ms forwards`,
+    },
 
-    ${({ theme }) => theme.textVariants.navlink};
-    color: ${({ theme }) => theme.colors.light};
+    '#bottom-small': {
+      animation: `${small} 700ms forwards`,
+    },
+  },
+})
 
-    transition: opacity 200ms;
+export const MobileNav = styled(motion.nav, {
+  display: 'flex',
+  alignItems: 'stretch',
 
-    &.active {
-      opacity: 1;
-    }
-  }
-`
+  flexDirection: 'column',
+  overflowY: 'auto',
 
-export const MobileNav = styled.nav<INav>`
-  ${commonNav}
+  position: 'fixed',
+  inset: 0,
 
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transform: translateX(${({ visible }) => (visible ? 0 : 100)}%);
-  transition: opacity 400ms, transform 400ms;
+  paddingBlock: '$10',
 
-  flex-direction: column;
-  overflow-y: auto;
+  '& > a': {
+    display: 'inline-flex',
+    alignItems: 'flex-start',
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
-    align-items: center;
-  }
+    position: 'relative',
+    transition: 'opacity 200ms',
 
-  position: fixed;
-  inset: 0;
+    opacity: 0.4,
+    color: '$light',
 
-  padding-block: ${({ theme }) => theme.sizes.xxl};
+    paddingBlock: 'clamp($5, 2.5vh + 0.1rem, $7)',
+    paddingInline: '$10',
 
-  & > *:first-child {
-    margin-top: auto;
-  }
+    fontSize: 'clamp(30px, 2vh + 1vw + 1rem, 42px)',
+    lineHeight: 'clamp(40px, 2vh + 1vw + 1rem, 52px)',
 
-  & > *:last-child {
-    margin-bottom: auto;
-  }
+    '&::before': {
+      content: '',
+      zIndex: '$nav',
 
-  background: url('assets/images/grain.png') ${({ theme }) => theme.colors.dark};
-  background-size: 20%;
+      transformOrigin: 'bottom',
+      position: 'absolute',
+      inset: 0,
 
-  & > button {
-    & > svg {
-      width: 43px;
-      height: 30px;
-    }
-  }
+      background: 'url("assets/images/grain.png") $dark',
+      backgroundSize: '20%',
 
-  &:nth-child(1)::before {
-    transition-delay: 300ms;
-  }
+      animation: `${reveal} 700ms forwards`,
+    },
 
-  &:nth-child(2)::before {
-    transition-delay: 350ms;
-  }
+    '&:hover': {
+      opacity: 0.7,
+    },
 
-  &:nth-child(3)::before {
-    transition-delay: 400ms;
-  }
+    '&.active': {
+      opacity: 1,
+    },
+  },
 
-  &:nth-child(4)::before {
-    transition-delay: 450ms;
-  }
+  '@desktop': {
+    alignItems: 'center',
+  },
 
-  &:nth-child(5)::before {
-    transition-delay: 500ms;
-  }
+  '@largeDesktop': {
+    display: 'none',
+  },
 
-  &:nth-child(6)::before {
-    transition-delay: 550ms;
-  }
+  '& > *:first-child': {
+    marginTop: 'auto',
+  },
 
-  & > a,
-  & > button {
-    position: relative;
-    align-items: flex-start;
+  '& > *:last-child': {
+    marginBottom: 'auto',
+  },
 
-    padding-block: clamp(
-      ${({ theme }) => theme.sizes.s},
-      2.5vh + 0.1rem,
-      ${({ theme }) => theme.sizes.m}
-    );
-    padding-inline: ${({ theme }) => theme.sizes.xxl};
+  background: 'url("assets/images/grain.png") $dark',
+  backgroundSize: '20%',
 
-    font-size: clamp(30px, 2vh + 1vw + 1rem, 42px);
-    line-height: clamp(40px, 2vh + 1vw + 1rem, 52px);
+  '& > button > svg': {
+    width: 43,
+    height: 30,
+  },
 
-    ::before {
-      content: '';
-      z-index: ${({ theme }) => theme.zIndices.nav};
+  ':nth-child(1)::before': {
+    animationDelay: '300ms',
+  },
 
-      transform-origin: bottom;
-      position: absolute;
-      inset: 0;
+  ':nth-child(2)::before': {
+    animationDelay: '350ms',
+  },
 
-      background: url('assets/images/grain.png')
-        ${({ theme }) => theme.colors.dark};
-      background-size: 20%;
+  ':nth-child(3)::before': {
+    animationDelay: '400ms',
+  },
 
-      ${({ visible }) => visible && 'transition: transform 1500ms;'};
-      transform: scaleY(${({ visible }) => (visible ? 0 : 1)});
-    }
-  }
+  ':nth-child(4)::before': {
+    animationDelay: '450ms',
+  },
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.largeDesktop + 1}px) {
-    display: none;
-  }
-`
+  ':nth-child(5)::before': {
+    animationDelay: '500ms',
+  },
 
-export const Nav = styled.nav`
-  ${commonNav}
+  ':nth-child(6)::before': {
+    animationDelay: '550ms',
+  },
 
-  margin-right: -${({ theme }) => theme.sizes.s};
+  ':nth-child(7)::before': {
+    animationDelay: '600ms',
+  },
+})
 
-  & > a {
-    opacity: 0.4;
-  }
+export const Nav = styled('nav', {
+  alignItems: 'stretch',
 
-  & > button {
-    margin-left: ${({ theme }) => theme.sizes.s};
-  }
+  '& > a': {
+    display: 'inline-flex',
+    alignItems: 'center',
+    padding: '$5',
 
-  & > a {
-    padding: ${({ theme }) => theme.sizes.s};
+    opacity: 0.4,
+    color: '$light',
 
-    transition: opacity 200ms;
+    transition: 'opacity 200ms',
 
-    &.active {
-      opacity: 1;
-    }
-  }
+    '&:hover': {
+      opacity: 0.7,
+    },
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.largeDesktop}px) {
-    display: none;
-  }
-`
+    '&.active': {
+      opacity: 1,
+    },
+  },
+
+  display: 'none',
+  marginRight: '-$5',
+
+  '& > button': {
+    marginLeft: '$5',
+  },
+
+  '@largeDesktop': {
+    display: 'flex',
+  },
+})

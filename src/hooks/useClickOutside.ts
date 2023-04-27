@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect } from 'react'
 
-export default (ref: any, cb: () => void) => {
+const useClickOutside = (ref: any, cb: () => void) => {
   useEffect(() => {
     const listener = (e: MouseEvent) =>
       !!ref?.current && !ref.current.contains(e.target) && cb()
@@ -14,3 +17,5 @@ export default (ref: any, cb: () => void) => {
     }
   }, [ref, cb])
 }
+
+export default useClickOutside

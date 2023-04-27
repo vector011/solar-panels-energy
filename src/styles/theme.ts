@@ -1,147 +1,132 @@
-const palette = {
-  white: '#F6F6F6',
-  black: '#0A0A0A',
-  red: '#FF4545',
-  blue: '#576AE2',
-  green: '#000E01',
-  lightBlue: '#6ECBF6',
-  alphaBlack: 'rgba(0, 0, 0, 0.5)',
-} as const
+import { createStitches } from '@stitches/react'
 
-const THEME = {
-  colors: {
-    light: palette.white,
-    dark: palette.black,
-    primary: palette.lightBlue,
-    secondary: palette.blue,
-    error: palette.red,
-    modal: palette.alphaBlack,
-    bg: palette.green,
+export const {
+  styled,
+  css,
+  globalCss,
+  keyframes,
+  getCssText,
+  theme,
+  createTheme,
+  config,
+} = createStitches({
+  theme: {
+    palette: {
+      white: '#F6F6F6',
+      black: '#0A0A0A',
+
+      black50: '#0A0A0A80',
+      light50: '#F6F6F64d',
+      light80: '#F6F6F680',
+
+      red: '#FF4545',
+      blue: '#576AE2',
+      green: '#000E01',
+
+      lightBlue: '#6ECBF6',
+      alphaBlack: 'rgba(0, 0, 0, 0.5)',
+    },
+
+    colors: {
+      light: '$palette$white',
+      dark: '$palette$black',
+
+      dark50: '$palette$black50',
+      light50: '$palette$light50',
+      light80: '$palette$light80',
+
+      primary: '$palette$lightBlue',
+      secondary: '$palette$blue',
+      error: '$palette$red',
+
+      modal: '$palette$alphaBlack',
+      bg: '$palette$green',
+    },
+
+    space: {
+      1: '2px',
+      2: '4px',
+      3: '8px',
+      4: '12px',
+      5: '16px',
+      6: '20px',
+      7: '24px',
+      8: '32px',
+      9: '40px',
+      10: '48px',
+      11: '56px',
+      12: '64px',
+      13: '72px',
+      14: '80px',
+      15: '88px',
+      big: '100px',
+      block: '120px',
+      section: '160px',
+      top: '260px',
+    },
+
+    fontSizes: {
+      1: 'clamp(15px, 2.5vw + 0.1rem, 20px)',
+      2: 'clamp(16px, 2.5vw + 0.1rem, 20px)',
+      3: '20px',
+      4: '24px',
+      5: 'clamp(30px, 4.5vw + 1rem, 64px)',
+      6: 'clamp(30px, 3.6vw + 1rem, 70px)',
+      7: 'clamp(35px, 4.5vw + 1rem, 70px)',
+      8: 'clamp(16px, 2vw + 0.1rem, 25px)',
+    },
+
+    lineHeights: {
+      0: 'clamp(19px, 2.5vw + 0.1rem, 24px)',
+      1: 'clamp(21px, 2.5vw + 0.1rem, 26px)',
+      2: 'clamp(22px, 2.5vw + 0.1rem, 31px)',
+      3: 'clamp(20px, 2vw + 0.1rem, 22px)',
+      4: '24px',
+      5: '29px',
+      6: 'clamp(37px, 4.5vw + 1rem, 64px)',
+      7: 'clamp(37px, 3.6vw + 1rem, 70px)',
+      8: 'clamp(43px, 4.5vw + 1rem, 70px)',
+    },
+
+    radii: {
+      1: '2px',
+      2: '4px',
+      3: '6px',
+      4: '8px',
+      5: '10px',
+      6: '12px',
+      7: '14px',
+      8: '16px',
+      9: '18px',
+      10: '20px',
+      11: '22px',
+      12: '24px',
+      button: '50px',
+      rounded: '99999px',
+    },
+
+    zIndices: {
+      bg: -1,
+      base: 0,
+      fg: 1,
+      loading: 99,
+      nav: 999,
+      modal: 9999,
+    },
   },
 
-  sizes: {
-    '4xs': '2px',
-    '3xs': '4px',
-    xxs: '8px',
-    xs: '12px',
-    s: '16px',
-    sm: '20px',
-    m: '24px',
-    l: '32px',
-    xl: '40px',
-    xxl: '48px',
-    '3xl': '56px',
-    '4xl': '64px',
-    '5xl': '72px',
-    '6xl': '80px',
-    '7xl': '88px',
-    big: '100px',
-    block: '120px',
-    section: '160px',
-    top: '260px',
+  media: {
+    phone: '(min-width: 390px)',
+    tablet: '(min-width: 768px)',
+    desktop: '(min-width: 1024px)',
+    middleDesktop: '(min-width: 1145px)',
+    largeDesktop: '(min-width: 1440px)',
   },
 
-  borderRadii: {
-    rounded: '50%',
-    button: '50px',
-    card: '16px',
-    video: '24px',
+  utils: {
+    size: (value: string) => ({
+      width: value,
+      height: value,
+    }),
   },
-
-  zIndices: {
-    bg: -1,
-    base: 1,
-    loading: 9,
-    nav: 999,
-    modal: 9999,
-  },
-
-  breakpoints: {
-    phone: 0,
-    tablet: 768,
-    desktop: 1024,
-    largeDesktop: 1440,
-    modal: 1200,
-    container: 1600,
-  },
-
-  textVariants: {
-    heading1: `
-      font-family: "Visuelt", sans-serif;
-      font-weight: 300;
-      font-size: clamp(35px, 4.5vw + 1rem, 70px);
-      line-height: clamp(43px, 4.5vw + 1rem, 70px);
-    `,
-    heading2: `
-      font-family: "Visuelt", sans-serif;
-      font-weight: 300;
-      font-size: clamp(30px, 4.5vw + 1rem, 64px);
-      line-height: clamp(37px, 4.5vw + 1rem, 64px);
-    `,
-    homepage: `
-      font-family: "Visuelt", sans-serif;
-      font-weight: 400;
-      font-size: clamp(30px, 3.6vw + 1rem, 70px);
-      line-height: clamp(37px, 3.6vw + 1rem, 70px);
-    `,
-    subheading: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 300;
-      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
-      text-transform: uppercase;
-    `,
-    subheading2: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 400;
-      font-size: clamp(16px, 2vw + 0.1rem, 25px);
-      line-height: clamp(22px, 2.5vw + 0.1rem, 31px);
-    `,
-    paragraph: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 300;
-      font-size: clamp(15px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(21px, 2.5vw + 0.1rem, 26px);
-    `,
-    paragraph2: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 300;
-      font-size: 20px;
-      line-height: 24px;
-    `,
-    navlink: `
-      font-family: "Visuelt", sans-serif;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-    `,
-    button: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 400;
-      font-size: clamp(16px, 2.5vw + 0.1rem, 20px);
-      line-height: clamp(19px, 2.5vw + 0.1rem, 24px);
-    `,
-    footer: `
-      font-family: "Visuelt", sans-serif; // Inter
-      font-weight: 400;
-      font-size: clamp(16px, 2vw + 0.1rem, 18px);
-      line-height: clamp(20px, 2vw + 0.1rem, 22px);
-    `,
-  },
-} as const
-
-export type TTheme = typeof THEME
-
-export type TThemeColor = keyof TTheme['colors']
-
-export type TThemeSize = keyof TTheme['sizes']
-
-export type TThemeBorderRadius = keyof TTheme['borderRadii']
-
-export type TThemeZIndex = keyof TTheme['zIndices']
-
-export type TThemeBreakpoint = keyof TTheme['breakpoints']
-
-export type TThemeTextVariant = keyof TTheme['textVariants']
-
-export default THEME
+})

@@ -7,7 +7,7 @@ type UseToggle = {
   toggle: () => void
 }
 
-export default (initialValue = false): UseToggle => {
+const useToggle = (initialValue = false): UseToggle => {
   const [visible, setVisible] = useState<boolean>(initialValue)
 
   const show = useCallback(() => setVisible(true), [])
@@ -18,3 +18,5 @@ export default (initialValue = false): UseToggle => {
 
   return { visible, show, hide, toggle }
 }
+
+export default useToggle

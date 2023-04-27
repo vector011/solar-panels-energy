@@ -1,50 +1,25 @@
-import styled, { css } from 'styled-components'
+import { styled } from '~/styles'
 
-interface IButton {
-  disabled?: boolean
-}
+export const Button = styled('button', {
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 
-const hover = css`
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    border-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.light};
-  }
+  size: '50px',
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
-`
+  fontWeight: 300,
+  fontSize: '$3',
+  lineHeight: '$4',
 
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+  transition: 'all 200ms',
 
-  span {
-    ${({ theme }) => theme.textVariants.paragraph2}
-    padding: ${({ theme }) => theme.sizes.xs};
-    min-width: 70px;
-    text-align: center;
-  }
-`
+  '&:hover:not(:disabled)': {
+    backgroundColor: '$secondary',
+    borderColor: '$secondary',
+    color: '$light',
+  },
 
-export const Button = styled.button<IButton>`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 50px;
-  height: 50px;
-
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-
-  ${({ theme }) => theme.textVariants.paragraph2}
-
-  border: 1px solid
-    ${({ theme, disabled }) => theme.colors[disabled ? 'light' : 'primary']};
-  color: ${({ theme, disabled }) =>
-    theme.colors[disabled ? 'light' : 'primary']};
-
-  transition: all 200ms;
-  ${({ disabled }) => !disabled && hover};
-`
+  '&:active:not(:disabled)': {
+    backgroundColor: '$dark',
+  },
+})

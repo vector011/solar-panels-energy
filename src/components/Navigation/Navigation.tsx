@@ -1,40 +1,74 @@
-import React, { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
-import { useLocation } from 'react-router'
+import React, { useEffect, useRef } from 'react'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import * as Dialog from '@radix-ui/react-dialog'
+import { AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
-import { Box, Container, Icon, Lang, Logo } from 'ui'
-import { useBodyNoScroll, useToggle } from 'hooks'
-import { getRoute } from 'config/router'
+import { Box, Container, Icon, Lang, Logo, Text } from '~/ui'
+import { useToggle } from '~/hooks'
 
 import * as S from './styled'
 
 const NavItems = () => {
   const { t } = useTranslation()
+  const { pathname } = useRouter()
 
   return (
     <>
-      <NavLink to={getRoute('home')}>{t('global:navigation.home')}</NavLink>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/"
+        className={pathname === '/' ? 'active' : ''}
+      >
+        {t('global:navigation.home')}
+      </Text>
 
-      <NavLink to={getRoute('solar-energy')}>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/solar-energy"
+        className={pathname === '/solar-energy' ? 'active' : ''}
+      >
         {t('global:navigation.solarEnergy')}
-      </NavLink>
+      </Text>
 
-      <NavLink to={getRoute('contact')}>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/contact"
+        className={pathname === '/contact' ? 'active' : ''}
+      >
         {t('global:navigation.contact')}
-      </NavLink>
+      </Text>
 
-      <NavLink to={getRoute('products')}>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/products"
+        className={pathname === '/products' ? 'active' : ''}
+      >
         {t('global:navigation.products')}
-      </NavLink>
+      </Text>
 
-      <NavLink to={getRoute('services')}>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/services"
+        className={pathname === '/services' ? 'active' : ''}
+      >
         {t('global:navigation.services')}
-      </NavLink>
+      </Text>
 
-      <NavLink to={getRoute('about-us')}>
+      <Text
+        as={Link}
+        variant="navlink"
+        href="/about-us"
+        className={pathname === '/about-us' ? 'active' : ''}
+      >
         {t('global:navigation.aboutUs')}
-      </NavLink>
+      </Text>
 
       <Lang />
     </>
@@ -42,26 +76,34 @@ const NavItems = () => {
 }
 
 const Navigation = () => {
-  const location = useLocation()
-
+  const { pathname } = useRouter()
   const { visible, toggle, hide } = useToggle()
 
-  const [disableScroll, enableScroll] = useBodyNoScroll()
+  const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (visible) disableScroll()
-    else enableScroll()
-  }, [visible, disableScroll, enableScroll])
-
-  useEffect(hide, [location, hide])
+    if (visible) hide()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   return (
-    <Box absolute inset={0} zIndex="nav" bottom="auto" paddingVertical="xl">
+    <Box
+      css={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: '$nav',
+        bottom: 'auto',
+        paddingBlock: '$9',
+      }}
+    >
       <Container
-        justifyContent="space-between"
-        alignItems="center"
-        gap="3xl"
-        row
+        ref={ref}
+        css={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '$11',
+        }}
       >
         <Logo responsive />
 
@@ -69,11 +111,26 @@ const Navigation = () => {
           <NavItems />
         </S.Nav>
 
-        <S.MobileNav {...{ visible }}>
-          <NavItems />
-        </S.MobileNav>
+        <AnimatePresence>
+          {visible && (
+            <Dialog.Root open={visible} onOpenChange={toggle}>
+              <Dialog.Overlay forceMount />
 
-        <S.Burger onClick={toggle} {...{ visible }}>
+              <Dialog.Portal forceMount container={ref.current}>
+                <S.MobileNav
+                  initial={{ x: '100%', opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: '100%', opacity: 0 }}
+                  transition={{ mode: 'linear' }}
+                >
+                  <NavItems />
+                </S.MobileNav>
+              </Dialog.Portal>
+            </Dialog.Root>
+          )}
+        </AnimatePresence>
+
+        <S.Burger onClick={toggle} className={visible ? 'visible' : ''}>
           <Icon name="burger-icon" width={35} height={27} />
         </S.Burger>
       </Container>

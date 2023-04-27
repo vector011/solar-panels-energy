@@ -1,26 +1,25 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { memo, useCallback, useMemo, useState } from 'react'
 import { Formik, Form as FormikForm } from 'formik'
-import { InferType } from 'yup'
+import { useTranslation } from 'next-i18next'
 
-import validationSchema from 'schemas/contact'
-import { Box, Button, Input, Text } from 'ui'
-import { useMail } from 'hooks'
-import { TEmailState } from 'types/global'
+import { Box, Button, Input, Text } from '~/ui'
+import { useMail } from '~/hooks'
+import validationSchema, { type ContactData } from '~/schemas/contact'
+import useProductStore from '~/stores/products'
 
-import * as S from './styled'
-
-type Props = {
-  subject: string
-  addition?: string
-  cb?: () => void
+enum TEmailState {
+  NONE,
+  SUCCESS,
+  ERROR,
 }
 
-type Fields = InferType<typeof validationSchema>
+type TProps = {
+  subject: string
+  addition?: string
+  onClose?: () => void
+}
 
-type MailParams = Omit<Props, 'cb'> & Fields
-
-const initialValues: Fields = {
+const initialValues: ContactData = {
   name: '',
   surname: '',
   email: '',
@@ -28,10 +27,11 @@ const initialValues: Fields = {
   message: '',
 }
 
-const Form = ({ subject, cb, addition = '' }: Props) => {
+const Form = ({ subject, onClose, addition = '' }: TProps) => {
   const { t } = useTranslation()
+  const { clear } = useProductStore()
 
-  const { send } = useMail<MailParams>()
+  const { send } = useMail<Omit<TProps, 'onClose'> & ContactData>()
 
   const STATE_MESSAGES = useMemo(
     () => ({
@@ -45,14 +45,18 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
   const [state, setState] = useState<TEmailState>(TEmailState.NONE)
 
   const onSubmit = useCallback(
-    (values: Fields) =>
-      send({ ...{ subject, addition, ...values } })
+    (values: ContactData) => {
+      send({ subject, addition, ...values })
         .then(() => {
           setState(TEmailState.SUCCESS)
-          cb?.()
+          onClose?.()
+
+          if (addition) clear()
         })
-        .catch(() => setState(TEmailState.ERROR)),
-    [subject, addition, cb, setState, send]
+        .catch(() => setState(TEmailState.ERROR))
+    },
+
+    [subject, addition, onClose, setState, send, clear]
   )
 
   return (
@@ -62,13 +66,24 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
 
         return (
           <Box as={FormikForm}>
-            <Box mb="xxl" gap="xxl" tablet={{ row: true, gap: 'sm', mb: 'l' }}>
+            <Box
+              css={{
+                marginBottom: '$10',
+                gap: '$10',
+
+                '@tablet': {
+                  flexDirection: 'row',
+                  gap: '$6',
+                  marginBottom: '$8',
+                },
+              }}
+            >
               <Input
                 type="text"
                 name="name"
                 placeholder={`${t('components:form.fields.name')}*`}
                 disabled={isDisabled}
-                hasError={touched.name && errors.name}
+                hasError={!!touched.name && !!errors.name}
                 required
               />
 
@@ -77,27 +92,38 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
                 name="surname"
                 placeholder={`${t('components:form.fields.surname')}*`}
                 disabled={isDisabled}
-                hasError={touched.surname && errors.surname}
+                hasError={!!touched.surname && !!errors.surname}
                 required
               />
             </Box>
 
-            <Box gap="xxl" tablet={{ row: true, gap: 'sm' }} mb="4xl">
+            <Box
+              css={{
+                marginBottom: '$10',
+                gap: '$10',
+
+                '@tablet': {
+                  flexDirection: 'row',
+                  gap: '$6',
+                  marginBottom: '$8',
+                },
+              }}
+            >
               <Input
                 type="email"
                 name="email"
                 placeholder={`${t('components:form.fields.email')}*`}
                 disabled={isDisabled}
-                hasError={touched.email && errors.email}
+                hasError={!!touched.email && !!errors.email}
                 required
               />
 
               <Input
                 type="text"
                 name="phone"
-                placeholder={t('components:form.fields.phone')}
+                placeholder={t('components:form.fields.phone') || ''}
                 disabled={isDisabled}
-                hasError={touched.phone && errors.phone}
+                hasError={!!touched.phone && !!errors.phone}
               />
             </Box>
 
@@ -106,24 +132,37 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
               name="message"
               placeholder={`${t('components:form.fields.message')}*`}
               disabled={isDisabled}
-              hasError={touched.message && errors.message}
-              rows="1"
+              hasError={!!touched.message && !!errors.message}
+              rows={1}
               required
             />
 
-            <Box mt="5xl" row gap="block" css={S.responsiveButton}>
+            <Box
+              css={{
+                flexDirection: 'row',
+                marginTop: '$13',
+                gap: '$block',
+              }}
+            >
               <Button
                 type="submit"
                 secondary={state === TEmailState.SUCCESS}
                 disabled={isSubmitting || state === TEmailState.SUCCESS}
                 wide={state === TEmailState.SUCCESS}
                 isLoading={isDisabled}
+                css={{
+                  width: '100%',
+
+                  '@tablet': {
+                    width: 'auto',
+                  },
+                }}
               >
                 {STATE_MESSAGES[state]}
               </Button>
 
               {state === TEmailState.ERROR && (
-                <Text as="small" color="error">
+                <Text as="small" css={{ color: '$error' }}>
                   {t('components:form.error')}
                 </Text>
               )}
@@ -135,4 +174,4 @@ const Form = ({ subject, cb, addition = '' }: Props) => {
   )
 }
 
-export default React.memo(Form)
+export default memo(Form)

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Box, Text } from '~/ui'
 
 import * as S from './styled'
 
@@ -12,14 +13,23 @@ type Props = {
 const List = ({ items = [], uppercase }: Props) => {
   const renderItems = useCallback(
     (item: ListItem, idx: number) => (
-      <S.Item key={`item-${idx}`} {...{ uppercase }}>
+      <Text
+        as={S.Item}
+        variant="paragraph"
+        key={`item-${idx}`}
+        css={{ textTransform: uppercase ? 'uppercase' : undefined }}
+      >
         {item}
-      </S.Item>
+      </Text>
     ),
     [uppercase]
   )
 
-  return <S.Wrapper>{items?.map(renderItems)}</S.Wrapper>
+  return (
+    <Box as="ul" css={{ listStyle: 'none' }}>
+      {items?.map(renderItems)}
+    </Box>
+  )
 }
 
 export default React.memo(List)

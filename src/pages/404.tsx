@@ -1,16 +1,16 @@
-import { type NextPage, type GetStaticProps } from 'next'
+import { type NextPage } from 'next'
+import { useRouter } from 'next/router'
+
+import { useDidMount } from '~/hooks'
 
 const Custom404: NextPage = () => {
-  return <>404 - Not Found</>
-}
+  const router = useRouter()
 
-export const getStaticProps: GetStaticProps = () => {
-  return {
-    redirect: {
-      destination: '/',
-      permanent: true,
-    },
-  }
+  useDidMount(() => {
+    void router.replace('/')
+  })
+
+  return <></>
 }
 
 export default Custom404

@@ -1,3 +1,5 @@
 import { useEffect } from 'react'
 
-export default (cb: () => void) => useEffect(() => cb && cb(), [cb])
+const useDidMount = (cb: () => void) => useEffect(() => cb && cb(), [cb])
+
+export default useDidMount

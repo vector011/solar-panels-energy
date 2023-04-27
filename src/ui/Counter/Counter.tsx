@@ -1,46 +1,85 @@
-import React, { Dispatch, SetStateAction, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { memo } from 'react'
+import { type ComponentProps } from '@stitches/react'
+import { useTranslation } from 'next-i18next'
+
+import Box from '../Box'
+import { type ProductModel } from '~/types/models'
+import useProductStore from '~/stores/products'
 
 import * as S from './styled'
 
-type Props = {
-  value: number
-  onChange: Dispatch<SetStateAction<number>>
+type TStyledProps = ComponentProps<typeof Box>
+
+type TProps = {
+  data: ProductModel
 }
 
-const Counter = ({ value, onChange }: Props) => {
+type TCounterProps = TStyledProps & TProps
+
+const Counter = ({ data, css, ...props }: TCounterProps) => {
   const { t } = useTranslation()
 
-  const increment = useCallback(() => onChange((prev) => prev + 1), [onChange])
-  const decrement = useCallback(
-    () => onChange((prev) => (prev || 1) - 1),
-    [onChange]
-  )
+  const { products, increment, decrement } = useProductStore()
 
   return (
-    <S.Wrapper>
+    <Box
+      {...props}
+      css={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        span: {
+          padding: '$4',
+          minWidth: 70,
+          textAlign: 'center',
+        },
+
+        fontWeight: 300,
+        fontSize: '$3',
+        lineHeight: '$4',
+
+        ...css,
+      }}
+    >
       <S.Button
-        title={
-          t('components:counter.decrement', { defaultValue: 'decrement' })!
+        area-label={
+          t('components:counter.decrement', {
+            defaultValue: 'decrement',
+          }) || 'decrement'
         }
-        onClick={decrement}
-        disabled={!value}
+        onClick={decrement(data)}
+        disabled={!products?.[data.id]?.count}
+        css={{
+          cursor: !products?.[data.id]?.count ? 'not-allowed' : 'pointer',
+          border: `1px solid ${
+            !products?.[data.id]?.count ? '$light' : '$primary'
+          }`,
+          color: !products?.[data.id]?.count ? '$light' : '$primary',
+        }}
       >
         -
       </S.Button>
 
-      <span>{value}</span>
+      <span>{products?.[data.id]?.count ?? 0}</span>
 
       <S.Button
-        title={
-          t('components:counter.increment', { defaultValue: 'increment' })!
+        area-label={
+          t('components:counter.increment', {
+            defaultValue: 'increment',
+          }) || 'increment'
         }
-        onClick={increment}
+        onClick={increment(data)}
+        css={{
+          cursor: 'pointer',
+          border: '1px solid $primary',
+          color: '$primary',
+        }}
       >
         +
       </S.Button>
-    </S.Wrapper>
+    </Box>
   )
 }
 
-export default React.memo(Counter)
+export default memo(Counter) as typeof Counter

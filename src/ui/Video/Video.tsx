@@ -1,36 +1,43 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  VideoHTMLAttributes,
-} from 'react'
+import { memo, useCallback, useEffect, useMemo, type HTMLProps } from 'react'
+import { type ComponentProps } from '@stitches/react'
 import { useInView } from 'react-intersection-observer'
-import { FlattenInterpolation, ThemeProps } from 'styled-components'
 
-import type { TTheme } from 'styles/theme'
-import { getFile } from 'utils/functions'
+import Box from '../Box'
+import { getFile } from '~/utils/functions'
 
-import * as S from './styled'
+type TBaseProps = HTMLProps<HTMLVideoElement>
+type TStyledProps = ComponentProps<typeof Box>
 
-export type Props = {
+export type TProps = {
   time?: number
   cover?: boolean
   fullHeight?: boolean
   playInView?: boolean
   disableWebm?: boolean
-  css?: FlattenInterpolation<ThemeProps<TTheme>>
-} & VideoHTMLAttributes<HTMLVideoElement>
+}
 
-const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
+type TVideoProps = Omit<TBaseProps, keyof TProps> & TStyledProps & TProps
+
+const Video = ({
+  src = '',
+  time = 0,
+  cover,
+  playInView,
+  disableWebm,
+  fullHeight,
+  css,
+  ...props
+}: TVideoProps) => {
   const { ref, inView, entry } = useInView({
     threshold: 0.5,
   })
 
-  const file = useMemo(() => getFile(src!), [src])
-  const webm = useMemo(() => src?.replace(file[1], 'webm'), [file, src])
+  const webm = useMemo(() => {
+    return src?.replace(getFile(src)[1] || '', 'webm')
+  }, [src])
 
   const handleInView = useCallback(
-    async (target: HTMLVideoElement) => {
+    (target: HTMLVideoElement) => {
       const isPlaying =
         target.currentTime > 0 &&
         !target.paused &&
@@ -43,7 +50,7 @@ const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
 
       if (inView && !isPlaying) {
         target.currentTime = 0
-        await target.play()
+        void target.play()
       }
     },
     [inView]
@@ -51,11 +58,21 @@ const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
 
   useEffect(() => {
     const target = entry?.target as HTMLVideoElement
-    if (playInView && target) handleInView(target)
+    if (playInView && target) void handleInView(target)
   }, [inView, playInView, entry, handleInView])
 
   return (
-    <S.Wrapper ref={ref} {...props}>
+    <Box
+      as="video"
+      ref={ref}
+      {...props}
+      css={{
+        width: '100%',
+        objectFit: cover ? 'cover' : undefined,
+        minHeight: fullHeight ? '100vh' : undefined,
+        ...css,
+      }}
+    >
       {!disableWebm && (
         <source
           src={`/assets/videos/${webm}${time ? `#t=${time}` : ''}`}
@@ -67,8 +84,8 @@ const Video = ({ src, time = 0, playInView, disableWebm, ...props }: Props) => {
         type="video/mp4"
       />
       Your browser does not support the video tag.
-    </S.Wrapper>
+    </Box>
   )
 }
 
-export default React.memo(Video)
+export default memo(Video) as typeof Video

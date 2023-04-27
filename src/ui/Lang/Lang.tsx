@@ -1,39 +1,44 @@
-import React, { useCallback, useContext, useMemo } from 'react'
+import Link from 'next/link'
+import { memo, useMemo } from 'react'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import SVG from 'react-inlinesvg'
 
-import { I18nContext } from 'contexts'
-import translations from 'i18n'
-
-import * as S from './styled'
-
-const availableLangs = Object.keys(translations)
+import Box from '../Box'
 
 const Lang = () => {
   const { t } = useTranslation()
 
-  const { activeLang, changeLanguage } = useContext(I18nContext)
+  const { locale, locales, defaultLocale, asPath } = useRouter()
 
-  const lang = useMemo(
-    () => availableLangs[activeLang === availableLangs[0] ? 1 : 0],
-    [activeLang]
-  )
-
-  const toggleLang = useCallback(
-    () => changeLanguage(lang),
-    [lang, changeLanguage]
+  const newLocale = useMemo(
+    () =>
+      (locale === locales?.[0] ? locales?.[1] : locales?.[0]) || defaultLocale,
+    [locale, locales, defaultLocale]
   )
 
   return (
-    <S.Wrapper onClick={toggleLang} aria-label="change language">
+    <Box
+      as={Link}
+      href={asPath}
+      locale={newLocale}
+      aria-label="change language"
+      css={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        cursor: 'pointer',
+        userSelect: 'none',
+      }}
+    >
       <SVG
-        src={`/assets/langs/${lang}.svg`}
-        title={t('global:button.lang', { lang })!}
+        src={`/assets/langs/${newLocale || ''}.svg`}
+        title={t('global:button.lang', { lang: newLocale }) || ''}
         width={33}
         height={20}
       />
-    </S.Wrapper>
+    </Box>
   )
 }
 
-export default React.memo(Lang)
+export default memo(Lang)

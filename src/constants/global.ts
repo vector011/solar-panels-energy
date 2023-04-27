@@ -7,8 +7,6 @@ export const TITLE = 'JP Green Energy, s.r.o.'
 export const MAP_SRC =
   'https://maps.google.com/maps?q=Star%C3%A1%20Vajnorsk%C3%A1%2011/A%20831%2004%20%20Bratislava%20Slovakia&t=&z=15&ie=UTF8&iwloc=&output=embed'
 
-export const ASSETS_PATH = '/assets/'
-
 export const CONTACT_EMAIL = 'info@jpenergy.eu'
 export const CONTACT_PHONE = '+421 914 330 049'
 

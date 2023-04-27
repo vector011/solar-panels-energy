@@ -1,69 +1,37 @@
-import styled, { css } from 'styled-components'
+import { styled } from '~/styles'
+import { Field as FormikField } from 'formik'
 
-interface IWrapper {
-  hasError: boolean
-}
+export const Field = styled(FormikField, {
+  fontWeight: 400,
+  fontSize: '$2',
+  lineHeight: '$0',
 
-export const firstLetter = css`
-  &::first-letter {
-    text-transform: uppercase;
-  }
-`
+  color: '$light',
 
-const autofillFix = css`
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
-    -webkit-text-fill-color: ${({ theme }) => theme.colors.light};
-    transition: background-color 5000s ease-in-out 0s;
-  }
-`
+  backgroundColor: 'transparent',
+  border: 'none',
 
-export const field = css`
-  ${({ theme }) => theme.textVariants.button};
-  color: ${({ theme }) => theme.colors.light};
+  borderBottom: '0.5px solid $light50',
+  paddingBlock: '$3',
 
-  background-color: transparent;
-  border: none;
+  transition: 'border-bottom-color 200ms',
 
-  border-bottom: 0.5px solid ${({ theme }) => `${theme.colors.light}4d`};
-  padding-block: ${({ theme }) => theme.sizes.xxs};
+  '$:disabled': {
+    cursor: 'not-allowed',
+  },
 
-  transition: border-bottom-color 200ms;
+  '&::placeholder': {
+    color: '$light80',
+    textTransform: 'capitalize',
+  },
 
-  &::placeholder {
-    color: ${({ theme }) => `${theme.colors.light}80`};
-    text-transform: capitalize;
-  }
+  '&:hover, &:focus': {
+    borderBottomColor: '$light',
+  },
 
-  &:hover,
-  &:focus {
-    border-bottom-color: ${({ theme }) => theme.colors.light};
-  }
-
-  ${autofillFix}
-`
-
-export const Wrapper = styled.div<IWrapper>`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-
-  input,
-  textarea {
-    ${field}
-  }
-
-  textarea {
-    max-height: 500px;
-    line-height: 30px;
-    resize: none;
-  }
-`
+  '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus':
+    {
+      '-webkit-text-fill-color': '#F6F6F6',
+      transition: 'background-color 5000s ease-in-out 0s',
+    },
+})

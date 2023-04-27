@@ -1,24 +1,31 @@
-import React, { ComponentProps } from 'react'
+import { memo } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import Image from '../Image'
-import { getRoute } from 'config/router'
+import Box from '../Box'
 
-import * as S from './styled'
-
-export type Props = {
+type TProps = {
   responsive?: boolean
-} & ComponentProps<typeof Image>
+}
 
-const Logo = ({ responsive, ...props }: Props) => (
-  <S.Wrapper to={getRoute('home')} $responsive={responsive}>
+type TLogoProps = TProps
+
+const Logo = ({ responsive }: TLogoProps) => (
+  <Box
+    as={Link}
+    href="/"
+    css={{
+      width: responsive ? 'clamp(105px, 20vw + 1rem, 195px)' : undefined,
+      height: responsive ? 'auto' : undefined,
+    }}
+  >
     <Image
-      src="logo-long.svg"
+      src="/assets/logo-long.svg"
       alt="JP Green Energy logo"
       width={195}
       height={67}
-      {...props}
     />
-  </S.Wrapper>
+  </Box>
 )
 
-export default React.memo(Logo)
+export default memo(Logo) as typeof Logo

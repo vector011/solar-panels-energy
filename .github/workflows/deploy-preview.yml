@@ -45,7 +45,7 @@ jobs:
       - name: 🚀 Build and Deploy to Netlify
         id: deploy-netlify
         run: |
-          netlify deploy --alias="$PR_NUMBER"
+          netlify deploy --alias="$PR_NUMBER" --build
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

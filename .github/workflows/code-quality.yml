@@ -26,6 +26,15 @@ jobs:
         run: yarn
         shell: bash
 
+      # Create env file
+      - name: 📁 Create env file
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} >> .env
+          echo NEXT_PUBLIC_MAIL_SERVICE_ID=${{ secrets.NEXT_PUBLIC_MAIL_SERVICE_ID }} >> .env
+          echo NEXT_PUBLIC_MAIL_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_MAIL_TEMPLATE_ID }} >> .env
+          echo NEXT_PUBLIC_MAIL_USER_ID=${{ secrets.NEXT_PUBLIC_MAIL_USER_ID }} >> .env
+
       # Run yarn lint
       - name: 🧪 Linting
         run: yarn lint

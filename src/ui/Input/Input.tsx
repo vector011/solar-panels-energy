@@ -7,6 +7,7 @@ import {
 } from 'react'
 import { ErrorMessage, type FieldAttributes } from 'formik'
 import { type ComponentProps } from '@stitches/react'
+import { useTranslation } from 'next-i18next'
 
 import Text from '../Text'
 import Box from '../Box'
@@ -26,6 +27,8 @@ type TInputProps = Omit<TBaseProps, keyof TProps> &
   TProps
 
 const Input = ({ as, name, hasError, ...props }: TInputProps) => {
+  const { t } = useTranslation()
+
   const isTextarea = useMemo(() => as === 'textarea', [as])
 
   const handleChange = useCallback((e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -70,7 +73,14 @@ const Input = ({ as, name, hasError, ...props }: TInputProps) => {
             },
           }}
         >
-          <ErrorMessage name={name} />
+          <ErrorMessage
+            name={name}
+            render={(msg) =>
+              t(`validation:${msg}`, {
+                name: t(`components:form.fields.${name}`),
+              })
+            }
+          />
         </Text>
       )}
     </Box>

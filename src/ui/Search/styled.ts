@@ -17,7 +17,6 @@ export const Field = styled('input', {
 
   '&::placeholder': {
     color: '$light80',
-    textTransform: 'capitalize',
   },
 
   '&:hover, &:focus': {

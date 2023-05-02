@@ -10,6 +10,8 @@
   },
 
   "panels": {
-    "button": "Chcem cenovú ponuku"
+    "button": "Chcem cenovú ponuku",
+    "empty": "Nenašli sa žiadne produkty",
+    "reset": "Resetovať výber"
   }
 }

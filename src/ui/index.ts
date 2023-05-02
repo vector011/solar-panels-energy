@@ -16,3 +16,6 @@ export { default as Search } from './Search'
 
 export { default as Filter } from './Filter'
 export { default as Counter } from './Counter'
+
+export { default as MetaHead } from './MetaHead'
+export { default as Skeleton } from './Skeleton'

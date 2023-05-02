@@ -29,7 +29,7 @@ const Filter = ({ param, items, css, ...props }: TFilterProps) => {
         as={Link}
         variant="paragraph2"
         key={`${param}-${item.slug}`}
-        href={{ query: { [param]: item.slug } }}
+        href={{ query: { ...query, [param]: item.slug } }}
         className={query[param] === item.slug ? 'active' : ''}
         shallow
         replace
@@ -38,6 +38,7 @@ const Filter = ({ param, items, css, ...props }: TFilterProps) => {
           color: '$primary',
           border: '1px solid $primary',
           transition: 'all 200ms',
+          flexShrink: 0,
 
           '&:hover, &.active': {
             backgroundColor: '$primary',
@@ -56,7 +57,14 @@ const Filter = ({ param, items, css, ...props }: TFilterProps) => {
   )
 
   return (
-    <Box {...props} css={{ flexDirection: 'row', ...css }}>
+    <Box
+      {...props}
+      css={{
+        flexDirection: 'row',
+        flexShrink: 0,
+        ...css,
+      }}
+    >
       <Text
         as={Link}
         variant="paragraph2"

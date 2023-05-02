@@ -21,8 +21,8 @@ const config = {
       {
         protocol: 'https',
         hostname: 'media.graphassets.com',
-        port: '',
         pathname: '/**',
+        port: '',
       },
     ],
   },

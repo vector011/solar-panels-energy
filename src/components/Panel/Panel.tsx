@@ -1,17 +1,19 @@
 import { memo, useCallback } from 'react'
 import { type ComponentProps } from '@stitches/react'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 import { Box, Counter, Text } from '~/ui'
 import { type ParameterComponent, type ProductModel } from '~/types/models'
 
+type TBaseProps = React.ComponentProps<typeof motion.article>
 type TStyledProps = ComponentProps<typeof Box>
 
 type TProps = {
   data: ProductModel
 }
 
-type TPanelProps = TStyledProps & TProps
+type TPanelProps = Omit<TBaseProps, keyof TProps> & TStyledProps & TProps
 
 const Panel = ({ data, css, ...props }: TPanelProps) => {
   const renderParams = useCallback(
@@ -55,7 +57,10 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
 
   return (
     <Box
-      as="article"
+      as={motion.article}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       {...props}
       css={{
         alignItems: 'center',

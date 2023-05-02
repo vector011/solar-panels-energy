@@ -18,7 +18,7 @@ import {
   Search,
   Text,
 } from '~/ui'
-import { Panel, Popup } from '~/components'
+import { Panel, PanelSkeleton, Popup } from '~/components'
 import { usePageOffset, useToggle } from '~/hooks'
 
 import client from '~/apollo'
@@ -30,6 +30,7 @@ import {
   type ProductsData,
   GET_PRODUCTS,
 } from '~/apollo/queries'
+import useProductStore from '~/stores/products'
 
 type TProps = {
   categories: CategoriesPayload['categories']
@@ -39,37 +40,44 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
   const { replace, locale, defaultLocale, query } = useRouter()
 
+  const { products, clear } = useProductStore()
   const { visible, show, hide } = useToggle()
 
   const ref = useRef<HTMLDivElement | null>(null)
   usePageOffset(ref)
 
-  const { data } = useQuery<ProductsPayload, ProductsData>(GET_PRODUCTS, {
-    variables: {
-      locale: locale || defaultLocale || '',
-      skip: 0,
-      where: {
-        ...(query['category'] && {
-          category: { slug: query['category'] as string },
-        }),
-        ...(query['search'] && {
-          name_contains: query['search'] as string,
-        }),
+  const { data, loading } = useQuery<ProductsPayload, ProductsData>(
+    GET_PRODUCTS,
+    {
+      variables: {
+        locale: locale || defaultLocale || '',
+        skip: 0,
+        where: {
+          ...(query['category'] && {
+            category: { slug: query['category'] as string },
+          }),
+          ...(query['search'] && {
+            name_contains: query['search'] as string,
+          }),
+        },
       },
-    },
-  })
+    }
+  )
 
   const handleSearch = useCallback(
     (value: string) => {
-      const newQuery = value ? { search: value } : omit(query, 'search')
+      const newQuery = value
+        ? { ...query, search: value }
+        : omit(query, 'search')
+
       void replace({ query: newQuery }, undefined, { shallow: true })
     },
     [replace, query]
   )
 
   const renderItems = useCallback(
-    (item: ProductsPayload['products'][number]) => (
-      <Panel key={item?.id} data={item} />
+    (item: ProductsPayload['products'][number], idx: number) => (
+      <Panel key={item?.id} data={item} transition={{ delay: idx * 0.1 }} />
     ),
     []
   )
@@ -116,19 +124,51 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               marginBottom: '$14',
+              columnGap: '$14',
+              rowGap: '$8',
+              flexWrap: 'wrap',
             }}
           >
-            <Filter param="category" items={categories} />
+            <Box css={{ flex: 1, flexShrink: 0 }}>
+              <Filter param="category" items={categories} />
+            </Box>
 
             <Search
               name="search"
               placeholder={t('products:filter.search') || 'Search'}
+              initial={query['search'] as string}
               cb={handleSearch}
             />
           </Box>
 
-          {!!data?.products?.length && (
-            <Grid>{data?.products?.map(renderItems)}</Grid>
+          <AnimatePresence>
+            {loading && !data?.products?.length ? (
+              <Grid>
+                <PanelSkeleton transition={{ delay: 0.1 }} />
+                <PanelSkeleton transition={{ delay: 0.2 }} />
+                <PanelSkeleton transition={{ delay: 0.3 }} />
+                <PanelSkeleton transition={{ delay: 0.4 }} />
+              </Grid>
+            ) : !loading && !!data?.products?.length ? (
+              <Grid>{data?.products?.map(renderItems)}</Grid>
+            ) : (
+              <Box css={{ alignItems: 'center' }}>
+                <Text variant="paragraph">{t('products:panels.empty')}</Text>
+              </Box>
+            )}
+          </AnimatePresence>
+
+          {!!Object.keys(products)?.length && (
+            <Box css={{ paddingTop: '$8' }}>
+              <Text
+                as="button"
+                variant="button"
+                css={{ textDecoration: 'underline' }}
+                onClick={clear}
+              >
+                {t('products:panels.reset')}
+              </Text>
+            </Box>
           )}
         </Container>
       </Box>

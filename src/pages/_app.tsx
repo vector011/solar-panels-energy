@@ -10,6 +10,8 @@ import { TITLE } from '~/constants/global'
 
 import client from '~/apollo'
 
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const visuelt = localFont({
   variable: '--visuelt-font',
   src: [

@@ -15,8 +15,6 @@ import {
   IN_URL,
 } from '~/constants/global'
 
-import * as S from './styled'
-
 const Footer = () => {
   const { t } = useTranslation()
   const { pathname } = useRouter()
@@ -25,7 +23,6 @@ const Footer = () => {
     <Box as="footer" css={{ marginTop: '$section' }}>
       <Container>
         <Box
-          as="footer"
           css={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -35,12 +32,61 @@ const Footer = () => {
             paddingBottom: '$13',
             gap: '$13',
 
-            '@tablet': {
-              paddingTop: '$11',
+            borderTop: '0.5px solid $light',
+
+            '& > div:last-of-type': {
+              marginInline: 'auto',
             },
 
-            borderTop: '0.5px solid $light',
-            ...S.wrapperResponsive,
+            '@phone': {
+              flexDirection: 'column',
+
+              '& > div:last-of-type': {
+                marginInline: 'auto',
+              },
+            },
+
+            '@tablet': {
+              alignItems: 'center',
+              paddingTop: '$11',
+
+              '& > div, nav': {
+                alignItems: 'center',
+              },
+
+              '& > div:last-of-type': {
+                marginInline: 0,
+              },
+            },
+
+            '@desktop': {
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+
+              '& > div, nav': {
+                alignItems: 'stretch',
+              },
+
+              '& > div:last-of-type': {
+                width: '100%',
+                alignItems: 'center',
+              },
+            },
+
+            '@middleDesktop': {
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+
+              '& > div, nav': {
+                alignItems: 'stretch',
+              },
+
+              '& > div:last-of-type': {
+                width: 'auto',
+                alignItems: 'flex-start',
+                alignSelf: 'flex-start',
+              },
+            },
           }}
         >
           <Box css={{ gap: '$7' }}>
@@ -219,7 +265,7 @@ const Footer = () => {
               paddingInline: '$7',
               marginRight: '-$7',
 
-              '@middleDesktop': {
+              '@media(min-width: 1170px)': {
                 display: 'flex',
               },
             }}

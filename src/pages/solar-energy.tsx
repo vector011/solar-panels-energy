@@ -1,6 +1,5 @@
 import { type GetStaticProps } from 'next'
-import { memo, useCallback } from 'react'
-import { useRouter } from 'next/router'
+import { memo } from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
@@ -19,19 +18,12 @@ import { List } from '~/components'
 
 import solarPanelImage from 'assets/images/solar-panel-1.png'
 
-const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
+const SolarEnergy: NextPageWithProps = ({ locale, _nextI18Next }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
-  const router = useRouter()
-
-  // TODO: change to link
-  const navigateTo = useCallback(
-    (to: string) => () => void router.push(to),
-    [router]
-  )
 
   return (
     <>
-      <MetaHead t={t} lang={router.locale} ns="solarEnergy" />
+      <MetaHead t={t} lang={locale} ns="solarEnergy" />
 
       <Box
         as="header"
@@ -83,21 +75,26 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
                 gap: '$7',
 
                 '@desktop': { gap: '$8' },
-
-                button: {
-                  flex: 1,
-
-                  '@desktop': {
-                    flex: 0,
-                  },
-                },
               }}
             >
-              <Button onClick={navigateTo('/products')}>
+              <Button
+                href="/products"
+                css={{
+                  flex: 1,
+                  '@desktop': { flex: 0 },
+                }}
+              >
                 {t('global:navigation.products')}
               </Button>
 
-              <Button onClick={navigateTo('/services')} secondary>
+              <Button
+                href="/services"
+                secondary
+                css={{
+                  flex: 1,
+                  '@desktop': { flex: 0 },
+                }}
+              >
                 {t('global:navigation.services')}
               </Button>
             </Box>
@@ -108,27 +105,22 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
               position: 'relative',
               paddingTop: '$13',
               zIndex: 0,
-
-              '@media (min-width: 1800px)': {
-                marginLeft: '-8%',
-                marginRight: '-6%',
-              },
-
-              '@media (max-width: 1800px)': {
-                marginLeft: '-10%',
-              },
-
-              '@media (max-width: 1500px)': {
-                marginLeft: '-14%',
-                paddingTop: 0,
-              },
-
-              '@media (max-width: 1170px)': {
-                marginLeft: '-21%',
-              },
+              width: '100%',
 
               '@desktop': {
-                marginLeft: 0,
+                marginLeft: '-14%',
+              },
+
+              '@middleDesktop': {
+                marginTop: '-5%',
+                marginLeft: '-16%',
+                marginRight: '-3%',
+              },
+
+              '@largeDesktop': {
+                marginTop: 0,
+                marginLeft: -100,
+                marginRight: -50,
               },
 
               img: {
@@ -136,7 +128,7 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
                 height: 'auto',
 
                 '@desktop': {
-                  width: 'clamp(366px, 50vw + 1rem, 984px)',
+                  width: 'clamp(366px, 50vw + 1rem, 920px)',
                 },
               },
             }}
@@ -144,8 +136,8 @@ const SolarEnergy: NextPageWithProps = ({ _nextI18Next }) => {
             <Image
               src={solarPanelImage}
               alt={t('solarEnergy:header.image.alt') || ''}
-              width={984}
-              height={566}
+              width={920}
+              height={506}
               priority
             />
 
@@ -401,7 +393,12 @@ export const getStaticProps: GetStaticProps = async ({
     ['global', 'solarEnergy']
   )
 
-  return { props: translations }
+  return {
+    props: {
+      ...translations,
+      locale,
+    },
+  }
 }
 
 export default memo(SolarEnergy)

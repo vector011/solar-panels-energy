@@ -10,6 +10,8 @@
   },
 
   "panels": {
-    "button": "Get Price"
+    "button": "Get Price",
+    "empty": "No products found",
+    "reset": "Reset selection"
   }
 }

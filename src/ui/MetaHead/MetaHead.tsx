@@ -16,10 +16,10 @@ const MetaHead = ({ t, ns, lang = 'sk', children }: TMetaHeadProps) => (
     {children}
 
     <title>{`${ns ? `${t(`global:navigation.${ns}`)} | ` : ''}${TITLE}`}</title>
+    <meta name="description" content={t('global:meta.description') || ''} />
 
     <link rel="manifest" href={`/${lang}.site.webmanifest`} />
-
-    <meta name="description" content={t('global:meta.description') || ''} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {/* Open Graph / Facebook */}
     <meta

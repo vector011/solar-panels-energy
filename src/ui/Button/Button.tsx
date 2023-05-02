@@ -1,13 +1,15 @@
 import { memo, type HTMLProps } from 'react'
 import { type ComponentProps } from '@stitches/react'
+import Link from 'next/link'
 
-import Text from '../Text'
+import * as S from './styled'
 
 type TBaseProps = HTMLProps<HTMLButtonElement>
-type TStyledProps = ComponentProps<typeof Text>
+type TStyledProps = ComponentProps<typeof S.Button>
 
 type TProps = {
   onClick?: () => void
+  href?: string
   isLoading?: boolean
   children?: React.ReactNode
   secondary?: boolean
@@ -24,53 +26,26 @@ const Button = ({
   css,
   ...props
 }: TButtonProps) => (
-  <Text
-    as="button"
-    variant="button"
+  <S.Button
+    as={props.href ? Link : 'button'}
     {...props}
     className={isLoading ? 'loading' : undefined}
     css={{
-      display: 'inline',
       alignSelf: wide ? 'center' : 'flex-start',
-
-      paddingBlock: 'clamp($4, 2.5vw + 0.1rem, $6)',
-      paddingInline: 'clamp($7, 2.5vw + 0.1rem, $8)',
 
       width: wide ? '100%' : undefined,
       minWidth: 288,
       maxWidth: wide ? 800 : undefined,
 
       backgroundColor: secondary ? 'transparent' : '$primary',
-      boxShadow: '0px 4px 4px rgba(128, 49, 49, 0.25)',
-
-      border: '2px solid $primary',
-      borderRadius: '$button',
 
       color: secondary ? '$primary' : '$dark',
-      textAlign: 'center',
-
-      cursor: 'pointer',
-      transition: 'all 200ms',
-
-      '&:disabled': {
-        cursor: 'not-allowed',
-      },
-
-      '&:hover:not(:disabled)': {
-        backgroundColor: '$secondary',
-        borderColor: '$secondary',
-        color: '$light',
-      },
-
-      '&:active:not(:disabled)': {
-        backgroundColor: '$dark',
-      },
 
       ...css,
     }}
   >
     {children}
-  </Text>
+  </S.Button>
 )
 
 export default memo(Button) as typeof Button

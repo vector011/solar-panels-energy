@@ -15,15 +15,21 @@ const Logo = ({ responsive }: TLogoProps) => (
     as={Link}
     href="/"
     css={{
+      display: 'flex',
       width: responsive ? 'clamp(105px, 20vw + 1rem, 195px)' : undefined,
       height: responsive ? 'auto' : undefined,
     }}
   >
-    <Image
+    <Box
+      as={Image}
       src="/assets/logo-long.svg"
       alt="JP Green Energy logo"
       width={195}
       height={67}
+      css={{
+        width: '100%',
+        height: 'auto',
+      }}
     />
   </Box>
 )

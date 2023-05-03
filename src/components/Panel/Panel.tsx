@@ -23,7 +23,11 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
         css={{
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '$big',
+          gap: '$14',
+
+          '@tablet': {
+            gap: '$big',
+          },
         }}
       >
         <Box
@@ -42,7 +46,7 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
 
         <Text
           as="span"
-          variant="paragraph2"
+          variant="paragraph"
           css={{
             color: '$light',
             textTransform: 'uppercase',
@@ -64,8 +68,13 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
       {...props}
       css={{
         alignItems: 'center',
-        padding: '$9',
+        padding: '$4',
         gap: '$7',
+
+        '@tablet': {
+          padding: '$9',
+        },
+
         ...css,
       }}
     >
@@ -97,7 +106,16 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
             {data?.name}
           </Text>
 
-          {data?.parameters?.map(renderParams)}
+          {data?.description && (
+            <Text
+              variant="paragraph"
+              css={{ textAlign: 'justify', maxWidth: 320 }}
+            >
+              {data?.description}
+            </Text>
+          )}
+
+          <Box css={{ gap: '$6' }}>{data?.parameters?.map(renderParams)}</Box>
         </Box>
 
         <Counter data={data} css={{ justifySelf: 'flex-end' }} />

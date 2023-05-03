@@ -20,6 +20,7 @@ import {
 } from '~/ui'
 import { Panel, PanelSkeleton, Popup } from '~/components'
 import { usePageOffset, useToggle } from '~/hooks'
+import useProductStore from '~/stores/products'
 
 import client from '~/apollo'
 import {
@@ -30,7 +31,6 @@ import {
   type ProductsData,
   GET_PRODUCTS,
 } from '~/apollo/queries'
-import useProductStore from '~/stores/products'
 
 type TProps = {
   categories: CategoriesPayload['categories']
@@ -77,9 +77,13 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
 
   const renderItems = useCallback(
     (item: ProductsPayload['products'][number], idx: number) => (
-      <Panel key={item?.id} data={item} transition={{ delay: idx * 0.1 }} />
+      <Panel
+        key={`product-${item?.id}-${locale || ''}`}
+        transition={{ delay: idx * 0.1 }}
+        data={item}
+      />
     ),
-    []
+    [locale]
   )
 
   return (

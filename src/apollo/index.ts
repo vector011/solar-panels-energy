@@ -4,7 +4,16 @@ import { env } from '~/env.mjs'
 
 const client = new ApolloClient({
   uri: env.NEXT_PUBLIC_API_URL,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Product: {
+        keyFields: ['id', 'locale'],
+      },
+      Category: {
+        keyFields: ['id', 'locale'],
+      },
+    },
+  }),
 })
 
 export default client

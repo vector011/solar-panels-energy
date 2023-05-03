@@ -28,6 +28,7 @@ export default gql`
       name
       description
       slug
+      locale
       createdAt
       image(locales: [sk, en]) {
         id
@@ -46,6 +47,8 @@ export default gql`
       category {
         id
         name
+        slug
+        locale
       }
     }
   }

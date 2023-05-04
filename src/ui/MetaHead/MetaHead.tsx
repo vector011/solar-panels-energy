@@ -32,7 +32,9 @@ const MetaHead = ({ t, ns, lang = 'sk', children }: TMetaHeadProps) => (
     />
     <meta
       property="og:image"
-      content="https://jpenergy.eu/assets/thumbnail.jpeg"
+      content={`https://jpenergy.eu/assets/thumbnail${
+        lang === 'sk' ? '' : `-${lang}`
+      }.jpeg`}
     />
 
     {/* Twitter */}
@@ -46,7 +48,9 @@ const MetaHead = ({ t, ns, lang = 'sk', children }: TMetaHeadProps) => (
     />
     <meta
       property="twitter:image"
-      content="https://jpenergy.eu/assets/thumbnail.jpeg"
+      content={`https://jpenergy.eu/assets/thumbnail${
+        lang === 'sk' ? '' : `-${lang}`
+      }.jpeg`}
     />
   </Head>
 )

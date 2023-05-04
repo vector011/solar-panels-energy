@@ -1,6 +1,5 @@
 export const PREFIX = '@JP_GREEN_ENERGY'
-
-export const I18N_LANG = `${PREFIX}/I18N_LANG`
+export const AUTHOR = 'Vector011'
 
 export const TITLE = 'JP Green Energy, s.r.o.'
 

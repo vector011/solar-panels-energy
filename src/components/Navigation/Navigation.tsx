@@ -130,7 +130,11 @@ const Navigation = () => {
           )}
         </AnimatePresence>
 
-        <S.Burger onClick={toggle} className={visible ? 'visible' : ''}>
+        <S.Burger
+          onClick={toggle}
+          className={visible ? 'visible' : ''}
+          aria-label="navigation"
+        >
           <Icon name="burger-icon" width={35} height={27} />
         </S.Burger>
       </Container>

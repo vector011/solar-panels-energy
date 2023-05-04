@@ -8,8 +8,6 @@
 
 <center>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d1a77af5-28aa-45d1-8aa5-61c1e8f35c7a/deploy-status)](https://app.netlify.com/sites/jp-green-energy/deploys)
-&nbsp;
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 &nbsp;
 ![Pull Request](https://img.shields.io/github/issues-pr/vector011/solar-panels-energy)
@@ -20,3 +18,9 @@
 </center>
 
 ![title image](public/assets/thumbnail.jpeg)
+
+<center>
+
+Created by [`Vector011`](https://vector011.com)
+
+</center>

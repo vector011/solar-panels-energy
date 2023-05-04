@@ -55,6 +55,7 @@ const Contact: NextPageWithProps = ({ _nextI18Next }) => {
 
             <Box
               as="iframe"
+              title="map"
               width={600}
               height={400}
               src={MAP_SRC}

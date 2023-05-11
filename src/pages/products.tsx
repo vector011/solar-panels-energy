@@ -64,11 +64,11 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
     }
   )
 
-  const handleSearch = useCallback(
-    (value: string) => {
-      const newQuery = value
-        ? { ...query, search: value }
-        : omit(query, 'search')
+  const handleQuery = useCallback(
+    (param: string) => (value: string) => {
+      // TODO: fix initial loading
+
+      const newQuery = value ? { ...query, [param]: value } : omit(query, param)
 
       void replace({ query: newQuery }, undefined, { shallow: true })
     },
@@ -124,24 +124,38 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
         <Container>
           <Box
             css={{
-              flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
               marginBottom: '$14',
               columnGap: '$14',
               rowGap: '$8',
               flexWrap: 'wrap',
+              width: '100%',
+
+              '& > *': {
+                width: '100%',
+              },
+
+              '@tablet': {
+                flexDirection: 'row',
+
+                '& > *': {
+                  width: 'auto',
+                },
+              },
             }}
           >
-            <Box css={{ flex: 1, flexShrink: 0 }}>
-              <Filter param="category" items={categories} />
-            </Box>
+            <Filter
+              items={categories}
+              initial={query['category'] as string}
+              cb={handleQuery('category')}
+            />
 
             <Search
               name="search"
               placeholder={t('products:filter.search') || 'Search'}
               initial={query['search'] as string}
-              cb={handleSearch}
+              cb={handleQuery('search')}
             />
           </Box>
 

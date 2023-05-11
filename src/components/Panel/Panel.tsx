@@ -99,6 +99,7 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
             as="h2"
             variant="paragraph2"
             css={{
+              fontWeight: 500,
               color: '$light',
               textTransform: 'uppercase',
             }}
@@ -109,7 +110,13 @@ const Panel = ({ data, css, ...props }: TPanelProps) => {
           {data?.description && (
             <Text
               variant="paragraph"
-              css={{ textAlign: 'justify', maxWidth: 320 }}
+              css={{
+                textAlign: 'justify',
+                maxWidth: 320,
+                fontWeight: 300,
+                fontSize: '15px',
+                lineHeight: '20px',
+              }}
             >
               {data?.description}
             </Text>

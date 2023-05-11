@@ -1,99 +1,124 @@
-import { memo, useCallback, type HTMLProps } from 'react'
+import { memo, useCallback } from 'react'
 import { type ComponentProps } from '@stitches/react'
 import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
+import * as Select from '@radix-ui/react-select'
 
 import Box from '../Box'
 import Text from '../Text'
 import { type CategoryModel } from '~/types/models'
-import { omit } from 'lodash'
 
-type TBaseProps = HTMLProps<HTMLDivElement>
 type TStyledProps = ComponentProps<typeof Box>
 
 type TProps = {
-  param: string
+  initial?: string
   items: CategoryModel[]
+  cb: (value: string) => void
 }
 
-type TFilterProps = Omit<TBaseProps, keyof TProps> & TStyledProps & TProps
+type TFilterProps = TStyledProps & TProps
 
-const Filter = ({ param, items, css, ...props }: TFilterProps) => {
+const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
   const { t } = useTranslation()
-  const { query } = useRouter()
+
+  const container =
+    typeof document !== 'undefined'
+      ? document.getElementById('layout')
+      : undefined
 
   const renderItems = useCallback(
     (item: CategoryModel) => (
-      <Text
-        as={Link}
-        variant="paragraph2"
-        key={`${param}-${item.slug}`}
-        href={{ query: { ...query, [param]: item.slug } }}
-        className={query[param] === item.slug ? 'active' : ''}
-        shallow
-        replace
+      <Box
+        as={Select.Item}
+        value={item.slug}
+        key={`category-${item.slug}`}
+        className={item.slug === (initial || '') ? 'active' : ''}
         css={{
+          padding: '$4 $6',
+          color: '$primary',
+          transition: 'all 200ms',
+          flexShrink: 0,
+          fontWeight: 300,
+          fontSize: '$3',
+          lineHeight: '$4',
+          cursor: 'pointer',
+
+          '&:hover, &.active': {
+            backgroundColor: '$primary',
+            color: '$dark',
+          },
+        }}
+      >
+        <Select.ItemText>{item.name}</Select.ItemText>
+        <Select.ItemIndicator />
+      </Box>
+    ),
+    [initial]
+  )
+
+  return (
+    <Select.Root value={initial || ''} onValueChange={cb}>
+      <Box
+        as={Select.Trigger}
+        css={{
+          textAlign: 'left',
+          flexDirection: 'row',
           padding: '$4 $6',
           color: '$primary',
           border: '1px solid $primary',
           transition: 'all 200ms',
           flexShrink: 0,
+          fontWeight: 300,
+          fontSize: '$3',
+          lineHeight: '$4',
+          gap: '$3',
+          cursor: 'pointer',
+          justifyContent: 'space-between',
 
-          '&:hover, &.active': {
+          '&:hover': {
             backgroundColor: '$primary',
             color: '$dark',
           },
 
-          '& + a': {
-            borderLeft: 0,
-          },
+          ...css,
         }}
       >
-        {item.name}
-      </Text>
-    ),
-    [param, query]
-  )
+        <Select.Value />
+        <Text as={Select.Icon} css={{ fontSize: 12 }} />
+      </Box>
 
-  return (
-    <Box
-      {...props}
-      css={{
-        flexDirection: 'row',
-        flexShrink: 0,
-        ...css,
-      }}
-    >
-      <Text
-        as={Link}
-        variant="paragraph2"
-        key={`${param}-all`}
-        href={{ query: omit(query, 'category') }}
-        className={!query[param] ? 'active' : ''}
-        shallow
-        replace
-        css={{
-          padding: '$4 $6',
-          color: '$primary',
-          border: '1px solid $primary',
-          transition: 'all 200ms',
+      <Select.Portal container={container}>
+        <Box
+          as={Select.Content}
+          css={{
+            overflow: 'hidden',
+            background: 'url("/assets/images/grain.png") $dark',
+            backgroundSize: '20%',
 
-          '&:hover, &.active': {
-            backgroundColor: '$primary',
-            color: '$dark',
-          },
+            color: '$primary',
+            border: '1px solid $primary',
+            transition: 'all 200ms',
 
-          '& + a': {
-            borderLeft: 0,
-          },
-        }}
-      >
-        {t('products:filter.category')}
-      </Text>
+            flexShrink: 0,
+            fontWeight: 300,
+            fontSize: '$3',
+            lineHeight: '$4',
 
-      {items?.map(renderItems)}
-    </Box>
+            gap: '$3',
+          }}
+        >
+          <Select.Viewport>
+            {[
+              {
+                id: '-1',
+                name: t('products:filter.category'),
+                slug: '',
+              },
+              ...items,
+            ]?.map(renderItems)}
+          </Select.Viewport>
+        </Box>
+      </Select.Portal>
+    </Select.Root>
   )
 }
 

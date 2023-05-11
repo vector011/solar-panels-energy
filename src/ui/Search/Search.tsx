@@ -20,7 +20,9 @@ type TSearchProps = Omit<TBaseProps, keyof TProps> & TStyledProps & TProps
 const Search = ({ initial = '', cb, name, ...props }: TSearchProps) => {
   const [value, setValue] = useState<string>(initial)
 
-  useDebounceEffect(() => cb(value), [value])
+  useDebounceEffect(() => {
+    cb(value)
+  }, [value])
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.currentTarget) return
@@ -38,8 +40,11 @@ const Search = ({ initial = '', cb, name, ...props }: TSearchProps) => {
         display: 'flex',
         alignItem: 'stretch',
         isolation: 'isolate',
-        maxWidth: 380,
         width: '100%',
+
+        '@tablet': {
+          maxWidth: 380,
+        },
       }}
     >
       <S.Field

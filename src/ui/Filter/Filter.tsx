@@ -114,7 +114,7 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
                 slug: '',
               },
               ...items,
-            ]?.map(renderItems)}
+            ].map(renderItems)}
           </Select.Viewport>
         </Box>
       </Select.Portal>

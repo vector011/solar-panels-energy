@@ -223,6 +223,7 @@ export const getStaticProps: GetStaticProps = async ({
   const { data } = await client.query<CategoriesPayload, CategoriesData>({
     query: GET_CATEGORIES,
     variables: { locale: locale || defaultLocale || '' },
+    fetchPolicy: 'network-only',
   })
 
   return {

@@ -16,6 +16,7 @@ export default gql`
       where: { products_some: {} }
       orderBy: name_ASC
       locales: [$locale]
+      first: 50
     ) {
       id
       name

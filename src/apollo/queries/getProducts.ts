@@ -21,6 +21,7 @@ export default gql`
       where: $where
       locales: [$locale]
       orderBy: publishedAt_DESC
+      first: 50
       skip: $skip
     ) {
       id

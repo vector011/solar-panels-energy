@@ -32,7 +32,6 @@ jobs:
           echo NEXT_PUBLIC_MAIL_SERVICE_ID=${{ secrets.NEXT_PUBLIC_MAIL_SERVICE_ID }} >> .env
           echo NEXT_PUBLIC_MAIL_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_MAIL_TEMPLATE_ID }} >> .env
           echo NEXT_PUBLIC_MAIL_USER_ID=${{ secrets.NEXT_PUBLIC_MAIL_USER_ID }} >> .env
-          echo REVALIDATE_TOKEN=${{ secrets.REVALIDATE_TOKEN }} >> .env
 
       # Install Netlify CLI
       - name: 🛠️ Install Netlify CLI

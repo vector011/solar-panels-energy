@@ -6,7 +6,6 @@ import { z } from 'zod'
  */
 const server = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
-  REVALIDATE_TOKEN: z.string(),
 })
 
 /**
@@ -28,7 +27,6 @@ const client = z.object({
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
-  REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN,
 
   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   NEXT_PUBLIC_MAIL_SERVICE_ID: process.env.NEXT_PUBLIC_MAIL_SERVICE_ID,

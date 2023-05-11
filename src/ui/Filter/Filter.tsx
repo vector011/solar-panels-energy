@@ -33,13 +33,15 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
         key={`category-${item.slug}`}
         className={item.slug === (initial || '') ? 'active' : ''}
         css={{
-          padding: '$4 $6',
           color: '$primary',
-          transition: 'all 200ms',
-          flexShrink: 0,
           fontWeight: 300,
           fontSize: '$3',
           lineHeight: '$4',
+
+          padding: '$4 $6',
+          flexShrink: 0,
+
+          transition: 'all 200ms',
           cursor: 'pointer',
 
           '&:hover, &.active': {
@@ -56,23 +58,25 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
   )
 
   return (
-    <Select.Root value={initial || ''} onValueChange={cb}>
+    <Select.Root value={initial || ''} onValueChange={cb} defaultValue="">
       <Box
         as={Select.Trigger}
         css={{
-          textAlign: 'left',
           flexDirection: 'row',
+          justifyContent: 'space-between',
           padding: '$4 $6',
-          color: '$primary',
           border: '1px solid $primary',
-          transition: 'all 200ms',
           flexShrink: 0,
+          gap: '$3',
+
+          color: '$primary',
+          textAlign: 'left',
           fontWeight: 300,
           fontSize: '$3',
           lineHeight: '$4',
-          gap: '$3',
+
+          transition: 'all 200ms',
           cursor: 'pointer',
-          justifyContent: 'space-between',
 
           '&:hover': {
             backgroundColor: '$primary',
@@ -82,7 +86,7 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
           ...css,
         }}
       >
-        <Select.Value />
+        <Select.Value defaultValue="" />
         <Text as={Select.Icon} css={{ fontSize: 12 }} />
       </Box>
 
@@ -93,6 +97,7 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
             overflow: 'hidden',
             background: 'url("/assets/images/grain.png") $dark',
             backgroundSize: '20%',
+            gap: '$3',
 
             color: '$primary',
             border: '1px solid $primary',
@@ -102,8 +107,6 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
             fontWeight: 300,
             fontSize: '$3',
             lineHeight: '$4',
-
-            gap: '$3',
           }}
         >
           <Select.Viewport>

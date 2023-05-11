@@ -21,7 +21,7 @@ const Search = ({ initial = '', cb, name, ...props }: TSearchProps) => {
   const [value, setValue] = useState<string>(initial)
 
   useDebounceEffect(() => {
-    cb(value)
+    if ((!value && initial) || value) cb(value)
   }, [value])
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

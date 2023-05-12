@@ -1,47 +1,35 @@
-import styled from 'styled-components'
+import { styled } from '~/styles'
 
-interface IItem {
-  uppercase?: boolean
-}
+export const Item = styled('li', {
+  display: 'flex',
+  alignItems: 'center',
 
-export const Wrapper = styled.ul`
-  list-style: none;
-`
+  paddingBlock: '$7',
+  paddingRight: '9%',
 
-export const Item = styled.li<IItem>`
-  display: flex;
-  align-items: center;
+  borderBottom: '0.5px solid $light',
 
-  ${({ theme }) => theme.textVariants.paragraph}
-  ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
+  '&::before': {
+    content: '',
 
-  padding-block: ${({ theme }) => theme.sizes.m};
-  padding-right: 9%;
+    display: 'inline-block',
+    alignSelf: 'flex-start',
+    flexShrink: 0,
 
-  border-bottom: 0.5px solid ${({ theme }) => theme.colors.light};
+    size: 8,
+    borderRadius: '$rounded',
 
-  &::before {
-    content: '';
+    marginTop: '0.6ch',
 
-    display: inline-block;
-    align-self: flex-start;
-    flex-shrink: 0;
+    backgroundColor: '$light',
+    marginRight: '$5',
 
-    width: 8px;
-    height: 8px;
-    border-radius: ${({ theme }) => theme.borderRadii.rounded};
+    '@tablet': {
+      marginRight: '$8',
+    },
 
-    margin-top: 0.6ch;
-
-    background-color: ${({ theme }) => theme.colors.light};
-    margin-right: ${({ theme }) => theme.sizes.s};
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
-      margin-right: ${({ theme }) => theme.sizes.l};
-    }
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
-      margin-right: ${({ theme }) => theme.sizes['3xl']};
-    }
-  }
-`
+    '@desktop': {
+      marginRight: '$11',
+    },
+  },
+})

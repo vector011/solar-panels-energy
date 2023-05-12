@@ -1,0 +1,17 @@
+{
+  "benefits": {
+    "title": "Produkty",
+    "body": "Držíme sa princípu predaja vysokokvalitných produktov za najlepšie možné ceny. Okrem toho vieme zabezpečiť rýchle dodanie tovaru v rámci celej Európy. S naším prístupom sú spokojní veľkoodberatelia aj domácnosti."
+  },
+
+  "filter": {
+    "category": "Všetky",
+    "search": "Názov produktu"
+  },
+
+  "panels": {
+    "button": "Chcem cenovú ponuku",
+    "empty": "Nenašli sa žiadne produkty",
+    "reset": "Resetovať výber"
+  }
+}

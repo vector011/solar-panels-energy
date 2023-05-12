@@ -1,0 +1,29 @@
+{
+  "name": "JP Green Energy, s.r.o.",
+  "short_name": "JP Green Energy",
+  "description": "We're creating a greener energy future - today.",
+  "start_url": "https://jpenergy.eu/en",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0A0A0A",
+  "background_color": "#f6f6f6",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "assets/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicons/maskable-icon-x192.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

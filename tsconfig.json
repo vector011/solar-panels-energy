@@ -1,24 +1,43 @@
 {
   "compilerOptions": {
-    "outDir": "./public/",
-    "sourceMap": true,
-    "strictNullChecks": true,
-    "module": "commonjs",
-    "resolveJsonModule": true,
-    "strict": false,
-    "alwaysStrict": true,
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "esModuleInterop": true,
-    "target": "esnext",
-    "noEmit": true,
-    "jsx": "react",
+    "target": "es2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
-    "rootDir": "./src",
-    "baseUrl": "./src"
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ],
+      "assets/*": [
+        "./public/assets/*"
+      ]
+    }
   },
   "include": [
-    "src/**/*"
+    ".eslintrc.cjs",
+    ".prettier.config.cjs",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs"
   ],
   "exclude": [
     "node_modules"

@@ -1,43 +1,90 @@
-import React, {
-  ChangeEvent,
-  InputHTMLAttributes,
+import {
   useCallback,
   useMemo,
+  memo,
+  type KeyboardEvent,
+  type HTMLProps,
 } from 'react'
-import { ErrorMessage, Field, FieldAttributes } from 'formik'
+import { ErrorMessage, type FieldAttributes } from 'formik'
+import { type ComponentProps } from '@stitches/react'
+import { useTranslation } from 'next-i18next'
 
-import Text from '../core/Text'
+import Text from '../Text'
+import Box from '../Box'
 
 import * as S from './styled'
 
-export type Props = {
-  hasError: boolean
-} & FieldAttributes<any> &
-  InputHTMLAttributes<HTMLInputElement>
+type TBaseProps = HTMLProps<HTMLInputElement>
+type TStyledProps = ComponentProps<typeof S.Field>
 
-const Input = ({ as, name, hasError, ...props }: Props) => {
+type TProps = {
+  hasError: boolean
+}
+
+type TInputProps = Omit<TBaseProps, keyof TProps> &
+  FieldAttributes<unknown> &
+  TStyledProps &
+  TProps
+
+const Input = ({ as, name, hasError, ...props }: TInputProps) => {
+  const { t } = useTranslation()
+
   const isTextarea = useMemo(() => as === 'textarea', [as])
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    e.target.style.height = 'auto'
-    e.target.style.height = `${e.target.scrollHeight + 1}px`
+  const handleChange = useCallback((e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!e?.currentTarget?.style) return
+
+    e.currentTarget.style.height = 'auto'
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight + 1}px`
   }, [])
 
   return (
-    <S.Wrapper {...{ hasError }}>
-      <Field
+    <Box
+      css={{
+        display: 'flex',
+        flexDirection: 'column',
+
+        width: '100%',
+
+        textarea: {
+          maxHeight: 500,
+          lineHeight: '30px',
+          resize: 'none',
+        },
+      }}
+    >
+      <S.Field
         id={name}
+        component={as}
         onKeyUp={isTextarea ? handleChange : undefined}
-        {...{ as, name, ...props }}
+        css={{ borderBottomColor: hasError ? '$error' : undefined }}
+        {...{ name, ...props }}
       />
 
-      {hasError && (
-        <Text as="small" color="error" mt="xs" css={S.firstLetter}>
-          <ErrorMessage {...{ name }} />
+      {hasError && name && (
+        <Text
+          as="small"
+          css={{
+            color: '$error',
+            marginTop: '$4',
+
+            '&::first-letter': {
+              textTransform: 'uppercase',
+            },
+          }}
+        >
+          <ErrorMessage
+            name={name}
+            render={(msg) =>
+              t(`validation:${msg}`, {
+                name: t(`components:form.fields.${name}`),
+              })
+            }
+          />
         </Text>
       )}
-    </S.Wrapper>
+    </Box>
   )
 }
 
-export default React.memo(Input)
+export default memo(Input) as typeof Input

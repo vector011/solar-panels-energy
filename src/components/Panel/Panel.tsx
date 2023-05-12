@@ -1,107 +1,134 @@
-import React, { ComponentProps } from 'react'
-import { useTranslation } from 'react-i18next'
+import { memo, useCallback } from 'react'
+import { type ComponentProps } from '@stitches/react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
-import { Box, Counter, Icon, Image, Text } from 'ui'
+import { Box, Counter, Text } from '~/ui'
+import { type ParameterComponent, type ProductModel } from '~/types/models'
 
-import * as S from './styled'
+type TBaseProps = React.ComponentProps<typeof motion.article>
+type TStyledProps = ComponentProps<typeof Box>
 
-type Props = {
-  big?: boolean
-  w: string
-  mm: string
-  kg: string
-} & ComponentProps<typeof Counter>
+type TProps = {
+  data: ProductModel
+}
 
-const Panel = ({ big, w, mm, kg, ...props }: Props) => {
-  const { t } = useTranslation()
+type TPanelProps = Omit<TBaseProps, keyof TProps> & TStyledProps & TProps
+
+const Panel = ({ data, css, ...props }: TPanelProps) => {
+  const renderParams = useCallback(
+    (item: ParameterComponent) => (
+      <Box
+        key={item?.id}
+        css={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '$14',
+
+          '@tablet': {
+            gap: '$big',
+          },
+        }}
+      >
+        <Box
+          as={Image}
+          src={item?.icon?.url}
+          alt={item?.text}
+          width={35}
+          height={35}
+          css={{
+            objectFit: 'contain',
+            objectPosition: 'left',
+            userSelect: 'none',
+            pointerEvents: 'none',
+          }}
+        />
+
+        <Text
+          as="span"
+          variant="paragraph"
+          css={{
+            color: '$light',
+            textTransform: 'uppercase',
+          }}
+        >
+          {item?.text}
+        </Text>
+      </Box>
+    ),
+    []
+  )
 
   return (
     <Box
-      as="article"
-      desktop={{ flexDirection: 'row' }}
-      alignItems="center"
-      css={S.responsive}
+      as={motion.article}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      {...props}
+      css={{
+        alignItems: 'center',
+        padding: '$4',
+        gap: '$7',
+
+        '@tablet': {
+          padding: '$9',
+        },
+
+        ...css,
+      }}
     >
       <Box
-        ph={big ? '0' : '60px'}
-        desktop={{ ph: big ? '0' : '100px' }}
-        width="100%"
-        maxWidth={723}
-      >
-        <Image
-          css={S.responsiveImage}
-          src={`images/solar-panel-${big ? 'big' : 'small'}.png`}
-          alt={
-            t('components:panel.image.alt', {
-              size: big
-                ? t('components:panel.size.big')
-                : t('components:panel.size.small'),
-            })!
-          }
-          width={big ? 613 : 473}
-          height={big ? 382 : 295}
-        />
-      </Box>
-
-      <Box
-        gap="xxl"
-        width="100%"
-        alignItems="center"
-        tablet={{
-          row: true,
-          alignItems: 'flex-end',
-          justifyContent: 'center',
+        as={Image}
+        src={data?.image?.url}
+        alt={data?.slug}
+        width={240}
+        height={150}
+        css={{
+          width: '100%',
+          maxWidth: 240,
+          objectFit: 'contain',
+          objectPosition: 'center',
+          aspectRatio: '16/9',
         }}
-        desktop={{ gap: '6xl', justifyContent: 'flex-start' }}
-        largeDesktop={{ gap: 'block' }}
-      >
-        <Box gap="l">
-          <Text variant="paragraph2" uppercase>
-            {t('components:panel.title', {
-              size: big
-                ? t('components:panel.size.big')
-                : t('components:panel.size.small'),
-            })}
+      />
+
+      <Box css={{ justifyContent: 'space-between', gap: '$7', flex: 1 }}>
+        <Box css={{ gap: '$8' }}>
+          <Text
+            as="h2"
+            variant="paragraph2"
+            css={{
+              fontWeight: 500,
+              color: '$light',
+              textTransform: 'uppercase',
+            }}
+          >
+            {data?.name}
           </Text>
 
-          <Box
-            row
-            gap="3xl"
-            desktop={{ gap: '5xl' }}
-            largeDesktop={{ gap: 'big' }}
-            alignItems="center"
-          >
-            <Icon name="energy-icon" title="W" width={35} height={35} />
-            <Text variant="paragraph2">{w} W</Text>
-          </Box>
+          {data?.description && (
+            <Text
+              variant="paragraph"
+              css={{
+                textAlign: 'justify',
+                maxWidth: 320,
+                fontWeight: 300,
+                fontSize: '15px',
+                lineHeight: '20px',
+              }}
+            >
+              {data?.description}
+            </Text>
+          )}
 
-          <Box
-            row
-            gap="3xl"
-            desktop={{ gap: '5xl' }}
-            largeDesktop={{ gap: 'big' }}
-            alignItems="center"
-          >
-            <Icon name="size-icon" title="mm" width={35} height={35} />
-            <Text variant="paragraph2">{mm} mm</Text>
-          </Box>
-
-          <Box
-            row
-            gap="3xl"
-            desktop={{ gap: '5xl' }}
-            largeDesktop={{ gap: 'big' }}
-            alignItems="center"
-          >
-            <Icon name="weight-icon" title="kg" width={35} height={35} />
-            <Text variant="paragraph2">{kg} kg</Text>
-          </Box>
+          <Box css={{ gap: '$6' }}>{data?.parameters?.map(renderParams)}</Box>
         </Box>
 
-        <Counter {...props} />
+        <Counter data={data} css={{ justifySelf: 'flex-end' }} />
       </Box>
     </Box>
   )
 }
 
-export default React.memo(Panel)
+export default memo(Panel) as typeof Panel

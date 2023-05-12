@@ -1,0 +1,5 @@
+{
+  "required": "Prosím vyplňte {{name}}",
+  "format": "Prosím zadajte {{name}} vo správnom formáte",
+  "maxLength500": "{{name}} môže obsahovať maximálne 500 znakov"
+}

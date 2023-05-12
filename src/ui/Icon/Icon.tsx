@@ -1,12 +1,14 @@
 import React from 'react'
-import SVG, { Props as SVGProps } from 'react-inlinesvg'
+import SVG, { type Props } from 'react-inlinesvg'
 
-type Props = {
+type TProps = {
   name: string
-} & Omit<SVGProps, 'src'>
+}
 
-const Icon = ({ name, ...props }: Props) => (
+type TIconProps = Omit<Props, 'src'> & TProps
+
+const Icon = ({ name, ...props }: TIconProps) => (
   <SVG src={`/assets/icons/${name}.svg`} {...props} />
 )
 
-export default React.memo(Icon)
+export default React.memo(Icon) as typeof Icon

@@ -1,53 +1,34 @@
-import styled, { css } from 'styled-components'
+import { styled } from '~/styles'
 
-import type { Props } from './Button'
+export const Button = styled('button', {
+  display: 'inline',
 
-const wideVariant = css`
-  align-self: center;
-  width: 100%;
-  max-width: 800px;
-`
+  paddingBlock: 'clamp($4, 2.5vw + 0.1rem, $6)',
+  paddingInline: 'clamp($7, 2.5vw + 0.1rem, $8)',
 
-const hover = css`
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    border-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.light};
-  }
+  fontWeight: 400,
+  fontSize: '$2',
+  lineHeight: '$0',
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
-`
+  boxShadow: '0px 4px 4px rgba(128, 49, 49, 0.25)',
+  border: '2px solid $primary',
+  borderRadius: '$button',
 
-export const Wrapper = styled.button<Props>`
-  display: inline;
-  align-self: flex-start;
+  textAlign: 'center',
+  cursor: 'pointer',
+  transition: 'all 200ms',
 
-  padding-block: ${({ theme }) =>
-    `clamp(${theme.sizes.xs}, 2.5vw + 0.1rem, ${theme.sizes.sm})`};
-  padding-inline: ${({ theme }) =>
-    `clamp(${theme.sizes.m}, 2.5vw + 0.1rem, ${theme.sizes.l})`};
+  '&:disabled': {
+    cursor: 'not-allowed',
+  },
 
-  min-width: 288px;
+  '&:hover:not(:disabled)': {
+    backgroundColor: '$secondary',
+    borderColor: '$secondary',
+    color: '$light',
+  },
 
-  background-color: ${({ theme, secondary }) =>
-    secondary ? 'transparent' : theme.colors.primary};
-  box-shadow: 0px 4px 4px rgba(128, 49, 49, 0.25);
-
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  border-radius: ${({ theme }) => theme.borderRadii.button};
-
-  ${({ theme }) => theme.textVariants.button};
-  color: ${({ theme, secondary }) =>
-    theme.colors[secondary ? 'primary' : 'dark']};
-  text-align: center;
-
-  ${({ wide }) => wide && wideVariant}
-
-  transition: all 200ms;
-
-  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-
-  ${({ disabled }) => !disabled && hover}
-`
+  '&:active:not(:disabled)': {
+    backgroundColor: '$dark',
+  },
+})

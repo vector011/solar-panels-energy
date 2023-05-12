@@ -1,49 +1,22 @@
-import { object, string } from 'yup'
-import i18next from 'i18next'
+import { z } from 'zod'
+import { toFormikValidationSchema } from 'zod-formik-adapter'
 
-import { PHONE_REGEX } from 'constants/regex'
+import { PHONE_REGEX } from '~/constants/regex'
 
-export default object({
-  name: string().required(
-    i18next.t('validation:required', {
-      name: i18next.t('components:form.fields.name'),
-    })!
-  ),
-  surname: string().required(
-    i18next.t('validation:required', {
-      name: i18next.t('components:form.fields.surname'),
-    })!
-  ),
-  email: string()
-    .required(
-      i18next.t('validation:required', {
-        name: i18next.t('components:form.fields.email'),
-      })!
-    )
-    .email(
-      i18next.t('validation:format', {
-        name: i18next.t('components:form.fields.email'),
-      })!
-    ),
-  phone: string()
-    .matches(
-      PHONE_REGEX,
-      i18next.t('validation:format', {
-        name: i18next.t('components:form.fields.phone'),
-      })!
-    )
-    .optional(),
-  message: string()
-    .required(
-      i18next.t('validation:required', {
-        name: i18next.t('components:form.fields.message'),
-      })!
-    )
-    .max(
-      500,
-      i18next.t('validation:maxChar', {
-        name: i18next.t('components:form.fields.message'),
-        limit: 500,
-      })!
-    ),
-}).required()
+const Schema = z
+  .object({
+    name: z.string({ required_error: 'required' }),
+
+    surname: z.string({ required_error: 'required' }),
+
+    email: z.string({ required_error: 'required' }).email('format'),
+
+    phone: z.string().regex(PHONE_REGEX, 'format').optional(),
+
+    message: z.string({ required_error: 'required' }).max(500, 'maxLength500'),
+  })
+  .strict()
+
+export type ContactData = z.infer<typeof Schema>
+
+export default toFormikValidationSchema(Schema)

@@ -1,17 +1,15 @@
-import React, { ComponentProps } from 'react'
+import { styled } from '~/styles/theme'
 
-import Box from '../core/Box'
+const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
 
-import * as S from './styled'
+  width: '100%',
+  maxWidth: 'calc(1600px + 4%)',
 
-type Props = {
-  children: React.ReactNode
-} & ComponentProps<typeof Box>
+  paddingInline: '4%',
+  marginInline: 'auto',
+})
 
-const Container = ({ children, ...props }: Props) => (
-  <Box as={S.Wrapper} {...props}>
-    {children}
-  </Box>
-)
-
-export default React.memo(Container)
+export default Container

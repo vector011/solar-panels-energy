@@ -1,0 +1,17 @@
+{
+  "benefits": {
+    "title": "Products",
+    "body": "We adhere to the principle of selling high-quality products at the best possible prices. In addition, we can ensure fast delivery of goods throughout Europe. Both wholesalers and households are satisfied with our approach."
+  },
+
+  "filter": {
+    "category": "All",
+    "search": "Product name"
+  },
+
+  "panels": {
+    "button": "Get Price",
+    "empty": "No products found",
+    "reset": "Reset selection"
+  }
+}

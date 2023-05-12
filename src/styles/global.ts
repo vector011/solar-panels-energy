@@ -1,108 +1,108 @@
-import { createGlobalStyle } from 'styled-components'
+import { globalCss, keyframes } from './theme'
 
-export default createGlobalStyle`
-  * {
-    outline: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+const dualRign = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+})
 
-  #root {
-    overflow: hidden;
-  }
+export const globalStyles = globalCss({
+  '*': {
+    boxSizing: 'border-box',
+    outline: 0,
+    margin: 0,
+    padding: 0,
+  },
 
-  body {
-    background:
-      url("assets/images/background.png")
-      ${({ theme }) => theme.colors.bg};
-    background-size: 20.9%;
-    background-position-x: 63.2%;
+  '#__next': {
+    overflow: 'hidden',
+  },
 
-    font-family: "Visuelt", sans-serif; // Inter
-    color: ${({ theme }) => theme.colors.light};
+  html: {
+    backgroundColor: '$bg',
+  },
 
-    font-size: 20px;
-    line-height: 24.2px;
-    font-weight: 300;
-  }
+  body: {
+    background: 'url("/assets/images/background.png") $bg',
+    backgroundSize: '20.9%',
+    backgroundPositionX: '63.2%',
 
-  input, button, textarea, select {
-    font-family: "Visuelt", sans-serif; // Inter
-  }
+    color: '$light',
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: inherit;
-    line-height: inherit;
-  }
+    fontSize: '$3',
+    lineHeight: '$4',
+    fontWeight: 300,
+  },
 
-  img {
-    display: block;
-  }
+  'input, button, textarea, select': {
+    fontFamily: 'inherit',
+  },
 
-  iframe {
-    border: 0;
-    display: block;
-  }
+  'h1, h2, h3, h4, h5, h6': {
+    fontWeight: 'inherit',
+    fontStyle: 'inherit',
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+  },
 
-  a {
-    text-decoration: none;
-  }
+  img: {
+    display: 'block',
+  },
 
-  button {
-    background-color: transparent;
-    cursor: pointer;
-    color: inherit;
-    border: 0;
-  }
+  iframe: {
+    border: 'none',
+    display: 'block',
+  },
 
-  .loading {
-    position: relative;
-    pointer-events: none;
-    cursor: progress;
+  a: {
+    textDecoration: 'none',
+  },
 
-    &:before {
-      content: '';
-      display: inline-flex;
+  button: {
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    color: 'inherit',
+    border: 'none',
+  },
 
-      z-index: ${({ theme }) => theme.zIndices.loading};
-      position: absolute;
-      inset: 0;
+  '.loading': {
+    position: 'relative',
+    pointerEvents: 'none',
+    cursor: 'progress',
 
-      background: inherit;
-      border-radius: inherit;
-      opacity: 0.9;
-    }
+    '&:before': {
+      content: '',
+      display: 'inline-flex',
 
-    &:after {
-      content: ' ';
-      display: inline-flex;
+      zIndex: '$loading',
+      position: 'absolute',
+      inset: 0,
 
-      z-index: ${({ theme }) => theme.zIndices.loading + 9};
-      position: absolute;
-      top: calc(50% - 10px);
-      left: calc(50% - 10px);
+      background: 'inherit',
+      borderRadius: 'inherit',
+      opacity: 0.9,
+    },
 
-      width: 15px;
-      height: 15px;
+    '&:after': {
+      content: ' ',
+      display: 'inline-flex',
 
-      border-radius: ${({ theme }) => theme.borderRadii.rounded};
-      border: 3px solid ${({ theme }) => theme.colors.dark};
-      border-color: ${({ theme }) => theme.colors.light} transparent
-        ${({ theme }) => theme.colors.light} transparent;
+      zIndex: 'calc($loading + 9)',
+      position: 'absolute',
+      top: 'calc(50% - 10px)',
+      left: 'calc(50% - 10px)',
 
-      animation: dual-ring 1.2s linear infinite;
+      size: '15px',
 
-      @keyframes dual-ring {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    }
-  }
-`
+      borderRadius: '$rounded',
+      border: '3px solid $dark',
+      borderColor: '$light transparent $light transparent',
+
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      animation: `${dualRign} 1.2s linear infinite`,
+    },
+  },
+})

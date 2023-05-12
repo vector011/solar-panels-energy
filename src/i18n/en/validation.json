@@ -1,0 +1,5 @@
+{
+  "required": "{{name}} is required",
+  "format": "Please enter {{name}} in the correct format",
+  "maxLength500": "{{name}} can contain a maximum of 500 characters"
+}

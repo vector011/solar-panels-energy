@@ -1,0 +1,41 @@
+name: Check code quality
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install NodeJS
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Run yarn install
+      - name: 🔩 Installing
+        run: yarn
+        shell: bash
+
+      # Create env file
+      - name: 📁 Create env file
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} >> .env
+          echo NEXT_PUBLIC_MAIL_SERVICE_ID=${{ secrets.NEXT_PUBLIC_MAIL_SERVICE_ID }} >> .env
+          echo NEXT_PUBLIC_MAIL_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_MAIL_TEMPLATE_ID }} >> .env
+          echo NEXT_PUBLIC_MAIL_USER_ID=${{ secrets.NEXT_PUBLIC_MAIL_USER_ID }} >> .env
+
+      # Run yarn lint
+      - name: 🧪 Linting
+        run: yarn lint
+        shell: bash

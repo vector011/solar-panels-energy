@@ -22,7 +22,6 @@ import { Panel, PanelSkeleton, Popup } from '~/components'
 import { usePageOffset, useToggle } from '~/hooks'
 import useProductStore from '~/stores/products'
 
-import client from '~/apollo'
 import {
   type CategoriesData,
   type CategoriesPayload,
@@ -32,11 +31,7 @@ import {
   GET_PRODUCTS,
 } from '~/apollo/queries'
 
-type TProps = {
-  categories: CategoriesPayload['categories']
-}
-
-const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
+const Products: NextPageWithProps = ({ _nextI18Next }) => {
   const { t } = useTranslation(_nextI18Next?.ns)
   const { replace, locale, defaultLocale, query } = useRouter()
 
@@ -45,6 +40,11 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
 
   const ref = useRef<HTMLDivElement | null>(null)
   usePageOffset(ref)
+
+  const { data: categories } = useQuery<CategoriesPayload, CategoriesData>(
+    GET_CATEGORIES,
+    { variables: { locale: locale || defaultLocale || '' } }
+  )
 
   const { data, loading } = useQuery<ProductsPayload, ProductsData>(
     GET_PRODUCTS,
@@ -146,7 +146,7 @@ const Products: NextPageWithProps<TProps> = ({ _nextI18Next, categories }) => {
             }}
           >
             <Filter
-              items={categories}
+              items={categories?.categories || []}
               initial={query['category'] as string}
               cb={handleQuery('category')}
             />
@@ -220,18 +220,7 @@ export const getStaticProps: GetStaticProps = async ({
     ['global', 'products', 'components']
   )
 
-  const { data } = await client.query<CategoriesPayload, CategoriesData>({
-    query: GET_CATEGORIES,
-    variables: { locale: locale || defaultLocale || '' },
-  })
-
-  return {
-    props: {
-      ...translations,
-      categories: data?.categories || null,
-    },
-    revalidate: 60 * 5, // 5 minutes
-  }
+  return { props: translations }
 }
 
 export default memo(Products)

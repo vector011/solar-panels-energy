@@ -98,6 +98,7 @@ const Filter = ({ items, initial = '', cb, css }: TFilterProps) => {
             background: 'url("/assets/images/grain.png") $dark',
             backgroundSize: '20%',
             gap: '$3',
+            zIndex: '$modal',
 
             color: '$primary',
             border: '1px solid $primary',
